@@ -1,0 +1,89 @@
+name: Technical Suggestion
+description: Suggest an improvement, additional hunt pivot, telemetry source, detection opportunity, or other technical enhancement.
+title: "[SUGGESTION] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve Practical Threat Hunting.
+
+        Use this form for technical improvements or additions that are not corrections to an existing error.
+
+  - type: dropdown
+    id: suggestion_type
+    attributes:
+      label: Suggestion Type
+      description: Select the type of improvement you are proposing.
+      options:
+        - Additional hunt pivot
+        - Additional telemetry source
+        - Query improvement
+        - Detection opportunity
+        - Investigation technique
+        - MITRE ATT&CK mapping
+        - Documentation improvement
+        - New hunt idea
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: affected_resource
+    attributes:
+      label: Related Hunt or Resource
+      description: Identify the existing hunt or resource this suggestion relates to, if applicable.
+      placeholder: Hunt 07 - Suspicious OAuth Application Consent
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Technical Suggestion
+      description: Describe the proposed improvement or addition.
+      placeholder: Explain the suggestion and how it could improve the hunt, investigation, query, or supporting material.
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Explain why this change would be useful to threat hunters or analysts.
+      placeholder: Describe the defensive or investigative value.
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example or Implementation
+      description: Provide an example query, field, pivot, workflow, or implementation if available.
+      placeholder: Optional example or implementation details.
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Supporting References
+      description: Include relevant vendor documentation, MITRE ATT&CK references, research, or other supporting sources.
+      placeholder: Links or citations.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: sensitive_data
+    attributes:
+      label: Sensitive Data Check
+      options:
+        - label: I have removed credentials, tokens, customer data, internal hostnames, proprietary telemetry, and other sensitive information from this submission.
+          required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched existing issues to see whether this suggestion has already been submitted.
+          required: true

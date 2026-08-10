@@ -1,0 +1,94 @@
+name: Broken or Outdated Query
+description: Report a query that is incorrect, outdated, or not working as expected.
+title: "[QUERY] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve the Practical Threat Hunting companion repository.
+
+        Please provide enough technical detail for the query to be reviewed and reproduced where possible.
+
+  - type: input
+    id: hunt
+    attributes:
+      label: Hunt or Resource
+      description: Identify the hunt, chapter, or resource containing the affected query.
+      placeholder: Hunt 07 - Suspicious OAuth Application Consent
+    validations:
+      required: true
+
+  - type: dropdown
+    id: query_language
+    attributes:
+      label: Query Language
+      description: Select the query language or detection format.
+      options:
+        - KQL
+        - Splunk SPL
+        - CrowdStrike LogScale
+        - Sigma
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: platform
+    attributes:
+      label: Platform or Data Source
+      description: Identify the platform, product, log source, or dataset involved.
+      placeholder: Microsoft Entra ID AuditLogs
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Description of the Problem
+      description: Explain what is incorrect, outdated, or not working.
+      placeholder: Describe the issue, error message, unexpected result, or outdated field here.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: Explain what you expected the query to return or accomplish.
+      placeholder: Describe the expected behavior.
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggested_fix
+    attributes:
+      label: Suggested Fix
+      description: If you know the correction, provide the updated query, field, syntax, or logic.
+      placeholder: Paste the suggested correction here.
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Supporting References
+      description: Include relevant vendor documentation or other sources that support the correction.
+      placeholder: Links or citations.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: sensitive_data
+    attributes:
+      label: Sensitive Data Check
+      options:
+        - label: I have removed credentials, tokens, customer data, internal hostnames, proprietary telemetry, and other sensitive information from this report.
+          required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched existing issues to see whether this problem has already been reported.
+          required: true

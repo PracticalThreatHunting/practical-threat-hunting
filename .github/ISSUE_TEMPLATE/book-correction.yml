@@ -1,0 +1,72 @@
+name: Book Correction or Errata
+description: Report a suspected error or correction in a Practical Threat Hunting book.
+title: "[BOOK CORRECTION] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve Practical Threat Hunting.
+
+        Please provide enough detail for the reported issue to be located and reviewed.
+
+  - type: input
+    id: book
+    attributes:
+      label: Book
+      description: Enter the title of the affected book.
+      placeholder: Practical Threat Hunting - Threat Hunting for SOC Analysts
+    validations:
+      required: true
+
+  - type: input
+    id: edition
+    attributes:
+      label: Edition or Publication Version
+      description: Enter the edition, publication date, or version if known.
+      placeholder: First Edition
+    validations:
+      required: false
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Identify the chapter, section, hunt, page, or other location where the issue appears.
+      placeholder: Chapter 4, Hunt 07, page 112
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: Description of the Issue
+      description: Explain what appears to be incorrect, outdated, unclear, or misleading.
+      placeholder: Describe the issue here.
+    validations:
+      required: true
+
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested Correction
+      description: Provide the corrected information or wording if known.
+      placeholder: Suggested correction or updated information.
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Supporting References
+      description: Include relevant vendor documentation, standards, research, or other sources that support the correction.
+      placeholder: Links or citations.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched existing issues to see whether this correction has already been reported.
+          required: true
