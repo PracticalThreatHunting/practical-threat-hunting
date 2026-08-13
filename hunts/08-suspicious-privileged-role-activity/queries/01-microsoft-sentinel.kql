@@ -1,0 +1,10 @@
+// Microsoft Sentinel KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+AuditLogs
+| where TimeGenerated > ago(14d)
+| where OperationName has_any ("role", "eligible", "member")
+| where Category has_any ("RoleManagement", "UserManagement", "GroupManagement")
+| project TimeGenerated, OperationName, Result, Category,
+          InitiatedBy, TargetResources, LoggedByService
+| order by TimeGenerated desc

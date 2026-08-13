@@ -1,0 +1,10 @@
+// Illustrative Entra service-principal baseline — confirm table availability and schema in your tenant
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+AADServicePrincipalSignInLogs
+| where TimeGenerated > ago(30d)
+| summarize FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated),
+            SignIns=count(), IPs=make_set(IPAddress, 20),
+            Resources=make_set(ResourceDisplayName, 20)
+          by ServicePrincipalId, ServicePrincipalName
+| order by FirstSeen desc

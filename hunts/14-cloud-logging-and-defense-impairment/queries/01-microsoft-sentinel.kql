@@ -1,0 +1,15 @@
+// Microsoft Sentinel KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+let impairment = dynamic([
+ "StopLogging","DeleteTrail","UpdateTrail",
+ "DeleteFlowLogs","DisableAlarmActions","DeleteDetector",
+ "DeleteLogGroup","PutEventSelectors","UpdateDetector"]);
+AWSCloudTrail
+| where TimeGenerated > ago(30d)
+| where EventName in~ (impairment)
+| extend Principal=coalesce(SessionIssuerUserName, UserIdentityUserName,
+                            UserIdentityPrincipalid)
+| project TimeGenerated, Principal, EventName, EventSource,
+          SourceIpAddress, UserAgent, RequestParameters
+| order by TimeGenerated desc

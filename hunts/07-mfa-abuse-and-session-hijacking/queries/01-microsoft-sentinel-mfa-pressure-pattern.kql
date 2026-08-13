@@ -1,0 +1,14 @@
+// Microsoft Sentinel KQL — MFA pressure pattern
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+SigninLogs
+| where TimeGenerated > ago(7d)
+| where AuthenticationRequirement has "multiFactorAuthentication"
+| summarize Attempts=count(),
+            Failures=countif(ResultType != "0"),
+            Successes=countif(ResultType == "0"),
+            IPs=make_set(IPAddress, 10),
+            Apps=make_set(AppDisplayName, 10)
+  by UserPrincipalName, bin(TimeGenerated, 15m)
+| where Attempts >= 5 and Successes >= 1
+| order by Attempts desc

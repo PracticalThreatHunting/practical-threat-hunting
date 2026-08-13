@@ -1,0 +1,10 @@
+// Optional dump-file pivot
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+DeviceFileEvents
+| where Timestamp > ago(14d)
+| where FileName endswith ".dmp"
+| where FolderPath has_any ("\\Users\\", "\\ProgramData\\", "\\Temp\\")
+| project Timestamp, DeviceName, InitiatingProcessAccountName,
+          FileName, FolderPath, InitiatingProcessFileName,
+          InitiatingProcessCommandLine

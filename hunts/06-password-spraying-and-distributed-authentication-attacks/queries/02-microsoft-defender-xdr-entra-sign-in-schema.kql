@@ -1,0 +1,14 @@
+// Microsoft Defender XDR alternative — current Entra sign-in schema
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+EntraIdSignInEvents
+| where Timestamp > ago(7d)
+| summarize Attempts=count(),
+            Users=dcount(AccountUpn),
+            Failures=countif(ErrorCode != 0),
+            Successes=countif(ErrorCode == 0),
+            Countries=make_set(Country, 8),
+            Apps=make_set(Application, 8)
+  by IPAddress, bin(Timestamp, 15m)
+| where Users >= 8 and Failures >= 8
+| sort by Users desc, Failures desc

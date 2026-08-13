@@ -1,0 +1,11 @@
+// Sentinel KQL — AWS example
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+AWSCloudTrail
+| where TimeGenerated > ago(7d)
+| extend Principal=coalesce(SessionIssuerUserName, UserIdentityUserName,
+                            UserIdentityPrincipalid)
+| where Principal =~ "<PRINCIPAL>"
+| project TimeGenerated, Principal, SourceIpAddress, UserAgent,
+          EventName, EventSource, AWSRegion
+| order by TimeGenerated asc

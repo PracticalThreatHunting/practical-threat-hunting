@@ -1,0 +1,10 @@
+// Illustrative current Defender/Agent 365 inventory query — revalidate fields before publication
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+AgentsInfo
+| summarize arg_max(Timestamp, *) by AgentId
+| where LifecycleStatus != "Deleted"
+| project Timestamp, AgentId, AgentName, Owners, Model,
+          ToolsAuthenticationType, Permissions, Capabilities,
+          DeclaredDataSources, DeclaredTools, McpServers,
+          Triggers, Guardrails, LifecycleStatus

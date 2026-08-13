@@ -1,0 +1,10 @@
+# Normalized-field example
+# Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+process_name IN ("powershell.exe","pwsh.exe")
+| eval cmd=lower(process_command_line)
+| where like(cmd,"%-enc%") OR like(cmd,"%-encodedcommand%")
+    OR like(cmd,"%frombase64string%") OR like(cmd,"%downloadstring%")
+| stats count min(_time) as first_seen max(_time) as last_seen
+        values(parent_process_name) values(process_command_line)
+        by host user

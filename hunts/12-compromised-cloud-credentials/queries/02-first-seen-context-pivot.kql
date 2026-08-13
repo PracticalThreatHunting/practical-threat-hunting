@@ -1,0 +1,16 @@
+// Example KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+let baseline = AWSCloudTrail
+| where TimeGenerated between (ago(30d) .. ago(1d))
+| extend Principal=coalesce(SessionIssuerUserName, UserIdentityUserName,
+                            UserIdentityPrincipalid)
+| summarize KnownIPs=make_set(SourceIpAddress, 500) by Principal;
+AWSCloudTrail
+| where TimeGenerated > ago(1d)
+| extend Principal=coalesce(SessionIssuerUserName, UserIdentityUserName,
+                            UserIdentityPrincipalid)
+| join kind=leftouter baseline on Principal
+| where not(set_has_element(KnownIPs, SourceIpAddress))
+| project TimeGenerated, Principal, SourceIpAddress, UserAgent,
+          EventName, EventSource, AWSRegion

@@ -4,14 +4,10 @@ This directory contains resources associated with the Practical Threat Hunting b
 
 ## Current Book
 
-**Practical Threat Hunting: Threat Hunting for SOC Analysts**
+**Practical Threat Hunting: Modern Techniques for the AI-Augmented SOC**  
+*25 Hands-On Hunts Across Endpoint, Identity, Cloud, Microsoft 365, and AI Systems*  
+**Grant Halden**
 
-Resources may include:
+Status: manuscript revision / pre-publication.
 
-- Edition information
-- Published corrections
-- Errata
-- Companion resource references
-- Material updated after publication
-
-The manuscript itself is not stored in this repository.
+The repository contains updateable implementation material such as queries, source notes, figures, errata, and companion references. The manuscript itself is not stored in this repository.

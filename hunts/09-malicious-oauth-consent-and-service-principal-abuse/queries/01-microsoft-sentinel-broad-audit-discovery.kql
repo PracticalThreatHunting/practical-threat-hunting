@@ -1,0 +1,10 @@
+// Microsoft Sentinel KQL — broad audit discovery
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+AuditLogs
+| where TimeGenerated > ago(30d)
+| where OperationName has_any ("Consent", "service principal", "application",
+                               "app role", "credential")
+| project TimeGenerated, OperationName, Result,
+          InitiatedBy, TargetResources, AdditionalDetails
+| order by TimeGenerated desc

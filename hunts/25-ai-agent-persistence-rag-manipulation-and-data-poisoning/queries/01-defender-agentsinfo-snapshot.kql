@@ -1,0 +1,9 @@
+// Current Microsoft-style inventory concept — persist snapshots externally to compare changes over time
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+AgentsInfo
+| where Timestamp > ago(30d)
+| summarize arg_max(Timestamp, *) by AgentId
+| project AgentId, AgentName, Owners, Model, Permissions,
+          DeclaredDataSources, DeclaredTools, McpServers,
+          Triggers, Guardrails, Capabilities, LifecycleStatus

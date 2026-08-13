@@ -1,0 +1,6 @@
+// Normalized-field example
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+process_name=/^(powershell|pwsh)\.exe$/i
+| process_command_line=/(\-enc|encodedcommand|frombase64string|downloadstring|invoke-webrequest)/i
+| groupBy([host,user,parent_process_name,process_command_line], function=count())

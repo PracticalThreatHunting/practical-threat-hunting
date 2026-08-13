@@ -1,0 +1,10 @@
+// Sentinel KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+SigninLogs
+| where TimeGenerated between (datetime(<START>) .. datetime(<END>))
+| where UserPrincipalName =~ "<USER>"
+| project TimeGenerated, UserPrincipalName, IPAddress, AppDisplayName,
+          ClientAppUsed, ResultType, AuthenticationRequirement,
+          ConditionalAccessStatus, UserAgent, DeviceDetail, LocationDetails
+| order by TimeGenerated asc

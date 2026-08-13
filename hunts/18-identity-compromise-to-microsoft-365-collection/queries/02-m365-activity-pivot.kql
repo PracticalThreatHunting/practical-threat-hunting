@@ -1,0 +1,11 @@
+// Sentinel KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+OfficeActivity
+| where TimeGenerated between (datetime(<START>) .. datetime(<END>))
+| where UserId =~ "<USER>"
+| summarize Events=count(), Objects=dcount(OfficeObjectId),
+            Operations=make_set(Operation, 30),
+            SampleObjects=make_set(OfficeObjectId, 15)
+  by Workload, ClientIP, bin(TimeGenerated, 30m)
+| order by TimeGenerated asc

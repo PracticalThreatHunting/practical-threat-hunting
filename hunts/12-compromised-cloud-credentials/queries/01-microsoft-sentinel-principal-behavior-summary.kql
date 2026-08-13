@@ -1,0 +1,15 @@
+// Microsoft Sentinel KQL — principal behavior summary
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+AWSCloudTrail
+| where TimeGenerated > ago(30d)
+| extend Principal = coalesce(SessionIssuerUserName, UserIdentityUserName,
+                              UserIdentityPrincipalid)
+| summarize Calls=count(),
+            IPs=dcount(SourceIpAddress),
+            Regions=dcount(AWSRegion),
+            Services=dcount(EventSource),
+            SampleIPs=make_set(SourceIpAddress, 10),
+            SampleAgents=make_set(UserAgent, 10)
+  by Principal
+| order by Calls desc

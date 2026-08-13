@@ -1,0 +1,11 @@
+// Microsoft Sentinel KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+OfficeActivity
+| where TimeGenerated > ago(30d)
+| where Workload =~ "Exchange"
+| where Operation in~ ("New-InboxRule", "Set-InboxRule",
+                        "UpdateInboxRules", "Set-Mailbox")
+| project TimeGenerated, UserId, Operation, ClientIP,
+          OfficeObjectId, Parameters, ResultStatus
+| order by TimeGenerated desc

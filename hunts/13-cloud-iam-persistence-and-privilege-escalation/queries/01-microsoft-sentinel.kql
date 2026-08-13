@@ -1,0 +1,17 @@
+// Microsoft Sentinel KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+let iam_changes = dynamic([
+ "CreateAccessKey","UpdateAccessKey","CreateLoginProfile",
+ "AttachUserPolicy","PutUserPolicy","AddUserToGroup",
+ "AttachRolePolicy","PutRolePolicy","UpdateAssumeRolePolicy",
+ "CreatePolicyVersion","SetDefaultPolicyVersion",
+ "CreateRole","CreateUser","CreatePolicy"]);
+AWSCloudTrail
+| where TimeGenerated > ago(14d)
+| where EventName in~ (iam_changes)
+| extend Principal=coalesce(SessionIssuerUserName, UserIdentityUserName,
+                            UserIdentityPrincipalid)
+| project TimeGenerated, Principal, EventName, EventSource,
+          SourceIpAddress, UserAgent, RequestParameters, ResponseElements
+| order by TimeGenerated desc

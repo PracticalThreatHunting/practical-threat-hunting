@@ -1,0 +1,13 @@
+// Microsoft Defender XDR KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+let lolbins = dynamic(["rundll32.exe","regsvr32.exe","mshta.exe",
+                        "certutil.exe","bitsadmin.exe","wmic.exe",
+                        "cscript.exe","wscript.exe"]);
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where FileName in~ (lolbins)
+| summarize Count=count(), Devices=dcount(DeviceId),
+            Examples=make_set(ProcessCommandLine, 5)
+  by FileName, InitiatingProcessFileName, AccountName
+| order by Count asc
