@@ -7,7 +7,7 @@ The project focuses on durable threat-hunting methodology plus an updateable imp
 ## What You'll Find Here
 
 - Companion resources for 25 hands-on threat hunts
-- KQL, Splunk SPL, CrowdStrike LogScale, Sigma, and provider-neutral examples where applicable
+- KQL plus selected Splunk SPL, CrowdStrike LogScale, and provider-neutral examples where applicable
 - AI-assisted hunt prompts and validation guidance
 - Detection opportunities and telemetry notes
 - MITRE ATT&CK / MITRE ATLAS / OWASP / NIST reference material
