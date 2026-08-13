@@ -1,0 +1,12 @@
+// Microsoft Sentinel KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+SigninLogs
+| where TimeGenerated > ago(7d)
+| summarize Attempts=count(),
+            Users=dcount(UserPrincipalName),
+            Successes=countif(ResultType == "0"),
+            SampleUsers=make_set(UserPrincipalName, 8)
+  by IPAddress, bin(TimeGenerated, 15m)
+| where Users >= 10
+| order by Users desc, Attempts desc

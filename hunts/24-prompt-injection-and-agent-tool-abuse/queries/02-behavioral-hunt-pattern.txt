@@ -1,0 +1,11 @@
+# Provider-neutral pseudocode — table names vary by platform
+# Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+AgentBehavior
+| where Timestamp > ago(7d)
+| where ActionType == "ToolInvocation"
+| summarize Invocations=count(), Targets=dcount(TargetResource)
+          by AgentId, ToolName, UserId
+| where Invocations > 0
+// Enrich with approved AgentId→ToolName mappings and first-seen history.
+// Confirm actual side effects in the tool's authoritative audit log.

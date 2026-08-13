@@ -1,0 +1,14 @@
+// Microsoft Sentinel KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+let staging = dynamic([
+ "CreateSnapshot","CopySnapshot","ModifySnapshotAttribute",
+ "CreateDBSnapshot","CreateDBClusterSnapshot",
+ "PutBucketPolicy","PutBucketReplication","PutBucketAcl"]);
+AWSCloudTrail
+| where TimeGenerated > ago(30d)
+| where EventName in~ (staging)
+| extend Principal=coalesce(SessionIssuerUserName, UserIdentityUserName,
+                            UserIdentityPrincipalid)
+| project TimeGenerated, Principal, EventName, EventSource,
+          SourceIpAddress, RequestParameters, ResponseElements

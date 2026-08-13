@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this companion repository, please cite the Practical Threat Hunting project."
+title: "Practical Threat Hunting Companion Repository"
+type: software
+authors:
+  - family-names: "Halden"
+    given-names: "Grant"
+repository-code: "https://github.com/PracticalThreatHunting/practical-threat-hunting"
+url: "https://github.com/PracticalThreatHunting/practical-threat-hunting"
+abstract: "Companion queries, hunt resources, framework notes, and updateable implementation material for Practical Threat Hunting: Modern Techniques for the AI-Augmented SOC."
+keywords:
+  - threat hunting
+  - detection engineering
+  - cybersecurity
+  - AI security
+  - incident response
+license: "NOASSERTION"

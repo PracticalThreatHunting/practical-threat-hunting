@@ -1,0 +1,22 @@
+// Illustrative correlation pattern — use real DLP/sensitivity telemetry where available
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+let Window = 15m;
+let SensitiveFiles =
+    DeviceFileEvents
+    | where Timestamp > ago(7d)
+    | where FileName has_any ("confidential", "restricted", "secret") // replace with real labels/events
+    | project DeviceId, FileTime=Timestamp, FileName, FolderPath,
+              FileProcess=InitiatingProcessFileName, InitiatingProcessAccountUpn;
+let AINetwork =
+    DeviceNetworkEvents
+    | where Timestamp > ago(7d)
+    | where RemoteUrl in~ ("approved-ai.example", "other-ai.example")
+    | project DeviceId, NetTime=Timestamp, RemoteUrl,
+              NetProcess=InitiatingProcessFileName, InitiatingProcessAccountUpn;
+SensitiveFiles
+| join kind=inner AINetwork on DeviceId
+| where NetTime between (FileTime .. FileTime + Window)
+| project FileTime, NetTime, DeviceId, InitiatingProcessAccountUpn,
+          FileName, FolderPath, FileProcess, NetProcess, RemoteUrl
+| order by NetTime desc

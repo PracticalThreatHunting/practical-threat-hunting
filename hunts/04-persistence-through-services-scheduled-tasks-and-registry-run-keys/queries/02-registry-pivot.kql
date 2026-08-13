@@ -1,0 +1,9 @@
+// Registry pivot
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+DeviceRegistryEvents
+| where Timestamp > ago(14d)
+| where RegistryKey has_any ("\\CurrentVersion\\Run", "\\CurrentVersion\\RunOnce")
+| project Timestamp, DeviceName, InitiatingProcessAccountName,
+          RegistryKey, RegistryValueName, RegistryValueData,
+          InitiatingProcessFileName, InitiatingProcessCommandLine

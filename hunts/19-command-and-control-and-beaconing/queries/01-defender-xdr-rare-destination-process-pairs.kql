@@ -1,0 +1,13 @@
+// Defender XDR KQL — rare destination/process pairs
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemoteIPType !in ("Private", "Loopback")
+| summarize Connections=count(),
+            Devices=dcount(DeviceId),
+            FirstSeen=min(Timestamp),
+            LastSeen=max(Timestamp)
+  by RemoteUrl, RemoteIP, InitiatingProcessFileName
+| where Devices <= 3 and Connections >= 10
+| order by Connections desc

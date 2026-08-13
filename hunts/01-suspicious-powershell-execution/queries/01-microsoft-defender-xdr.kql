@@ -1,0 +1,18 @@
+// Example KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName in~ ("powershell.exe", "pwsh.exe")
+| extend Cmd = tolower(ProcessCommandLine)
+| where Cmd has_any ("encodedcommand", "frombase64string",
+                     "downloadstring", "invoke-webrequest")
+    or Cmd contains "-enc"
+    or Cmd contains " iwr "
+    or Cmd contains " iex "
+    or Cmd contains "-windowstyle hidden"
+    or Cmd contains "-w hidden"
+| project Timestamp, DeviceName, AccountName, FileName,
+          ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, SHA1
+| order by Timestamp desc

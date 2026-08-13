@@ -1,0 +1,15 @@
+// Illustrative KQL — campaign seed across process and network telemetry
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+let bad_domains = dynamic(["example-c2.invalid", "example-stage.invalid"]);
+let bad_hashes  = dynamic(["<SHA256_1>", "<SHA256_2>"]);
+union isfuzzy=true
+(DeviceNetworkEvents
+ | where RemoteUrl has_any (bad_domains)
+ | project Timestamp, DeviceName, Account=InitiatingProcessAccountName,
+           Evidence=RemoteUrl, EvidenceType="domain", InitiatingProcessFileName),
+(DeviceProcessEvents
+ | where SHA256 in~ (bad_hashes)
+ | project Timestamp, DeviceName, Account=AccountName,
+           Evidence=SHA256, EvidenceType="hash", InitiatingProcessFileName=FileName)
+| sort by Timestamp asc

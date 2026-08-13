@@ -1,0 +1,12 @@
+// Microsoft Defender XDR KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| extend Cmd = tolower(ProcessCommandLine)
+| where Cmd has "lsass" and
+        (Cmd has_any ("procdump", "minidump", "comsvcs.dll", "createdump")
+         or FileName in~ ("rundll32.exe","procdump.exe"))
+| project Timestamp, DeviceName, AccountName, FileName,
+          ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, SHA1

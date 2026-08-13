@@ -1,0 +1,12 @@
+// Microsoft Defender XDR — service-principal source anomaly
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+EntraIdSpnSignInEvents
+| where Timestamp > ago(30d)
+| summarize FirstSeen=min(Timestamp), LastSeen=max(Timestamp),
+            Calls=count(), IPs=dcount(IPAddress),
+            Countries=make_set(Country, 10),
+            Resources=make_set(ResourceDisplayName, 10)
+  by ServicePrincipalId, ServicePrincipalName, IPAddress
+| where FirstSeen > ago(3d) or Calls > 1000
+| sort by FirstSeen desc

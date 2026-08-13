@@ -1,0 +1,11 @@
+# Provider-neutral pattern
+# Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+current = latest_agent_snapshot(agent_id)
+previous = last_known_good_snapshot(agent_id)
+
+for field in [tools, mcp_servers, data_sources, triggers,
+              guardrails, model, ownership, permissions]:
+    if current[field] != previous[field]:
+        record_change(field, previous[field], current[field])
+        correlate_with_change_audit(agent_id, field)

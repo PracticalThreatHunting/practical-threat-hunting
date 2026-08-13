@@ -1,15 +1,11 @@
 # Resources
 
-Supporting reference material for Practical Threat Hunting.
+Supporting material for *Practical Threat Hunting: Modern Techniques for the AI-Augmented SOC*.
 
-Planned resources include:
+- [AI Validation Loop](ai-validation-loop.md)
+- [Framework Reference](frameworks.md)
+- [Query Conventions](query-conventions.md)
+- [Minimum Hunt Record](hunt-library-schema.md)
+- [Technical Source Notes](source-notes.md)
 
-- Telemetry references
-- Important security fields
-- MITRE ATT&CK references
-- Hunting methodology
-- Query-language references
-- Analyst worksheets
-- Investigation checklists
-
-Additional resources will be added as the project develops.
+Additional worksheets, field references, and validated platform notes will be added as the project evolves.

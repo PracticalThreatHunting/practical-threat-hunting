@@ -1,0 +1,13 @@
+// Microsoft Defender XDR KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| extend Cmd = tolower(ProcessCommandLine)
+| where Cmd has_any ("set-mppreference", "add-mppreference", "exclusionpath",
+                     "wevtutil cl", "clear-eventlog", "auditpol /set",
+                     "sc stop", "net stop", "vssadmin delete shadows")
+| project Timestamp, DeviceName, AccountName, FileName,
+          ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine
+| order by Timestamp desc

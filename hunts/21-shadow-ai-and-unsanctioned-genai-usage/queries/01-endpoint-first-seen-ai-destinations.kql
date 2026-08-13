@@ -1,0 +1,16 @@
+// Illustrative Defender XDR query — replace discovery terms with a maintained domain/category source
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+let CandidateAI = dynamic([
+  "<candidate-ai-domain-1>",
+  "<candidate-ai-domain-2>"
+]);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteUrl in~ (CandidateAI)
+| summarize FirstSeen=min(Timestamp), LastSeen=max(Timestamp),
+            Connections=count(), Devices=dcount(DeviceId),
+            Users=dcount(InitiatingProcessAccountUpn),
+            Processes=make_set(InitiatingProcessFileName, 10)
+  by RemoteUrl
+| order by FirstSeen desc

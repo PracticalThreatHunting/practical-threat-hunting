@@ -1,0 +1,11 @@
+// Microsoft Defender XDR — Graph API pivot
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+GraphApiAuditEvents
+| extend EventTime = todatetime(Timestamp)
+| where EventTime > ago(30d)
+| summarize Calls=count(),
+            Tokens=dcount(UniqueTokenIdentifier),
+            Resources=make_set(RequestUri, 20)
+  by ApplicationId, ServicePrincipalId, AccountObjectId, IPAddress
+| order by Calls desc

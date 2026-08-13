@@ -1,0 +1,9 @@
+// Defender XDR KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName in~ ("aws.exe","az.exe","gcloud.exe","powershell.exe","pwsh.exe")
+| project Timestamp, DeviceName, AccountName, FileName,
+          ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine

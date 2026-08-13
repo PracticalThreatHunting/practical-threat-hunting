@@ -1,0 +1,12 @@
+// Microsoft Sentinel KQL — role context
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+AWSCloudTrail
+| where TimeGenerated > ago(30d)
+| where isnotempty(SessionIssuerUserName)
+| summarize Calls=count(),
+            IPs=make_set(SourceIpAddress, 20),
+            Agents=make_set(UserAgent, 20),
+            Services=make_set(EventSource, 30)
+  by SessionIssuerUserName
+| order by Calls desc

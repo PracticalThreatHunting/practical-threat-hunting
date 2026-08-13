@@ -1,0 +1,15 @@
+// Microsoft Sentinel KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+OfficeActivity
+| where TimeGenerated > ago(14d)
+| where Workload in~ ("SharePoint", "OneDrive")
+| where Operation has_any ("FileDownloaded", "FileAccessed",
+                           "FileSync", "Sharing", "LinkCreated")
+| summarize Events=count(),
+            Objects=dcount(OfficeObjectId),
+            SampleObjects=make_set(OfficeObjectId, 10),
+            IPs=make_set(ClientIP, 10)
+  by UserId, bin(TimeGenerated, 1h)
+| where Objects >= 100
+| order by Objects desc

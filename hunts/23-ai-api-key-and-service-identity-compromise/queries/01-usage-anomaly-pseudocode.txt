@@ -1,0 +1,12 @@
+# Provider-neutral detection concept
+# Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+for each ai_credential:
+    baseline = historical(source_network, model, region, request_rate, token_rate, cost)
+    current  = last_hour(same_features)
+
+    if first_seen_source(current) or
+       unexpected_model(current) or
+       usage_spike(current, baseline) or
+       impossible_region(current, baseline):
+        investigate(ai_credential)

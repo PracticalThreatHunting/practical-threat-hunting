@@ -1,0 +1,12 @@
+// Process-based KQL
+// Reference implementation from Practical Threat Hunting. Validate schema, fields, time window, and thresholds before production use.
+
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| extend Cmd = tolower(ProcessCommandLine)
+| where (FileName =~ "schtasks.exe" and Cmd has "/create")
+    or (FileName =~ "sc.exe" and Cmd has " create ")
+    or (FileName =~ "reg.exe" and Cmd has " add " and Cmd has_any ("\\run", "\\runonce"))
+| project Timestamp, DeviceName, AccountName, FileName,
+          ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine
