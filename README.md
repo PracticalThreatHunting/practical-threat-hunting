@@ -4,6 +4,8 @@ Official companion repository for **Practical Threat Hunting: Modern Techniques 
 
 The project focuses on durable threat-hunting methodology plus an updateable implementation layer for modern endpoint, identity, cloud, Microsoft 365, and AI-system hunts.
 
+Email: granthalden.author@gmail.com
+
 ## What You'll Find Here
 
 - Companion resources for 25 hands-on threat hunts
