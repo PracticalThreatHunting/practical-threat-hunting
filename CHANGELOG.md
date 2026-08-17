@@ -2,7 +2,18 @@
 
 All notable updates to the Practical Threat Hunting companion repository will be documented here.
 
-## Unreleased
+## 2026-08-17
+
+### Published
+
+- Published **Practical Threat Hunting: Modern Techniques for the AI-Augmented SOC**.
+- Recorded the first-edition paperback ISBN: `9798192696538`.
+- Recorded the Kindle ASIN: `B0HFGYN38J`.
+- Recorded the paperback ASIN: `B0HFHD55GB`.
+- Added Amazon links for the Kindle and paperback editions.
+- Updated repository status from pre-publication to published.
+
+## Previous Unreleased Changes
 
 ### Added
 
