@@ -19,6 +19,7 @@ All notable updates to the Practical Threat Hunting companion repository will be
 ### Changed
 
 - Updated Book 2 status to scheduled for publication on September 3, 2026, with Kindle pre-order live.
+- Synchronized Book 2 release status and confirmed Amazon identifiers across the root README, book index, edition notes, Book 2 edition page, changelog, and citation metadata.
 - Reframed the repository as the companion implementation layer for the full **Practical Threat Hunting** series.
 - Updated the root, book, hunt, resource, asset, edition-note, errata, and citation documentation for a two-book series.
 - Corrected stale pre-publication and legacy Book 1 naming in the book metadata files.
