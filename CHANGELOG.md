@@ -8,6 +8,8 @@ All notable updates to the Practical Threat Hunting companion repository will be
 
 - Added first-edition companion resources for **Practical Threat Hunting: Endpoint and Identity Threats**.
 - Recorded the Book 2 paperback ISBN: `9798193349570`.
+- Recorded the Book 2 Kindle ASIN: `B0HFLS6MVC` and paperback ASIN: `B0HFNDYLTJ`.
+- Added the Book 2 Kindle Amazon link and scheduled publication date of September 3, 2026.
 - Added a Book 2 index covering all 24 endpoint and identity hunts.
 - Added 34 Book 2 reference query files and 24 evidence-bound AI analysis prompts.
 - Added five Book 2 figures: the endpoint–identity pivot loop, evidence-preserving AI workflow, session-replay evidence chain, hunt-to-detection promotion ladder, and cross-domain entity map.
@@ -16,6 +18,7 @@ All notable updates to the Practical Threat Hunting companion repository will be
 
 ### Changed
 
+- Updated Book 2 status to scheduled for publication on September 3, 2026, with Kindle pre-order live.
 - Reframed the repository as the companion implementation layer for the full **Practical Threat Hunting** series.
 - Updated the root, book, hunt, resource, asset, edition-note, errata, and citation documentation for a two-book series.
 - Corrected stale pre-publication and legacy Book 1 naming in the book metadata files.

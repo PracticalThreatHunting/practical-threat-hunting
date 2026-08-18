@@ -27,13 +27,14 @@ Status: **Published — First Edition, August 2026**
 **Practical Threat Hunting: Endpoint and Identity Threats**<br>
 *24 Hands-On Hunts for the AI-Augmented SOC*
 
-Status: **Forthcoming — First Edition, 2026**
+Status: **Scheduled for publication September 3, 2026 — Kindle pre-order live**
 
+- [Kindle edition](https://www.amazon.com/dp/B0HFLS6MVC) — ASIN `B0HFLS6MVC`
+- Paperback — release scheduled September 3, 2026 — ASIN `B0HFNDYLTJ`
 - Paperback ISBN: `9798193349570`
 - [Book 2 hunt implementations](hunts/book-02-endpoint-and-identity/README.md)
 - [Book 2 figures](assets/figures/README.md#book-2--endpoint-and-identity-threats)
 - [Book 2 edition information](book/endpoint-and-identity-threats.md)
-- Amazon product links and ASINs will be added only after they are confirmed.
 
 ## Representative Visuals
 
