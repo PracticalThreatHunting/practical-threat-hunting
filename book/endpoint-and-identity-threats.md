@@ -4,10 +4,11 @@
 *24 Hands-On Hunts for the AI-Augmented SOC*<br>
 **Grant Halden**
 
-Status: **Forthcoming — First Edition, 2026**
+Status: **Scheduled for publication September 3, 2026 — Kindle pre-order live**
 
+- [Kindle edition](https://www.amazon.com/dp/B0HFLS6MVC) — ASIN `B0HFLS6MVC`
+- Paperback — release scheduled September 3, 2026 — ASIN `B0HFNDYLTJ`
 - Paperback ISBN: `9798193349570`
-- Amazon product links and ASINs will be added only after they are confirmed.
 
 ## Scope
 
