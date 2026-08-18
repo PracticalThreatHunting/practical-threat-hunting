@@ -12,13 +12,15 @@ Status: **Published — First Edition, August 2026**
 
 ## Book 2 — Endpoint and Identity Threats
 
-Status: **Forthcoming — First Edition, 2026**
+Status: **Scheduled for publication September 3, 2026 — Kindle pre-order live**
 
 - Technical verification and external-link review date: **17 August 2026**.
+- Scheduled publication date: **3 September 2026**.
+- Kindle ASIN: `B0HFLS6MVC`.
+- Paperback ASIN: `B0HFNDYLTJ`.
 - Paperback ISBN: `9798193349570`.
 - The edition contains 24 hunts spanning Windows endpoint behavior, PowerShell, credential access, persistence, lateral movement, Microsoft Entra ID, Okta, Kerberos, directory control, and cross-domain investigation.
 - Its 34 KQL and SPL examples received static syntax-and-schema review against the primary sources listed in [Book 2 technical source notes](../resources/book-02-source-notes.md).
 - Static review does not establish tenant compatibility, connector availability, local field population, retention, licensing, or production readiness.
-- Amazon product links and ASINs will be added only after they are confirmed.
 
 Repository resources can be revised independently of the printed editions when schemas, links, or implementation details change.
