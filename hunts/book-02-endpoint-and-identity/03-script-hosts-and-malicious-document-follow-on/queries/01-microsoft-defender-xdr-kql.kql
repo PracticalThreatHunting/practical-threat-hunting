@@ -1,0 +1,22 @@
+// Book 2, Hunt 03: Script Hosts and Malicious Document Follow-On
+// Section: Microsoft Defender XDR KQL
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let delivery_parents = dynamic([
+  "winword.exe","excel.exe","powerpnt.exe","outlook.exe",
+  "acrord32.exe","msedge.exe","chrome.exe","firefox.exe",
+  "7z.exe","winrar.exe","explorer.exe"
+]);
+let risky_children = dynamic([
+  "powershell.exe","pwsh.exe","cmd.exe","wscript.exe","cscript.exe",
+  "mshta.exe","rundll32.exe","regsvr32.exe","wmic.exe"
+]);
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where InitiatingProcessFileName in~ (delivery_parents)
+| where FileName in~ (risky_children)
+| project Timestamp, DeviceId, DeviceName, AccountName,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          FileName, FolderPath, ProcessCommandLine, ProcessId,
+          InitiatingProcessId, SHA1
+| order by Timestamp desc

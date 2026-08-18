@@ -1,0 +1,11 @@
+// Book 2, Hunt 24: Directory Replication and Domain Control Abuse
+// Section: Microsoft Defender XDR Schema-Discovery Pattern
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+IdentityDirectoryEvents
+| where Timestamp > ago(30d)
+| summarize Events=count(),
+            SampleAccounts=make_set(AccountName, 10),
+            SampleDevices=make_set(DeviceName, 10)
+  by ActionType
+| order by Events desc

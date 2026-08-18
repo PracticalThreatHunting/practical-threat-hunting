@@ -1,0 +1,17 @@
+// Book 2, Hunt 06: Browser and Local Credential Store Access
+// Section: Microsoft Defender XDR KQL - File Creation and Staging Pattern
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+DeviceFileEvents
+| where Timestamp > ago(14d)
+| extend Path=tolower(strcat(FolderPath, "\\", FileName))
+| where FileName in~ (
+    "Login Data", "Cookies", "Local State", "logins.json", "key4.db", "cert9.db")
+    or Path contains @"\microsoft\credentials\"
+| where InitiatingProcessFileName !in~ (
+      "chrome.exe","msedge.exe","firefox.exe","brave.exe")
+| project Timestamp, DeviceId, DeviceName, ActionType,
+          FileName, FolderPath, InitiatingProcessAccountName,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          InitiatingProcessFolderPath, SHA1
+| order by Timestamp desc

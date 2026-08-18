@@ -1,0 +1,28 @@
+// Book 2, Hunt 02: Living-off-the-Land Execution
+// Section: Microsoft Defender XDR KQL
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let lolbins = dynamic([
+  "rundll32.exe","regsvr32.exe","mshta.exe","certutil.exe",
+  "bitsadmin.exe","wmic.exe","installutil.exe","msbuild.exe",
+  "cscript.exe","wscript.exe"
+]);
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where FileName in~ (lolbins)
+| extend Cmd=tolower(ProcessCommandLine)
+| extend UserWritable = Cmd contains @"\users\"
+    or Cmd contains @"\appdata\"
+    or Cmd contains @"\temp\"
+    or Cmd contains @"\downloads\"
+    or Cmd contains @"\public\"
+| extend RemoteReference = Cmd contains "http://"
+    or Cmd contains "https://"
+    or Cmd contains @"\\"
+| summarize Count=count(), Devices=dcount(DeviceId),
+            FirstSeen=min(Timestamp), LastSeen=max(Timestamp),
+            Examples=make_set(ProcessCommandLine, 5)
+  by FileName, InitiatingProcessFileName, AccountName,
+     UserWritable, RemoteReference
+| where UserWritable or RemoteReference or Count < 5
+| order by Count asc

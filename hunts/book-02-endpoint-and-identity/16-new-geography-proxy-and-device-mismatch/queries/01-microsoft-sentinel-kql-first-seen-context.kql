@@ -1,0 +1,40 @@
+// Book 2, Hunt 16: New Geography, Proxy, and Device Mismatch
+// Section: Microsoft Sentinel KQL - First-Seen Context
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let BaselineStart = ago(30d);
+let RecentStart = ago(24h);
+let Historical = SigninLogs
+| where TimeGenerated between (BaselineStart .. RecentStart)
+| where tostring(ResultType) == "0"
+| extend DeviceId=tostring(DeviceDetail.deviceId),
+         Country=tostring(LocationDetails.countryOrRegion)
+| summarize KnownIPs=make_set(IPAddress, 250),
+            KnownCountries=make_set(Country, 50),
+            KnownDevices=make_set(DeviceId, 100),
+            KnownApps=make_set(AppId, 100)
+  by UserId;
+SigninLogs
+| where TimeGenerated > RecentStart
+| where tostring(ResultType) == "0"
+| extend DeviceId=tostring(DeviceDetail.deviceId),
+         Country=tostring(LocationDetails.countryOrRegion),
+         OS=tostring(DeviceDetail.operatingSystem),
+         Browser=tostring(DeviceDetail.browser)
+| join kind=leftouter Historical on UserId
+| extend KnownIPs=coalesce(KnownIPs, dynamic([])),
+         KnownCountries=coalesce(KnownCountries, dynamic([])),
+         KnownDevices=coalesce(KnownDevices, dynamic([])),
+         KnownApps=coalesce(KnownApps, dynamic([]))
+| extend HasBaseline=array_length(KnownIPs) > 0
+    or array_length(KnownCountries) > 0
+    or array_length(KnownDevices) > 0
+    or array_length(KnownApps) > 0,
+         NewIP=isnotempty(IPAddress) and not(set_has_element(KnownIPs, IPAddress)),
+         NewCountry=isnotempty(Country) and not(set_has_element(KnownCountries, Country)),
+         NewDevice=isnotempty(DeviceId) and not(set_has_element(KnownDevices, DeviceId)),
+         NewApp=isnotempty(AppId) and not(set_has_element(KnownApps, AppId))
+| where NewCountry or NewDevice or (NewIP and NewApp)
+| project TimeGenerated, UserPrincipalName, AppDisplayName, IPAddress,
+          Country, DeviceId, OS, Browser, NewIP, NewCountry, NewDevice,
+          NewApp, HasBaseline, ConditionalAccessStatus, AuthenticationRequirement

@@ -1,0 +1,21 @@
+// Book 2, Hunt 09: Defense Impairment and Log Tampering
+// Section: Microsoft Defender XDR KQL
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| extend Cmd=tolower(ProcessCommandLine)
+| where Cmd contains "set-mppreference"
+    or Cmd contains "add-mppreference"
+    or Cmd contains "disableantispyware"
+    or Cmd contains "disablerealtimemonitoring"
+    or Cmd contains "exclusionpath"
+    or Cmd contains "exclusionprocess"
+    or Cmd contains "wevtutil cl"
+    or Cmd contains "auditpol /clear"
+    or Cmd contains "sc stop"
+    or Cmd contains "netsh advfirewall"
+| project Timestamp, DeviceId, DeviceName, AccountName,
+          FileName, ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, SHA1
+| order by Timestamp desc

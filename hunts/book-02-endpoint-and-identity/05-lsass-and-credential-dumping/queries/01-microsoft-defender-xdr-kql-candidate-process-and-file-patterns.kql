@@ -1,0 +1,20 @@
+// Book 2, Hunt 05: LSASS and Credential Dumping
+// Section: Microsoft Defender XDR KQL - Candidate Process and File Patterns
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| extend Cmd=tolower(ProcessCommandLine)
+| where Cmd contains "lsass"
+    or Cmd contains "comsvcs.dll"
+    or Cmd contains "minidump"
+    or Cmd contains "procdump"
+    or Cmd contains "sekurlsa"
+    or Cmd contains "sam save"
+    or Cmd contains "security save"
+    or Cmd contains "system save"
+| project Timestamp, DeviceId, DeviceName, AccountName,
+          FileName, FolderPath, ProcessCommandLine,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          ProcessId, SHA1
+| order by Timestamp desc

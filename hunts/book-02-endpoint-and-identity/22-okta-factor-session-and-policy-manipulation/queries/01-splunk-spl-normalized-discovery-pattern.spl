@@ -1,0 +1,20 @@
+# Book 2, Hunt 22: Okta Factor, Session, and Policy Manipulation
+# Section: Splunk SPL - Normalized Discovery Pattern
+# Normalized reference implementation: map indexes, sourcetypes, and fields before use.
+
+index=okta earliest=-14d
+| eval event_type=coalesce(eventType, event_type),
+       actor_id=coalesce('actor.id', actor_id),
+       actor_name=coalesce('actor.alternateId', actor_alternate_id),
+       src_ip=coalesce('client.ipAddress', src),
+       result=coalesce('outcome.result', outcome_result)
+| where like(event_type,"user.mfa.factor.%")
+    OR like(event_type,"policy.%")
+    OR like(event_type,"zone.%")
+    OR like(event_type,"system.api_token.%")
+    OR event_type="user.session.start"
+| stats count min(_time) as first_seen max(_time) as last_seen
+        values(event_type) as event_types values(result) as results
+        values(src_ip) as source_ips values('target{}.alternateId') as targets
+  by actor_id actor_name
+| sort - count

@@ -1,0 +1,18 @@
+// Book 2, Hunt 13: Password Spraying and Distributed Authentication Failure
+// Section: Microsoft Sentinel KQL - Many Users from One Source
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let Window = 15m;
+let MinimumUsers = 8;
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where tostring(ResultType) != "0"
+| summarize Attempts=count(),
+            TargetedUsers=dcount(UserPrincipalName),
+            Users=make_set(UserPrincipalName, 25),
+            ResultCodes=make_set(tostring(ResultType), 20),
+            Apps=make_set(AppDisplayName, 15),
+            FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated)
+  by IPAddress, UserAgent, bin(TimeGenerated, Window)
+| where TargetedUsers >= MinimumUsers
+| order by TargetedUsers desc, Attempts desc

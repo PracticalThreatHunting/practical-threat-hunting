@@ -1,0 +1,38 @@
+// Book 2, Hunt 01: Suspicious PowerShell Chains
+// Section: Microsoft Defender XDR KQL
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let suspicious_terms = dynamic([
+  "encodedcommand", "frombase64string", "downloadstring",
+  "invoke-webrequest", "invoke-expression", "reflection.assembly",
+  "virtualalloc", "writeprocessmemory", "amsiutils",
+  "set-mppreference", "add-mppreference"
+]);
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where FileName in~ ("powershell.exe", "pwsh.exe")
+| extend Cmd = tolower(ProcessCommandLine)
+| extend TermHits = array_length(set_intersect(
+    suspicious_terms,
+    extract_all(@"[a-z0-9\.\-]+", Cmd)))
+| where Cmd contains "encodedcommand"
+    or Cmd contains "frombase64string"
+    or Cmd contains "downloadstring"
+    or Cmd contains "invoke-webrequest"
+    or Cmd contains "invoke-expression"
+    or Cmd contains "reflection.assembly"
+    or Cmd contains "virtualalloc"
+    or Cmd contains "writeprocessmemory"
+    or Cmd contains "amsiutils"
+    or Cmd contains "set-mppreference"
+    or Cmd contains "add-mppreference"
+    or Cmd contains "-windowstyle hidden"
+    or strlen(ProcessCommandLine) > 1200
+    or InitiatingProcessFileName in~ (
+        "winword.exe", "excel.exe", "powerpnt.exe", "outlook.exe",
+        "mshta.exe", "wscript.exe", "cscript.exe")
+| project Timestamp, DeviceId, DeviceName, AccountSid, AccountName,
+          FileName, ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, ProcessId, InitiatingProcessId,
+          SHA1, TermHits
+| order by Timestamp desc

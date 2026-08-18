@@ -1,14 +1,9 @@
 # Assets
 
-Repository assets used by Practical Threat Hunting.
+Supporting assets for the **Practical Threat Hunting** book series.
 
-This directory may contain:
+- [`figures/`](figures/) contains companion diagrams organized and indexed by book.
+- Every public figure should have a descriptive caption and meaningful alternative text where it is embedded in Markdown.
+- Source manuscript files, credentials, proprietary data, and sensitive organizational information do not belong in this directory.
 
-- Diagrams
-- Graphics
-- Screenshots
-- Repository images
-- Book companion illustrations
-- Other supporting visual material
-
-Do not place book manuscript source files, credentials, proprietary data, or sensitive organizational information in this directory.
+The figures are supporting companion material; the book manuscripts are not stored in the public repository.

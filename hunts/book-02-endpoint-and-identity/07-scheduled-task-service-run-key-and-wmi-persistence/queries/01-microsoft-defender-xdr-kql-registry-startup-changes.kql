@@ -1,0 +1,15 @@
+// Book 2, Hunt 07: Scheduled Task, Service, Run-Key, and WMI Persistence
+// Section: Microsoft Defender XDR KQL - Registry Startup Changes
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+DeviceRegistryEvents
+| where Timestamp > ago(14d)
+| extend Key=tolower(RegistryKey)
+| where Key endswith @"\software\microsoft\windows\currentversion\run"
+    or Key endswith @"\software\microsoft\windows\currentversion\runonce"
+    or Key contains @"\software\microsoft\windows nt\currentversion\winlogon"
+| project Timestamp, DeviceId, DeviceName, ActionType,
+          RegistryKey, RegistryValueName, RegistryValueData,
+          InitiatingProcessAccountName, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, InitiatingProcessFolderPath
+| order by Timestamp desc

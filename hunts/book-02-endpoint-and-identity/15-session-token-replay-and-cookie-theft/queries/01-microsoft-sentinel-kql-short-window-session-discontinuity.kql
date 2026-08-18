@@ -1,0 +1,29 @@
+// Book 2, Hunt 15: Session Token Replay and Cookie Theft
+// Section: Microsoft Sentinel KQL - Short-Window Session Discontinuity
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let Lookback = 7d;
+SigninLogs
+| where TimeGenerated > ago(Lookback)
+| extend DeviceId=tostring(DeviceDetail.deviceId),
+         OS=tostring(DeviceDetail.operatingSystem),
+         Browser=tostring(DeviceDetail.browser),
+         Country=tostring(LocationDetails.countryOrRegion)
+| project TimeGenerated, UserId, UserPrincipalName, AppDisplayName,
+          IPAddress, Country, DeviceId, OS, Browser, IsInteractive,
+          AuthenticationRequirement, CorrelationId, ResultType
+| sort by UserId asc, TimeGenerated asc
+| serialize
+| extend PreviousUser=prev(UserId),
+         PreviousTime=prev(TimeGenerated),
+         PreviousIP=prev(IPAddress),
+         PreviousCountry=prev(Country),
+         PreviousDevice=prev(DeviceId),
+         PreviousBrowser=prev(Browser)
+| where UserId == PreviousUser
+| extend MinutesSincePrevious=datetime_diff("minute", TimeGenerated, PreviousTime)
+| where MinutesSincePrevious between (0 .. 60)
+| where IPAddress != PreviousIP
+    or Country != PreviousCountry
+    or (isnotempty(DeviceId) and isnotempty(PreviousDevice) and DeviceId != PreviousDevice)
+| project-away PreviousUser

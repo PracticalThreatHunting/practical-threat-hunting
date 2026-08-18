@@ -1,0 +1,31 @@
+// Book 2, Hunt 14: MFA Fatigue, Factor Abuse, and Authentication Downgrade
+// Section: Microsoft Sentinel KQL - Factor and Recovery Changes
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let RelevantActivities = dynamic([
+  "Admin deleted security info",
+  "Admin registered security info",
+  "Admin updated security info",
+  "User changed default security info",
+  "User deleted security info",
+  "User registered all required security info",
+  "User registered security info",
+  "User updated security info",
+  "Reset password",
+  "Reset password (by admin)",
+  "Reset password (self-service)",
+  "Update per-user multifactor authentication state",
+  "Restore multifactor authentication on all remembered devices"
+]);
+AuditLogs
+| where TimeGenerated > ago(14d)
+| where Category =~ "UserManagement"
+| where ActivityDisplayName in~ (RelevantActivities)
+| extend ActorUser=tostring(InitiatedBy.user.userPrincipalName),
+           ActorApp=tostring(InitiatedBy.app.displayName)
+| mv-expand Target=TargetResources
+| extend TargetName=tostring(Target.userPrincipalName),
+         TargetId=tostring(Target.id)
+| project TimeGenerated, ActivityDisplayName, Result, ActorUser, ActorApp,
+          TargetName, TargetId, CorrelationId, AdditionalDetails
+| order by TimeGenerated desc

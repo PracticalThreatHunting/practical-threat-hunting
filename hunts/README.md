@@ -1,8 +1,10 @@
 # Threat Hunts
 
-These directories contain the updateable implementation layer for the 25 hunts in *Practical Threat Hunting: Modern Techniques for the AI-Augmented SOC*. The book teaches the durable methodology; this repository carries query implementations and technical material that can change with vendor schemas.
+The repository contains book-specific implementation resources for the **Practical Threat Hunting** series. The books teach durable methodology; these directories carry query implementations and technical material that can change with vendor schemas.
 
-## Hunt Index
+## Book 1 — Modern Techniques for the AI-Augmented SOC
+
+The existing numbered directories at the root of `hunts/` remain the stable companion paths for Book 1's 25 hunts.
 
 - **Hunt 01:** [Suspicious PowerShell Execution](01-suspicious-powershell-execution/README.md) — Foundational
 - **Hunt 02:** [Living-off-the-Land Execution](02-living-off-the-land-execution/README.md) — Foundational–Intermediate
@@ -30,9 +32,17 @@ These directories contain the updateable implementation layer for the 25 hunts i
 - **Hunt 24:** [Prompt Injection and Agent Tool Abuse](24-prompt-injection-and-agent-tool-abuse/README.md) — Advanced
 - **Hunt 25:** [AI Agent Persistence, RAG Manipulation, and Data Poisoning](25-ai-agent-persistence-rag-manipulation-and-data-poisoning/README.md) — Advanced capstone
 
+## Book 2 — Endpoint and Identity Threats
+
+Book 2 has a separate namespace so overlapping hunt numbers cannot be confused with Book 1.
+
+- [Browse all 24 Book 2 hunts](book-02-endpoint-and-identity/README.md)
+- [Book 2 technical source notes](../resources/book-02-source-notes.md)
+- [Book 2 figure gallery](../assets/figures/README.md#book-2--endpoint-and-identity-threats)
+
 ## Query Guidance
 
-Queries are reference implementations. Validate them in a controlled or read-only hunting workflow before production use. Platform schemas, operation names, and field semantics can change.
+Queries are reference implementations. Validate them in a controlled or read-only hunting workflow before production use. Platform schemas, operation names, field semantics, licensing, and local data quality can change.
 
 ## Template
 

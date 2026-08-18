@@ -1,0 +1,28 @@
+// Book 2, Hunt 20: OAuth Consent and High-Privilege Application Access
+// Section: Microsoft Sentinel KQL - Consent and Permission Changes
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let RelevantActivities = dynamic([
+  "Consent to application",
+  "Add delegated permission grant",
+  "Add app role assignment to service principal",
+  "Add app role assignment to group",
+  "Grant contextual consent to application"
+]);
+AuditLogs
+| where TimeGenerated > ago(30d)
+| where Category in~ ("ApplicationManagement", "GroupManagement")
+| where ActivityDisplayName in~ (RelevantActivities)
+| extend ActorUser=tostring(InitiatedBy.user.userPrincipalName),
+         ActorUserId=tostring(InitiatedBy.user.id),
+         ActorApp=tostring(InitiatedBy.app.displayName),
+         ActorAppId=tostring(InitiatedBy.app.servicePrincipalId)
+| mv-expand Target=TargetResources
+| extend TargetName=tostring(Target.displayName),
+         TargetId=tostring(Target.id),
+         TargetType=tostring(Target.type),
+         ModifiedProperties=Target.modifiedProperties
+| project TimeGenerated, ActivityDisplayName, Result, ActorUser, ActorUserId,
+          ActorApp, ActorAppId, TargetName, TargetId, TargetType,
+          ModifiedProperties, CorrelationId, AdditionalDetails
+| order by TimeGenerated desc
