@@ -22,6 +22,12 @@ identifiers:
   - type: other
     value: "ISBN 9798193349570"
     description: "Book 2 paperback ISBN"
+  - type: url
+    value: "https://www.amazon.com/dp/B0HFLS6MVC"
+    description: "Book 2 Kindle edition"
+  - type: other
+    value: "ASIN B0HFNDYLTJ"
+    description: "Book 2 paperback ASIN; release scheduled September 3, 2026"
 abstract: "Companion queries, AI-assisted hunt prompts, figures, source notes, and updateable implementation material for the Practical Threat Hunting book series, including Modern Techniques for the AI-Augmented SOC and Endpoint and Identity Threats."
 keywords:
   - threat hunting
