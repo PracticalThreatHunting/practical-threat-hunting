@@ -1,0 +1,18 @@
+// Book 2, Hunt 24: Directory Replication and Domain Control Abuse
+// Section: Windows Security Review
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+WindowsEvent
+| where TimeGenerated > ago(7d)
+| where EventID == 4662
+| extend SubjectUser=tostring(EventData.SubjectUserName),
+         SubjectDomain=tostring(EventData.SubjectDomainName),
+         ObjectName=tostring(EventData.ObjectName),
+         Properties=tostring(EventData.Properties),
+         AccessMask=tostring(EventData.AccessMask),
+         SubjectLogonId=tostring(EventData.SubjectLogonId)
+| where Properties contains "1131f6aa-9c07-11d1-f79f-00c04fc2dcd2"
+    or Properties contains "1131f6ad-9c07-11d1-f79f-00c04fc2dcd2"
+| project TimeGenerated, Computer, SubjectDomain, SubjectUser,
+          SubjectLogonId, ObjectName, AccessMask, Properties
+| order by TimeGenerated desc

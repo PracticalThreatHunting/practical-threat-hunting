@@ -1,0 +1,19 @@
+// Book 2, Hunt 10: Ransomware Precursor Activity
+// Section: Microsoft Defender XDR KQL - Recovery and Backup Changes
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| extend Cmd=tolower(ProcessCommandLine)
+| where Cmd contains "vssadmin delete shadows"
+    or Cmd contains "wmic shadowcopy delete"
+    or Cmd contains "wbadmin delete"
+    or Cmd contains "bcdedit"
+    or Cmd contains "reagentc /disable"
+    or Cmd contains "wevtutil cl"
+    or Cmd contains "sc stop"
+    or Cmd contains "net stop"
+| project Timestamp, DeviceId, DeviceName, AccountName,
+          FileName, ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, SHA1
+| order by Timestamp desc

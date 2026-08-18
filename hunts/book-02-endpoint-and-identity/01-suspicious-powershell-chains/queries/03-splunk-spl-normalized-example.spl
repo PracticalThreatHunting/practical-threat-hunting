@@ -1,0 +1,14 @@
+# Book 2, Hunt 01: Suspicious PowerShell Chains
+# Section: Splunk SPL - Normalized Example
+# Normalized reference implementation: map indexes, sourcetypes, and fields before use.
+
+process_name IN ("powershell.exe","pwsh.exe")
+| eval cmd=lower(process_command_line)
+| eval suspicious=if(match(cmd,
+  "encodedcommand|frombase64string|downloadstring|invoke-webrequest|invoke-expression|amsiutils|set-mppreference"),1,0)
+| where suspicious=1 OR len(process_command_line)>1200
+  OR parent_process_name IN ("winword.exe","excel.exe","outlook.exe","mshta.exe","wscript.exe")
+| stats count min(_time) as first_seen max(_time) as last_seen
+  values(parent_process_name) as parents
+  values(process_command_line) as examples
+  values(dest) as destinations by host user

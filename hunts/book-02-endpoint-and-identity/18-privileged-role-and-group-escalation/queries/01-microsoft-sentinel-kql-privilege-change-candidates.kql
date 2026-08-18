@@ -1,0 +1,36 @@
+// Book 2, Hunt 18: Privileged Role and Group Escalation
+// Section: Microsoft Sentinel KQL - Privilege Change Candidates
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let RelevantActivities = dynamic([
+  "Add EligibleRoleAssignment to RoleDefinition",
+  "Add eligible member to role",
+  "Add member to role",
+  "Add member to role scoped over Restricted Management Administrative Unit",
+  "Add role assignment to role definition",
+  "Add scoped member to role",
+  "Add member to group",
+  "Add owner to group"
+]);
+AuditLogs
+| where TimeGenerated > ago(14d)
+| where Category in~ ("RoleManagement", "GroupManagement")
+| where ActivityDisplayName in~ (RelevantActivities)
+    or ActivityDisplayName startswith "Add member to role in PIM completed"
+    or ActivityDisplayName startswith "Add eligible member to role in PIM completed"
+    or ActivityDisplayName =~ "Add member to role completed (PIM activation)"
+| extend ActorUser=tostring(InitiatedBy.user.userPrincipalName),
+         ActorUserId=tostring(InitiatedBy.user.id),
+         ActorApp=tostring(InitiatedBy.app.displayName),
+         ActorAppId=tostring(InitiatedBy.app.servicePrincipalId)
+| mv-expand Target=TargetResources
+| extend TargetName=coalesce(tostring(Target.userPrincipalName),
+                             tostring(Target.displayName)),
+         TargetId=tostring(Target.id),
+         TargetType=tostring(Target.type),
+         ModifiedProperties=Target.modifiedProperties
+| project TimeGenerated, ActivityDisplayName, Category, Result,
+          ActorUser, ActorUserId, ActorApp, ActorAppId,
+          TargetName, TargetId, TargetType, ModifiedProperties,
+          CorrelationId, LoggedByService
+| order by TimeGenerated desc

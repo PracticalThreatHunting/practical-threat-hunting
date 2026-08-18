@@ -1,0 +1,23 @@
+// Book 2, Hunt 05: LSASS and Credential Dumping
+// Section: Microsoft Defender XDR KQL - Candidate Process and File Patterns
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+DeviceFileEvents
+| where Timestamp > ago(14d)
+| extend LowerName=tolower(FileName),
+         FullPath=tolower(strcat(FolderPath, "\\", FileName))
+| extend CredentialName = LowerName contains "lsass"
+    or LowerName startswith "sam."
+    or LowerName startswith "security."
+    or LowerName startswith "system."
+| extend DumpOrHiveExtension = LowerName endswith ".dmp"
+    or LowerName endswith ".dump"
+    or LowerName endswith ".sav"
+    or LowerName endswith ".hiv"
+| where CredentialName and DumpOrHiveExtension
+| extend SuspiciousLocation = FullPath contains @"\windows\temp\"
+    or FullPath contains @"\users\public\"
+    or FullPath contains @"\appdata\local\temp\"
+| project Timestamp, DeviceId, DeviceName, FileName, FolderPath,
+          ActionType, SuspiciousLocation, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, SHA1

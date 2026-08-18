@@ -1,0 +1,22 @@
+// Book 2, Hunt 14: MFA Fatigue, Factor Abuse, and Authentication Downgrade
+// Section: Microsoft Sentinel KQL - Authentication Step Review
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+SigninLogs
+| where TimeGenerated > ago(7d)
+| where AuthenticationRequirement contains "multiFactor"
+| extend AuthenticationSteps=parse_json(AuthenticationDetails)
+| mv-expand Step=AuthenticationSteps
+| extend Method=tostring(Step.authenticationMethod),
+         StepSucceeded=tobool(Step.succeeded),
+         StepDetail=tostring(Step.authenticationStepResultDetail),
+         StepTime=todatetime(Step.authenticationStepDateTime)
+| summarize Steps=count(),
+            FailedOrInterrupted=countif(isnull(StepSucceeded) or StepSucceeded == false),
+            Methods=make_set(Method, 10),
+            Details=make_set(StepDetail, 20),
+            IPs=make_set(IPAddress, 20),
+            Apps=make_set(AppDisplayName, 15)
+  by UserId, UserPrincipalName, bin(TimeGenerated, 30m)
+| where FailedOrInterrupted >= 5
+| order by FailedOrInterrupted desc

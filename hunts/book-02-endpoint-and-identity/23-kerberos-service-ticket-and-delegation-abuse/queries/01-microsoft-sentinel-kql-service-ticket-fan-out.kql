@@ -1,0 +1,21 @@
+// Book 2, Hunt 23: Kerberos Service Ticket and Delegation Abuse
+// Section: Microsoft Sentinel KQL - Service Ticket Fan-Out
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+WindowsEvent
+| where TimeGenerated > ago(24h)
+| where EventID == 4769
+| extend User=tostring(EventData.TargetUserName),
+         Service=tostring(EventData.ServiceName),
+         ClientAddress=tostring(EventData.IpAddress),
+         EncryptionType=tostring(EventData.TicketEncryptionType),
+         Status=tostring(EventData.Status)
+| where User !endswith "$"
+| summarize TicketRequests=count(),
+            DistinctServices=dcount(Service),
+            Services=make_set(Service, 50),
+            EncryptionTypes=make_set(EncryptionType, 10),
+            Statuses=make_set(Status, 10)
+  by User, ClientAddress, bin(TimeGenerated, 30m)
+| where DistinctServices >= 15 or TicketRequests >= 40
+| order by DistinctServices desc, TicketRequests desc

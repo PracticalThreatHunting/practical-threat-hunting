@@ -2,27 +2,32 @@ cff-version: 1.2.0
 message: "If you use this companion repository, please cite the Practical Threat Hunting project."
 title: "Practical Threat Hunting Companion Repository"
 type: software
-version: "1.0.0"
-date-released: "2026-08-17"
+version: "1.1.0"
+date-released: "2026-08-18"
 authors:
   - family-names: "Halden"
     given-names: "Grant"
 repository-code: "https://github.com/PracticalThreatHunting/practical-threat-hunting"
-url: "https://www.amazon.com/dp/B0HFGYN38J"
+url: "https://github.com/PracticalThreatHunting/practical-threat-hunting"
 identifiers:
   - type: other
     value: "ISBN 9798192696538"
-    description: "Paperback ISBN"
+    description: "Book 1 paperback ISBN"
   - type: url
     value: "https://www.amazon.com/dp/B0HFGYN38J"
-    description: "Kindle edition"
+    description: "Book 1 Kindle edition"
   - type: url
     value: "https://www.amazon.com/dp/B0HFHD55GB"
-    description: "Paperback edition"
-abstract: "Companion queries, hunt resources, framework notes, and updateable implementation material for Practical Threat Hunting: Modern Techniques for the AI-Augmented SOC."
+    description: "Book 1 paperback edition"
+  - type: other
+    value: "ISBN 9798193349570"
+    description: "Book 2 paperback ISBN"
+abstract: "Companion queries, AI-assisted hunt prompts, figures, source notes, and updateable implementation material for the Practical Threat Hunting book series, including Modern Techniques for the AI-Augmented SOC and Endpoint and Identity Threats."
 keywords:
   - threat hunting
   - detection engineering
+  - endpoint security
+  - identity security
   - cybersecurity
   - AI security
   - incident response

@@ -1,0 +1,14 @@
+// Book 2, Hunt 12: Endpoint-to-Identity Token Theft
+// Section: Microsoft Sentinel KQL - Device and IP Discontinuity Pattern
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+SigninLogs
+| where TimeGenerated > ago(14d)
+| extend DeviceId=tostring(DeviceDetail.deviceId),
+         Browser=tostring(DeviceDetail.browser),
+         OS=tostring(DeviceDetail.operatingSystem)
+| summarize FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated),
+            IPs=make_set(IPAddress, 20), Devices=make_set(DeviceId, 20),
+            Apps=make_set(AppDisplayName, 20)
+  by UserId, UserPrincipalName, Browser, OS
+| order by LastSeen desc

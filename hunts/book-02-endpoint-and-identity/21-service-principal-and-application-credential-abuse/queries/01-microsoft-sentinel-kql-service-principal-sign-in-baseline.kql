@@ -1,0 +1,41 @@
+// Book 2, Hunt 21: Service Principal and Application Credential Abuse
+// Section: Microsoft Sentinel KQL - Service Principal Sign-In Baseline
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let BaselineStart = ago(30d);
+let RecentStart = ago(24h);
+let Historical = AADServicePrincipalSignInLogs
+| where TimeGenerated between (BaselineStart .. RecentStart)
+| where tolower(tostring(ResultType)) in ("0", "success")
+| extend ParsedLocation=parse_json(LocationDetails),
+         Country=tostring(ParsedLocation.countryOrRegion)
+| summarize KnownIPs=make_set(IPAddress, 250),
+            KnownResources=make_set(ResourceServicePrincipalId, 100),
+            KnownCountries=make_set(Country, 50),
+            TypicalHours=make_set(datetime_part("hour", TimeGenerated), 24)
+  by ServicePrincipalId;
+AADServicePrincipalSignInLogs
+| where TimeGenerated > RecentStart
+| where tolower(tostring(ResultType)) in ("0", "success")
+| extend ParsedLocation=parse_json(LocationDetails),
+         Country=tostring(ParsedLocation.countryOrRegion),
+         Hour=datetime_part("hour", TimeGenerated)
+| join kind=leftouter Historical on ServicePrincipalId
+| extend KnownIPs=coalesce(KnownIPs, dynamic([])),
+         KnownResources=coalesce(KnownResources, dynamic([])),
+         KnownCountries=coalesce(KnownCountries, dynamic([])),
+         TypicalHours=coalesce(TypicalHours, dynamic([]))
+| extend HasBaseline=array_length(KnownIPs) > 0
+    or array_length(KnownResources) > 0
+    or array_length(KnownCountries) > 0
+    or array_length(TypicalHours) > 0,
+         NewIP=isnotempty(IPAddress) and not(set_has_element(KnownIPs, IPAddress)),
+         NewResource=isnotempty(ResourceServicePrincipalId)
+            and not(set_has_element(KnownResources, ResourceServicePrincipalId)),
+         NewCountry=isnotempty(Country) and not(set_has_element(KnownCountries, Country)),
+         NewHour=not(set_has_element(TypicalHours, Hour))
+| where NewResource or NewCountry or (NewIP and NewHour)
+| project TimeGenerated, ServicePrincipalName, ServicePrincipalId,
+          AppId, IPAddress, Country, ResourceDisplayName,
+          ResourceServicePrincipalId, NewIP, NewResource,
+          NewCountry, NewHour, HasBaseline, CorrelationId

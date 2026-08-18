@@ -1,0 +1,21 @@
+// Book 2, Hunt 17: Dormant, Break-Glass, and Rarely Used Account Abuse
+// Section: Microsoft Sentinel KQL - Recent Use After Inactivity
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let RecentWindow = 7d;
+let HistoryWindow = 90d;
+let HistoricalUse = SigninLogs
+| where TimeGenerated between (ago(HistoryWindow) .. ago(RecentWindow))
+| where tostring(ResultType) == "0"
+| summarize LastHistoricalUse=max(TimeGenerated) by UserId;
+SigninLogs
+| where TimeGenerated > ago(RecentWindow)
+| where tostring(ResultType) == "0"
+| summarize FirstRecentUse=min(TimeGenerated),
+            RecentEvents=count(),
+            IPs=make_set(IPAddress, 20),
+            Apps=make_set(AppDisplayName, 20)
+  by UserId, UserPrincipalName
+| join kind=leftouter HistoricalUse on UserId
+| where isnull(LastHistoricalUse) or FirstRecentUse - LastHistoricalUse > 30d
+| order by FirstRecentUse desc

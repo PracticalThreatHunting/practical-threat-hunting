@@ -1,0 +1,27 @@
+// Book 2, Hunt 08: DLL Search-Order Hijacking and Side-Loading
+// Section: Microsoft Defender XDR KQL - Schema-Dependent Pattern
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let CertificateInfo = DeviceFileCertificateInfo
+| where Timestamp > ago(30d)
+| where isnotempty(SHA1)
+| summarize arg_max(Timestamp, IsSigned, IsTrusted, Signer, Issuer) by DeviceId, SHA1;
+DeviceImageLoadEvents
+| where Timestamp > ago(14d)
+| extend ModulePath=tolower(FolderPath)
+| where ModulePath contains @"\users\"
+    or ModulePath contains @"\appdata\"
+    or ModulePath contains @"\temp\"
+    or ModulePath contains @"\downloads\"
+    or ModulePath contains @"\public\"
+| join kind=leftouter CertificateInfo on DeviceId, SHA1
+| summarize Loads=count(), Devices=dcount(DeviceId),
+            FirstSeen=min(Timestamp), LastSeen=max(Timestamp),
+            CertificateRows=countif(isnotnull(IsSigned)),
+            UnsignedRows=countif(IsSigned == false),
+            UntrustedRows=countif(IsTrusted == false),
+            Signers=make_set_if(Signer, isnotempty(Signer), 5),
+            Examples=make_set(strcat(InitiatingProcessFileName, " -> ", FileName), 5)
+  by SHA1, FileName, FolderPath
+| where Devices < 5 or UnsignedRows > 0 or UntrustedRows > 0
+| order by Devices asc, Loads asc

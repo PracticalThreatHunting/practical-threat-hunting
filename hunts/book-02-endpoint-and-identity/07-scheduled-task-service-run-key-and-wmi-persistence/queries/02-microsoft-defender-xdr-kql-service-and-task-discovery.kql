@@ -1,0 +1,16 @@
+// Book 2, Hunt 07: Scheduled Task, Service, Run-Key, and WMI Persistence
+// Section: Microsoft Defender XDR KQL - Service and Task Discovery
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| extend Cmd=tolower(ProcessCommandLine)
+| where (FileName =~ "sc.exe"
+         and (Cmd contains " create " or Cmd contains " config "))
+    or (FileName =~ "schtasks.exe"
+        and (Cmd contains " /create" or Cmd contains " /change"))
+    or (FileName in~ ("powershell.exe","pwsh.exe")
+        and (Cmd contains "new-service" or Cmd contains "register-scheduledtask"))
+| project Timestamp, DeviceId, DeviceName, AccountName,
+          FileName, ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, SHA1

@@ -1,0 +1,13 @@
+// Book 2, Hunt 11: Remote Administration and Lateral Movement
+// Section: Microsoft Defender XDR KQL - Destination Follow-On
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let remote_hosts = dynamic(["wsmprovhost.exe","wmiprvse.exe","psexesvc.exe"]);
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where InitiatingProcessFileName in~ (remote_hosts)
+    or (InitiatingProcessFileName =~ "services.exe"
+        and FileName in~ ("cmd.exe","powershell.exe","pwsh.exe"))
+| project Timestamp, DeviceId, DeviceName, AccountName,
+          FileName, ProcessCommandLine, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, SHA1

@@ -1,0 +1,17 @@
+// Book 2, Hunt 23: Kerberos Service Ticket and Delegation Abuse
+// Section: Microsoft Sentinel KQL - Encryption Review
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+WindowsEvent
+| where TimeGenerated > ago(7d)
+| where EventID in (4768, 4769)
+| extend User=tostring(EventData.TargetUserName),
+         Service=tostring(EventData.ServiceName),
+         ClientAddress=tostring(EventData.IpAddress),
+         EncryptionType=tostring(EventData.TicketEncryptionType)
+| summarize Requests=count(), Users=dcount(User),
+            Sources=dcount(ClientAddress),
+            SampleUsers=make_set(User, 20),
+            SampleSources=make_set(ClientAddress, 20)
+  by EventID, Service, EncryptionType
+| order by Requests desc

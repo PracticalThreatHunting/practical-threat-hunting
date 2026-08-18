@@ -1,0 +1,15 @@
+// Book 2, Hunt 11: Remote Administration and Lateral Movement
+// Section: Microsoft Defender XDR KQL - Account Fan-Out
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let PeerAdjustedThreshold = 5; // Tune separately for each account population.
+DeviceLogonEvents
+| where Timestamp > ago(24h)
+| where ActionType =~ "LogonSuccess"
+| summarize Destinations=dcount(DeviceId),
+            Devices=make_set(DeviceName, 50),
+            LogonTypes=make_set(LogonType, 10),
+            FirstSeen=min(Timestamp), LastSeen=max(Timestamp)
+  by AccountSid, AccountName, RemoteIP
+| where Destinations >= PeerAdjustedThreshold
+| order by Destinations desc

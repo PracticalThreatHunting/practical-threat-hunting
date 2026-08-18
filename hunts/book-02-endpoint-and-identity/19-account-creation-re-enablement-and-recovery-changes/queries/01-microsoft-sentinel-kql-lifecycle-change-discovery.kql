@@ -1,0 +1,32 @@
+// Book 2, Hunt 19: Account Creation, Re-Enablement, and Recovery Changes
+// Section: Microsoft Sentinel KQL - Lifecycle Change Discovery
+// Reference implementation: validate live schema, fields, licensing, and thresholds before use.
+
+let RelevantActivities = dynamic([
+  "Add user",
+  "Enable account",
+  "Update user",
+  "Reset password",
+  "Change user password",
+  "Admin registered security info",
+  "Admin updated security info",
+  "User registered security info",
+  "User updated security info"
+]);
+AuditLogs
+| where TimeGenerated > ago(14d)
+| where Category =~ "UserManagement"
+| where ActivityDisplayName in~ (RelevantActivities)
+| extend ActorUser=tostring(InitiatedBy.user.userPrincipalName),
+         ActorUserId=tostring(InitiatedBy.user.id),
+         ActorApp=tostring(InitiatedBy.app.displayName),
+         ActorAppId=tostring(InitiatedBy.app.servicePrincipalId)
+| mv-expand Target=TargetResources
+| extend TargetName=coalesce(tostring(Target.userPrincipalName),
+                             tostring(Target.displayName)),
+         TargetId=tostring(Target.id),
+         ModifiedProperties=Target.modifiedProperties
+| project TimeGenerated, ActivityDisplayName, Result, ActorUser, ActorUserId,
+          ActorApp, ActorAppId, TargetName, TargetId,
+          ModifiedProperties, CorrelationId
+| order by TimeGenerated desc
