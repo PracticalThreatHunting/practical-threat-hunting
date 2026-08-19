@@ -20,6 +20,7 @@ AI is used as an accelerator for normalization, clustering, timeline constructio
 
 - [All 24 Book 2 hunts](../hunts/book-02-endpoint-and-identity/README.md)
 - [Book 2 figure gallery](../assets/figures/README.md#book-2--endpoint-and-identity-threats)
+- [Book 2 Amazon A+ content assets](../assets/a-plus/book-02-endpoint-identity/README.md)
 - [Book 2 technical source notes](../resources/book-02-source-notes.md)
 - [Series errata](errata.md)
 - [Repository disclaimer](../DISCLAIMER.md)

@@ -21,6 +21,7 @@ Status: **Published — First Edition, August 2026**
 - Paperback ISBN: `9798192696538`
 - [Book 1 hunt implementations](hunts/README.md#book-1--modern-techniques-for-the-ai-augmented-soc)
 - [Book 1 figures](assets/figures/README.md#book-1--modern-techniques-for-the-ai-augmented-soc)
+- [Book 1 Amazon A+ content assets](assets/a-plus/book-01-modern-techniques/README.md)
 
 ### Book 2 — Endpoint and Identity Threats
 
@@ -34,6 +35,7 @@ Status: **Scheduled for publication September 3, 2026 — Kindle pre-order live*
 - Paperback ISBN: `9798193349570`
 - [Book 2 hunt implementations](hunts/book-02-endpoint-and-identity/README.md)
 - [Book 2 figures](assets/figures/README.md#book-2--endpoint-and-identity-threats)
+- [Book 2 Amazon A+ content assets](assets/a-plus/book-02-endpoint-identity/README.md)
 - [Book 2 edition information](book/endpoint-and-identity-threats.md)
 
 ## Representative Visuals
@@ -64,6 +66,7 @@ See the [complete figure gallery](assets/figures/README.md) for supporting visua
 - [`resources/`](resources/) — AI-validation, framework, query, source, and hunt-library references.
 - [`book/`](book/) — series edition information and errata.
 - [`assets/figures/`](assets/figures/) — supporting figures organized by book.
+- [`assets/a-plus/`](assets/a-plus/) — upload-ready Amazon A+ images and module copy organized by book.
 
 ## Book vs. Repository
 

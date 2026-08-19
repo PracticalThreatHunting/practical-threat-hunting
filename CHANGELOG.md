@@ -15,6 +15,7 @@ All notable updates to the Practical Threat Hunting companion repository will be
 - Added five Book 2 figures: the endpoint–identity pivot loop, evidence-preserving AI workflow, session-replay evidence chain, hunt-to-detection promotion ladder, and cross-domain entity map.
 - Added Book 2 technical source notes linked to official Microsoft, Okta, Splunk, MITRE, NIST, and OWASP references.
 - Added a combined figure gallery and representative visuals from both books.
+- Added upload-ready Amazon A+ image packages and paste-ready module copy for Books 1 and 2.
 
 ### Changed
 
