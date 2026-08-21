@@ -8,29 +8,26 @@ Upload-ready Amazon A+ images and paste-ready module copy for the **Practical Th
 
 The image files are stored without embedded headlines or body copy so Amazon can render the text responsively. Each book-specific README records the intended module, exact copy, alternative text, image dimensions, and associated ASINs.
 
-## Optional Series Comparison Module
+## Published Series Comparison Module
 
-The same comparison module can be added to eligible series detail pages after the required ASINs are available.
+The following comparison chart was published as the fifth module of the Book 3 A+ content on August 21, 2026. It can also be adapted for the other eligible series detail pages.
 
 **Module:** Standard Comparison Chart
 
-**Headline:** Explore the Practical Threat Hunting Series
-
-| Field | Book 1 | Book 2 | Book 3 |
+| Metric | Book 1 | Book 2 | Book 3 |
 | --- | --- | --- | --- |
-| Title | Practical Threat Hunting: Modern Techniques for the AI-Augmented SOC | Practical Threat Hunting: Endpoint and Identity Threats | Practical Threat Hunting: Cloud and SaaS Environments |
-| Focus | Multi-domain modern SOC hunting | Deep endpoint and identity hunting | Deep cloud and SaaS investigation |
-| Hands-on hunts | 25 | 24 | 24 |
-| Primary scope | Endpoint, identity, cloud, Microsoft 365, and AI systems | Windows endpoint, credential access, lateral movement, Entra ID, Okta, and Active Directory | AWS, Azure, Microsoft 365, Google Workspace, GitHub, and cross-cloud identity |
-| AI approach | Evidence-preserving AI augmentation | AI-assisted investigation with explicit verification gates | Evidence-bounded correlation with coverage and confidence kept separate |
+| Primary Focus | Cross-domain threat hunting | Endpoint and identity threats | Cloud and SaaS threats |
+| Core Environments | Endpoint, identity, cloud, Microsoft 365, and AI | Windows, PowerShell, Entra ID, and Okta | AWS, Azure, Microsoft 365, Google Workspace, and GitHub |
+| Starting Point | Broad, evidence-first threat-hunting practice | Endpoint and identity attack-chain investigations | Cloud and SaaS investigations across providers |
 
-Use the live product covers supplied by the applicable ASIN detail pages:
+The published chart used the paperback cover images and ASINs:
 
-- Book 1 Kindle: `B0HFGYN38J`
 - Book 1 paperback: `B0HFHD55GB`
-- Book 2 Kindle: `B0HFLS6MVC`
 - Book 2 paperback: `B0HFNDYLTJ`
-- Book 3 Kindle: pending
-- Book 3 paperback: pending
+- Book 3 paperback: `B0HFZGYX3X`
+
+Book 3 was the highlighted column. **Show reviews** and **Show prices** were disabled; the Amazon-rendered **Add to cart** control was enabled.
+
+Book 3 Kindle ASIN: pending repository confirmation.
 
 Do not include prices, time-sensitive promotional claims, customer reviews, or contact information in A+ modules.
