@@ -35,11 +35,12 @@ Status: **Scheduled for publication September 3, 2026 — Kindle pre-order live*
 **Practical Threat Hunting: Cloud and SaaS Environments**<br>
 *24 Hands-On Hunts Across AWS, Azure, Microsoft 365, Google Workspace, and GitHub*
 
-Status: **First edition complete — Amazon identifiers pending**
+Status: **Published — First Edition, August 2026**
 
+- Kindle ASIN: pending repository confirmation
+- [Paperback edition](https://www.amazon.com/dp/B0HFZGYX3X) — ASIN `B0HFZGYX3X`
 - Paperback ISBN: `9798193986522`
-- Kindle ASIN: pending
-- Paperback ASIN: pending
+- Amazon A+ content published August 21, 2026 and applied to two Book 3 ASINs
 - [Edition and companion information](cloud-and-saas-environments.md)
 - [Hunt index and reference queries](../hunts/book-03-cloud-and-saas/README.md)
 - [Figures](../assets/figures/README.md#book-3--cloud-and-saas-environments)

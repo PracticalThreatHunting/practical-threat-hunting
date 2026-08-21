@@ -4,11 +4,12 @@
 *24 Hands-On Hunts Across AWS, Azure, Microsoft 365, Google Workspace, and GitHub*<br>
 **Grant Halden**
 
-Status: **First edition complete — Amazon identifiers pending**
+Status: **Published — First Edition, August 2026**
 
+- Kindle ASIN: pending repository confirmation
+- [Paperback edition](https://www.amazon.com/dp/B0HFZGYX3X) — ASIN `B0HFZGYX3X`
 - Paperback ISBN: `9798193986522`
-- Kindle ASIN: pending
-- Paperback ASIN: pending
+- Amazon A+ content published August 21, 2026 and applied to two Book 3 ASINs
 
 ## Scope
 
