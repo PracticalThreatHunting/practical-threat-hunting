@@ -28,6 +28,6 @@ The published chart used the paperback cover images and ASINs:
 
 Book 3 was the highlighted column. **Show reviews** and **Show prices** were disabled; the Amazon-rendered **Add to cart** control was enabled.
 
-Book 3 Kindle ASIN: pending repository confirmation.
+Book 3 Kindle ASIN: `B0HFZHHHGR`.
 
 Do not include prices, time-sensitive promotional claims, customer reviews, or contact information in A+ modules.
