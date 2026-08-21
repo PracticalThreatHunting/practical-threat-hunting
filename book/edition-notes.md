@@ -29,7 +29,7 @@ Status: **Published — First Edition, August 2026**
 
 - Technical verification and external-link review date: **August 20, 2026**.
 - Paperback ISBN: `9798193986522`.
-- Kindle ASIN: pending repository confirmation.
+- Kindle ASIN: `B0HFZHHHGR`.
 - Paperback ASIN: `B0HFZGYX3X`.
 - Amazon A+ content `Practical Threat Hunting - Book 3 A+ Content` was approved and published August 21, 2026 and applied to two Book 3 ASINs.
 - The edition contains 24 hunts spanning AWS, Azure, Microsoft Entra ID, Microsoft 365, Google Workspace, GitHub Actions OIDC, federated identity, and cross-cloud reconstruction.
