@@ -7,7 +7,7 @@ All notable updates to the Practical Threat Hunting companion repository will be
 ### Added
 
 - Added first-edition companion resources for **Practical Threat Hunting: Cloud and SaaS Environments**.
-- Recorded the Book 3 paperback ISBN `9798193986522` and paperback ASIN `B0HFZGYX3X`; the Kindle ASIN awaits repository confirmation.
+- Recorded the Book 3 paperback ISBN `9798193986522`, Kindle ASIN `B0HFZHHHGR`, and paperback ASIN `B0HFZGYX3X`.
 - Added a Book 3 index covering 24 hunts across AWS, Azure, Microsoft 365, Google Workspace, GitHub, federated identity, and cross-cloud reconstruction.
 - Added 24 statically reviewed reference query patterns and 24 evidence-bound AI analysis prompts.
 - Added six Book 3 figures covering evidence planes, identity graphs, credential provenance, cloud-administration evidence, SaaS API activity, and cross-cloud reconstruction.
@@ -18,7 +18,7 @@ All notable updates to the Practical Threat Hunting companion repository will be
 ### Changed
 
 - Updated the root, book, hunt, resource, asset, edition-note, errata, and citation documentation for a three-book series.
-- Updated repository citation metadata to version `1.2.1`.
+- Updated repository citation metadata to version `1.2.2`.
 - Added targeted ignore rules for private manuscript and KDP publication-upload formats.
 - Updated Book 3 status to published and recorded that its A+ content was approved, published, and applied to two Book 3 ASINs on August 21, 2026.
 
