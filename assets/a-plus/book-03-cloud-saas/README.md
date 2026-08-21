@@ -5,7 +5,7 @@
 *24 Hands-On Hunts Across AWS, Azure, Microsoft 365, Google Workspace, and GitHub*
 
 - Paperback ISBN: `9798193986522`
-- Kindle ASIN: pending repository confirmation
+- Kindle ASIN: `B0HFZHHHGR`
 - Paperback ASIN: `B0HFZGYX3X`
 - KDP content name: `Practical Threat Hunting - Book 3 A+ Content`
 - Marketplace and language: Amazon.com, US English
@@ -101,6 +101,7 @@ The original [`05-investigation-workflow-1940x600.jpg`](05-investigation-workflo
 - Approved: August 21, 2026
 - Published: August 21, 2026
 - Applied ASIN count: Two
+- Applied ASINs: Kindle `B0HFZHHHGR`; paperback `B0HFZGYX3X`
 - Final KDP desktop preview reviewed after publication
 
 Do not include prices, release-date claims, customer reviews, contact information, unsupported superlatives, or temporary promotional language in the modules.
