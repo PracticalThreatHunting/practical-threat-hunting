@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this companion repository, please cite the Practical Threat Hunting project."
 title: "Practical Threat Hunting Companion Repository"
 type: software
-version: "1.2.1"
+version: "1.2.2"
 date-released: "2026-08-21"
 authors:
   - family-names: "Halden"
@@ -31,6 +31,9 @@ identifiers:
   - type: other
     value: "ISBN 9798193986522"
     description: "Book 3 paperback ISBN"
+  - type: url
+    value: "https://www.amazon.com/dp/B0HFZHHHGR"
+    description: "Book 3 Kindle edition"
   - type: url
     value: "https://www.amazon.com/dp/B0HFZGYX3X"
     description: "Book 3 paperback edition"
