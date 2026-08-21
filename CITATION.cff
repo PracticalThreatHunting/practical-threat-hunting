@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this companion repository, please cite the Practical Threat Hunting project."
 title: "Practical Threat Hunting Companion Repository"
 type: software
-version: "1.2.0"
+version: "1.2.1"
 date-released: "2026-08-21"
 authors:
   - family-names: "Halden"
@@ -31,6 +31,9 @@ identifiers:
   - type: other
     value: "ISBN 9798193986522"
     description: "Book 3 paperback ISBN"
+  - type: url
+    value: "https://www.amazon.com/dp/B0HFZGYX3X"
+    description: "Book 3 paperback edition"
 abstract: "Companion queries, AI-assisted hunt prompts, figures, source notes, and updateable implementation material for the Practical Threat Hunting book series, including Modern Techniques for the AI-Augmented SOC, Endpoint and Identity Threats, and Cloud and SaaS Environments."
 keywords:
   - threat hunting
