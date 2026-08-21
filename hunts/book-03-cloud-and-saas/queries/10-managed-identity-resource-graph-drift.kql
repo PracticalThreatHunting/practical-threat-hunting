@@ -1,0 +1,34 @@
+let BaselineStart = datetime(<BASELINE_START_UTC>);
+let HuntStart = datetime(<HUNT_START_UTC>);
+let HuntEnd = datetime(<HUNT_END_UTC>);
+let KnownEdges = AADManagedIdentitySignInLogs
+    | extend EventTime = coalesce(CreatedDateTime, TimeGenerated)
+    | where EventTime >= BaselineStart and EventTime < HuntStart
+    | where AADTenantId =~ "<AAD_TENANT_ID>"
+    | where ResultType =~ "Success"
+    | where isempty("<MANAGED_IDENTITY_OBJECT_ID>")
+        or ServicePrincipalId =~ "<MANAGED_IDENTITY_OBJECT_ID>"
+    | extend EdgePrincipalId = tolower(tostring(ServicePrincipalId)),
+             EdgeResourceServicePrincipalId = tolower(tostring(ResourceServicePrincipalId))
+    | where isnotempty(EdgePrincipalId)
+        and isnotempty(EdgeResourceServicePrincipalId)
+    | summarize by EdgePrincipalId, EdgeResourceServicePrincipalId;
+AADManagedIdentitySignInLogs
+| extend EventTime = coalesce(CreatedDateTime, TimeGenerated)
+| where EventTime >= HuntStart and EventTime < HuntEnd
+| where AADTenantId =~ "<AAD_TENANT_ID>"
+| where ResultType =~ "Success"
+| where isempty("<MANAGED_IDENTITY_OBJECT_ID>")
+    or ServicePrincipalId =~ "<MANAGED_IDENTITY_OBJECT_ID>"
+| extend EdgePrincipalId = tolower(tostring(ServicePrincipalId)),
+         EdgeResourceServicePrincipalId = tolower(tostring(ResourceServicePrincipalId))
+| where isnotempty(EdgePrincipalId)
+    and isnotempty(EdgeResourceServicePrincipalId)
+| join kind=leftanti (KnownEdges) on EdgePrincipalId, EdgeResourceServicePrincipalId
+| project EventTime, CreatedDateTime, TimeGenerated, AADTenantId,
+          ServicePrincipalId, ServicePrincipalName,
+          AppId, SourceAppClientId, Identity, ManagedServiceIdentity,
+          ResourceIdentity, ResourceServicePrincipalId, ResourceDisplayName,
+          ResourceOwnerTenantId, IPAddress, ResultType, ResultDescription,
+          CorrelationId, Id, SessionId, UniqueTokenIdentifier, UserAgent
+| order by EventTime asc

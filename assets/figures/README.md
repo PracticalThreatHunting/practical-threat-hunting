@@ -47,3 +47,31 @@ Book 1 figure files:
 ![Cross-domain entity map connecting user, device, process, file, session, IP and time, application, and resource records through source-specific identifiers.](book-02/cross_domain_entity_map.png)
 
 Book 2 figures are author-created analytical models. They support the investigation workflows described in the book and are not product architecture diagrams.
+
+## Book 3 — Cloud and SaaS Environments
+
+### Cloud and SaaS Evidence-Plane Map
+
+![Six evidence planes—identity, control, data, application, workload, and network—connected through shared identity, session, resource, time, and coverage context.](book-03/cloud_saas_evidence_plane_map.png)
+
+### Human, Application, and Workload Identity Graph
+
+![Human, application, and workload identities connect through authorization or trust, credential or session issuance, and actions against target resources.](book-03/human_application_workload_identity_graph.png)
+
+### Temporary Credential Provenance Chain
+
+![A five-stage chain from originating identity through issuer or trust, temporary session, provider action, and target effect, with stable correlation keys at each stage.](book-03/temporary_credential_provenance_chain.png)
+
+### Cloud Administration Command Evidence Chain
+
+![A five-stage evidence chain from caller session through a cloud administration request and service state to guest evidence and an observed effect, emphasizing that API success alone does not prove execution.](book-03/cloud_admin_command_evidence_chain.png)
+
+### SaaS API Activity Investigation Chain
+
+![A five-stage SaaS investigation chain connecting authorization, client and token context, an API request, resource result, and downstream audit evidence.](book-03/saas_api_activity_investigation_chain.png)
+
+### Cross-Cloud Capstone Evidence Graph
+
+![An origin and trust node connects to AWS, Azure, Microsoft 365, and Google Workspace evidence, which converge in an evidence ledger containing identifiers, coverage, clock bounds, contradictions, and confidence.](book-03/cross_cloud_capstone_evidence_graph.png)
+
+Book 3 figures are author-created analytical models. They describe evidence relationships and investigation workflows, not provider architecture or guaranteed telemetry coverage.

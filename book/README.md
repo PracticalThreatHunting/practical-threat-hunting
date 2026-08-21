@@ -30,6 +30,22 @@ Status: **Scheduled for publication September 3, 2026 — Kindle pre-order live*
 - [Figures](../assets/figures/README.md#book-2--endpoint-and-identity-threats)
 - [Technical source notes](../resources/book-02-source-notes.md)
 
+## Book 3 — Cloud and SaaS Environments
+
+**Practical Threat Hunting: Cloud and SaaS Environments**<br>
+*24 Hands-On Hunts Across AWS, Azure, Microsoft 365, Google Workspace, and GitHub*
+
+Status: **First edition complete — Amazon identifiers pending**
+
+- Paperback ISBN: `9798193986522`
+- Kindle ASIN: pending
+- Paperback ASIN: pending
+- [Edition and companion information](cloud-and-saas-environments.md)
+- [Hunt index and reference queries](../hunts/book-03-cloud-and-saas/README.md)
+- [Figures](../assets/figures/README.md#book-3--cloud-and-saas-environments)
+- [Amazon A+ content package](../assets/a-plus/book-03-cloud-saas/README.md)
+- [Technical source notes](../resources/book-03-source-notes.md)
+
 ## Shared Records
 
 - [Edition notes](edition-notes.md)

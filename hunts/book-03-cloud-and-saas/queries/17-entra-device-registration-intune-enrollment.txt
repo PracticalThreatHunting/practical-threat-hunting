@@ -1,0 +1,29 @@
+Registrations = FROM <ENTRA_AUDIT_SOURCE>
+  WHERE event_time >= (<START_UTC>) AND event_time < (<END_UTC>)
+    AND operation_name IN <LOCALLY_TESTED_DEVICE_OPERATION_SET>
+  SELECT event_time, actor_id, target_device_object_id, operation_name, result, correlation_id
+
+DeviceMap = FROM <TIME_VALID_DEVICE_INVENTORY>
+  WHERE valid_from < (<MAP_END_UTC>)
+    AND (valid_to IS NULL OR valid_to > (<MAP_START_UTC>))
+  SELECT valid_from, valid_to, device_object_id, entra_device_id,
+         intune_device_id, endpoint_device_id, owner_id, trust_type,
+         mapping_source, export_batch_id
+
+SignIns = FROM <ENTRA_SIGNIN_SOURCE>
+  WHERE event_time >= (<START_UTC>) AND event_time < (<FOLLOWUP_END_UTC>)
+    AND result = <SUCCESS_VALUE>
+  SELECT event_time, user_id, reported_device_id, application_id,
+         conditional_access_status, managed_state, compliant_state, ip_address
+
+JOIN Registrations TO DeviceMap
+  ON target_device_object_id = device_object_id
+ AND Registrations.event_time >= DeviceMap.valid_from
+ AND (DeviceMap.valid_to IS NULL OR Registrations.event_time < DeviceMap.valid_to)
+JOIN SignIns
+  ON reported_device_id = entra_device_id
+ AND SignIns.event_time >= DeviceMap.valid_from
+ AND (DeviceMap.valid_to IS NULL OR SignIns.event_time < DeviceMap.valid_to)
+ AND SignIns.event_time >= Registrations.event_time
+ AND SignIns.event_time < Registrations.event_time + <FOLLOWUP_WINDOW>
+ORDER BY Registrations.event_time, SignIns.event_time

@@ -1,0 +1,31 @@
+let HuntStart = datetime(<START_UTC>);
+let HuntEnd = datetime(<END_UTC>);
+AzureActivity
+| where TimeGenerated >= HuntStart and TimeGenerated < HuntEnd
+| where SubscriptionId =~ "<SUBSCRIPTION_ID>"
+| where CategoryValue =~ "Administrative"
+| extend OperationValue = tolower(OperationNameValue), TargetId = tolower(ResourceId)
+| where TargetId contains "/providers/microsoft.network/"
+| where TargetId contains "/networksecuritygroups/"
+    or TargetId contains "/routetables/"
+    or TargetId contains "/virtualnetworks/"
+    or TargetId contains "/publicipaddresses/"
+    or TargetId contains "/networkinterfaces/"
+    or TargetId contains "/firewallpolicies/"
+    or TargetId contains "/azurefirewalls/"
+    or TargetId contains "/natgateways/"
+    or TargetId contains "/privateendpoints/"
+    or TargetId contains "/privatednszones/"
+    or TargetId contains "/loadbalancers/"
+    or TargetId contains "/applicationgateways/"
+    or TargetId contains "/networkmanagers/"
+    or TargetId contains "/networkwatchers/"
+| where OperationValue endswith "/write"
+    or OperationValue endswith "/delete"
+    or OperationValue endswith "/action"
+| project TimeGenerated, SubscriptionId, ResourceGroup, ResourceId,
+          ResourceProviderValue, CategoryValue, OperationNameValue,
+          ActivityStatusValue, ActivitySubstatusValue, Caller, CallerIpAddress,
+          CorrelationId, OperationId, EventDataId, EventSubmissionTimestamp,
+          Authorization_d, Claims_d, Properties_d
+| order by TimeGenerated asc

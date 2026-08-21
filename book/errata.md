@@ -10,4 +10,8 @@ No published errata at this time.
 
 No published errata at this time.
 
+## Practical Threat Hunting: Cloud and SaaS Environments
+
+No confirmed errata at this time.
+
 To report a suspected correction, use the repository's **Book correction** GitHub Issue form and include the title, format, edition, page or location, current text, and proposed correction.

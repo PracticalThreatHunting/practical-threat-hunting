@@ -38,6 +38,21 @@ Status: **Scheduled for publication September 3, 2026 — Kindle pre-order live*
 - [Book 2 Amazon A+ content assets](assets/a-plus/book-02-endpoint-identity/README.md)
 - [Book 2 edition information](book/endpoint-and-identity-threats.md)
 
+### Book 3 — Cloud and SaaS Environments
+
+**Practical Threat Hunting: Cloud and SaaS Environments**<br>
+*24 Hands-On Hunts Across AWS, Azure, Microsoft 365, Google Workspace, and GitHub*
+
+Status: **First edition complete — Amazon identifiers pending**
+
+- Paperback ISBN: `9798193986522`
+- Kindle ASIN: pending
+- Paperback ASIN: pending
+- [Book 3 hunt index and reference queries](hunts/book-03-cloud-and-saas/README.md)
+- [Book 3 figures](assets/figures/README.md#book-3--cloud-and-saas-environments)
+- [Book 3 Amazon A+ content package](assets/a-plus/book-03-cloud-saas/README.md)
+- [Book 3 edition information](book/cloud-and-saas-environments.md)
+
 ## Representative Visuals
 
 ### Book 1: AI Validation Loop
@@ -48,13 +63,17 @@ Status: **Scheduled for publication September 3, 2026 — Kindle pre-order live*
 
 ![Endpoint-identity pivot loop showing evidence preservation, entity resolution, identity and endpoint pivots, contextual comparison, and a documented conclusion.](assets/figures/book-02/endpoint_identity_pivot_loop.png)
 
-See the [complete figure gallery](assets/figures/README.md) for supporting visuals from both books.
+### Book 3: Cloud and SaaS Evidence-Plane Map
+
+![Six evidence planes—identity, control, data, application, workload, and network—connected through shared identity, session, resource, time, and coverage context.](assets/figures/book-03/cloud_saas_evidence_plane_map.png)
+
+See the [complete figure gallery](assets/figures/README.md) for supporting visuals from all three books.
 
 ## What You'll Find Here
 
-- Companion implementations for 25 Book 1 hunts and 24 Book 2 hunts
+- Companion implementations for 25 Book 1 hunts, 24 Book 2 hunts, and 24 Book 3 hunts
 - Microsoft Defender XDR and Microsoft Sentinel KQL examples
-- Selected Splunk SPL, CrowdStrike LogScale, Windows-event, Okta, and provider-neutral examples
+- Selected Athena SQL, Splunk SPL, CrowdStrike LogScale, PowerShell, Google Workspace Reports API pseudocode, Windows-event, Okta, and provider-neutral examples
 - Evidence-bound AI analysis prompts and verification guidance
 - Detection opportunities, telemetry requirements, and investigation pivots
 - MITRE ATT&CK, MITRE ATLAS, OWASP, NIST, and first-party product references
