@@ -25,12 +25,13 @@ Status: **Scheduled for publication September 3, 2026 — Kindle pre-order live*
 
 ## Book 3 — Cloud and SaaS Environments
 
-Status: **First edition complete — Amazon identifiers pending**
+Status: **Published — First Edition, August 2026**
 
 - Technical verification and external-link review date: **August 20, 2026**.
 - Paperback ISBN: `9798193986522`.
-- Kindle ASIN: pending.
-- Paperback ASIN: pending.
+- Kindle ASIN: pending repository confirmation.
+- Paperback ASIN: `B0HFZGYX3X`.
+- Amazon A+ content `Practical Threat Hunting - Book 3 A+ Content` was approved and published August 21, 2026 and applied to two Book 3 ASINs.
 - The edition contains 24 hunts spanning AWS, Azure, Microsoft Entra ID, Microsoft 365, Google Workspace, GitHub Actions OIDC, federated identity, and cross-cloud reconstruction.
 - Its 24 reference patterns received static syntax-and-schema review under the assumptions documented in the manuscript and companion files.
 - Static review does not establish tenant compatibility, connector availability, local field population, identity-map completeness, collection coverage, retention, licensing, or production readiness.
