@@ -1,0 +1,22 @@
+let HuntStart = datetime(<START_UTC>);
+let HuntEnd = datetime(<END_UTC>);
+MicrosoftGraphActivityLogs
+| where TimeGenerated >= HuntStart and TimeGenerated < HuntEnd
+| where isempty("<APP_ID_FILTER>") or AppId =~ "<APP_ID_FILTER>"
+| extend ResourceFamily = tolower(
+            extract(@"(?i)/(?:v1\.0|beta)/([^/?#]+)", 1, tostring(RequestUri)))
+| extend ParserFailed = isempty(ResourceFamily)
+| extend StatusClass = case(isnull(ResponseStatusCode), "unknown",
+                            strcat(substring(tostring(ResponseStatusCode), 0, 1), "xx"))
+| summarize Rows=count(), ApproxDistinctRequests=dcountif(RequestId, isnotempty(RequestId)),
+            ApproxDistinctOperations=dcountif(OperationId, isnotempty(OperationId)),
+            ApproxFamilies=dcountif(ResourceFamily, isnotempty(ResourceFamily)),
+            FamilySet=make_set_if(ResourceFamily, isnotempty(ResourceFamily), 50),
+            ParserFailures=countif(ParserFailed),
+            Methods=make_set(RequestMethod, 10), Statuses=make_set(StatusClass, 10),
+            ResponseSizeKnownRows=countif(isnotnull(ResponseSizeBytes)),
+            ResponseSizeMissingRows=countif(isnull(ResponseSizeBytes)),
+            KnownResponseBytes=sumif(tolong(ResponseSizeBytes), isnotnull(ResponseSizeBytes))
+    by bin(TimeGenerated, 15m), AppId, ServicePrincipalId, UserId,
+       IPAddress, UserAgent, Roles, Scopes
+| order by KnownResponseBytes desc

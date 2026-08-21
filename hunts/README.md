@@ -40,6 +40,15 @@ Book 2 has a separate namespace so overlapping hunt numbers cannot be confused w
 - [Book 2 technical source notes](../resources/book-02-source-notes.md)
 - [Book 2 figure gallery](../assets/figures/README.md#book-2--endpoint-and-identity-threats)
 
+## Book 3 — Cloud and SaaS Environments
+
+Book 3 has a separate namespace for cloud and SaaS hunts spanning AWS, Azure, Microsoft 365, Google Workspace, GitHub, and cross-cloud evidence.
+
+- [Browse all 24 Book 3 hunts and reference queries](book-03-cloud-and-saas/README.md)
+- [Book 3 evidence-bound AI prompts](book-03-cloud-and-saas/ai-prompts.md)
+- [Book 3 technical source notes](../resources/book-03-source-notes.md)
+- [Book 3 figure gallery](../assets/figures/README.md#book-3--cloud-and-saas-environments)
+
 ## Query Guidance
 
 Queries are reference implementations. Validate them in a controlled or read-only hunting workflow before production use. Platform schemas, operation names, field semantics, licensing, and local data quality can change.

@@ -1,0 +1,32 @@
+let HuntStart = datetime(<START_UTC>);
+let HuntEnd = datetime(<END_UTC>);
+StorageBlobLogs
+| where TimeGenerated >= HuntStart and TimeGenerated < HuntEnd
+| where _ResourceId =~ "<STORAGE_BLOB_LOG_RESOURCE_ID>"
+| where OperationName in~ (
+    "ListBlobs", "GetBlob", "GetBlobProperties", "PutBlob", "PutBlock",
+    "PutBlockList", "AppendBlock", "CopyBlob", "DeleteBlob",
+    "UndeleteBlob", "SetBlobTier", "CreateContainer", "DeleteContainer")
+| extend TargetUrl = parse_url(tostring(Uri)),
+         SourceUrl = parse_url(tostring(SourceUri)),
+         DestinationUrl = parse_url(tostring(DestinationUri))
+| extend TargetPath = trim_start(@"/+", tostring(TargetUrl.Path)),
+         SourcePath = trim_start(@"/+", tostring(SourceUrl.Path)),
+         DestinationPath = trim_start(@"/+", tostring(DestinationUrl.Path))
+| extend ContainerName = tostring(split(TargetPath, "/")[0]),
+         TargetHost = tostring(TargetUrl.Host),
+         SourceHost = tostring(SourceUrl.Host),
+         DestinationHost = tostring(DestinationUrl.Host)
+| where isempty("<CONTAINER_NAME>") or ContainerName =~ "<CONTAINER_NAME>"
+| project TimeGenerated, _ResourceId, AccountName, ServiceType, Category,
+          OperationName, AuthenticationType, AuthenticationHash,
+          AuthorizationDetails, RequesterObjectId, RequesterAppId,
+          RequesterTenantId, RequesterAudience, RequesterTokenIssuer,
+          RequesterUpn, CallerIpAddress, UserAgentHeader,
+          ContainerName, ObjectKey, TargetHost, TargetPath,
+          SourceHost, SourcePath, DestinationHost, DestinationPath,
+          CopyDestinationArmId,
+          StatusCode, StatusText, RequestBodySize, ResponseBodySize,
+          DurationMs, ServerLatencyMs, SasExpiryStatus, Protocol, TlsVersion,
+          ClientRequestId, CorrelationId
+| order by TimeGenerated asc

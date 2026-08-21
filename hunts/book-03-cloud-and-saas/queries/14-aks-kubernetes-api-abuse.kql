@@ -1,0 +1,47 @@
+let HuntStart = datetime(<START_UTC>);
+let HuntEnd = datetime(<END_UTC>);
+AKSAudit
+| where TimeGenerated >= HuntStart and TimeGenerated < HuntEnd
+| where _ResourceId =~ "<AKS_CLUSTER_RESOURCE_ID>"
+| where Stage in~ ("ResponseStarted", "ResponseComplete")
+| extend Username = tostring(User.username),
+         UserUid = tostring(User.uid),
+         Groups = tostring(User.groups),
+         SourceIp = tostring(SourceIps[0]),
+         SourceIpChain = SourceIps,
+         RequestPath = tostring(split(tostring(RequestUri), "?")[0]),
+         PathResource = coalesce(
+             extract(@"/namespaces/[^/]+/([^/?]+)", 1, RequestPath),
+             extract(@"/api/[^/]+/([^/?]+)", 1, RequestPath),
+             extract(@"/apis/[^/]+/[^/]+/([^/?]+)", 1, RequestPath)),
+         PathNamespace = extract(@"/namespaces/([^/?]+)", 1, RequestPath),
+         ApiResource = iff(
+             isnotempty(tostring(ObjectRef.resource)),
+             tostring(ObjectRef.resource),
+             PathResource),
+         Subresource = tostring(ObjectRef.subresource),
+         Namespace = iff(
+             isnotempty(tostring(ObjectRef.namespace)),
+             tostring(ObjectRef.namespace),
+             PathNamespace),
+         ObjectName = tostring(ObjectRef.name),
+         ResponseCode = toint(ResponseStatus.code),
+         StageRank = case(Stage =~ "ResponseComplete", 2, 1)
+| summarize arg_max(StageRank, *) by _ResourceId, AuditId
+| where Subresource in~ ("exec", "attach", "portforward")
+    or RequestPath endswith "/exec"
+    or RequestPath endswith "/attach"
+    or RequestPath endswith "/portforward"
+    or Subresource =~ "token"
+    or RequestPath endswith "/token"
+    or (Verb in~ ("get", "list", "watch")
+        and ApiResource in~ ("secrets", "configmaps", "serviceaccounts"))
+    or (Verb in~ ("create", "update", "patch", "delete", "deletecollection")
+        and ApiResource in~ ("pods", "deployments", "daemonsets", "jobs",
+                             "cronjobs", "roles", "rolebindings",
+                             "clusterroles", "clusterrolebindings", "namespaces"))
+| project TimeGenerated, RequestReceivedTime, StageReceivedTime, AuditId,
+          Username, UserUid, Groups, SourceIp, SourceIpChain, UserAgent,
+          Verb, ApiResource, Subresource, Namespace, ObjectName,
+          RequestPath, ResponseCode, ResponseStatus, Level, Stage, _ResourceId
+| order by TimeGenerated asc

@@ -1,0 +1,24 @@
+let HuntStart = datetime(<START_UTC>);
+let HuntEnd = datetime(<END_UTC>);
+AZKVAuditLogs
+| where TimeGenerated >= HuntStart and TimeGenerated < HuntEnd
+| where _ResourceId =~ "<KEY_VAULT_RESOURCE_ID>"
+| where OperationName in~ (
+    "SecretList", "SecretListVersions", "SecretGet", "SecretSet", "SecretDelete",
+    "SecretGetDeleted", "SecretListDeleted", "SecretRecover", "SecretPurge",
+    "SecretBackup", "SecretRestore",
+    "KeyList", "KeyListVersions", "KeyGet", "KeySign", "KeyVerify",
+    "KeyWrap", "KeyUnwrap", "KeyEncrypt", "KeyDecrypt", "KeyDelete",
+    "KeyGetDeleted", "KeyListDeleted", "KeyRecover", "KeyPurge",
+    "KeyBackup", "KeyRestore",
+    "CertificateList", "CertificateListVersions", "CertificateGet",
+    "CertificateDelete", "CertificateGetDeleted", "CertificateListDeleted",
+    "CertificateRecover", "CertificatePurge", "CertificateBackup", "CertificateRestore")
+| extend PrincipalContext = tostring(Identity)
+| project TimeGenerated, _ResourceId, OperationName, OperationVersion,
+          PrincipalContext, CallerIpAddress, ClientInfo, Id, RequestUri,
+          HttpStatusCode, ResultType, ResultSignature, ResultDescription,
+          CorrelationId, DurationMs, AppliedAssignmentId, IsRbacAuthorized,
+          IsAccessPolicyMatch, AddressAuthorizationType, IsAddressAuthorized,
+          SubnetId, TrustedService
+| order by PrincipalContext asc, TimeGenerated asc

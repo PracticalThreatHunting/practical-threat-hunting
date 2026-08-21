@@ -1,0 +1,28 @@
+for requested_event_name in ["authorize", "request", "deny", "revoke", "activity"]:
+  page_token = null
+  repeat:
+    response = GET <REPORTS_API_BASE>/activity/users/all/applications/token
+      PARAMS startTime=<START_RFC3339_UTC>, endTime=<END_RFC3339_UTC>,
+             eventName=requested_event_name, maxResults=<PAGE_SIZE>, pageToken=page_token
+      AUTH <APPROVED_READ_ONLY_REPORTS_API_AUTH>
+
+    for activity_record in (response.items or []):
+      write_raw_activity_once(activity_record, requested_event_name, <RUN_ID>)
+      for event_index, event_record in enumerate(activity_record.events or []):
+        write_normalized_event(
+          customer_id=activity_record.id.customerId,
+          application_name=activity_record.id.applicationName,
+          activity_time_raw=activity_record.id.time,
+          activity_time_utc=parse_unix_seconds_to_utc(activity_record.id.time),
+          activity_unique_qualifier=activity_record.id.uniqueQualifier,
+          actor=activity_record.actor,
+          ip_address=activity_record.ipAddress,
+          event_index=event_index,
+          actual_event_type=event_record.type,
+          actual_event_name=event_record.name,
+          typed_parameters=event_record.parameters,
+          requested_filter=requested_event_name,
+          run_id=<RUN_ID>)
+
+    page_token = response.nextPageToken
+  until page_token is null

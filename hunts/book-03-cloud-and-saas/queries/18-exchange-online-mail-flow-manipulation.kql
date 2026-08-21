@@ -1,0 +1,16 @@
+let HuntStart = datetime(<START_UTC>);
+let HuntEnd = datetime(<END_UTC>);
+let MailFlowOperations = dynamic([
+  "New-TransportRule", "Set-TransportRule", "Enable-TransportRule",
+  "Disable-TransportRule", "Remove-TransportRule",
+  "New-InboundConnector", "Set-InboundConnector", "Remove-InboundConnector",
+  "New-OutboundConnector", "Set-OutboundConnector", "Remove-OutboundConnector"
+]);
+OfficeActivity
+| where TimeGenerated >= HuntStart and TimeGenerated < HuntEnd
+| where OfficeWorkload =~ "Exchange"
+| where Operation in~ (MailFlowOperations)
+| where isempty("<ACTOR_FILTER>") or UserId =~ "<ACTOR_FILTER>"
+| project TimeGenerated, OfficeId, Operation, UserId, UserType,
+          ClientIP, ModifiedObjectResolvedName, ResultStatus, Parameters
+| order by TimeGenerated asc

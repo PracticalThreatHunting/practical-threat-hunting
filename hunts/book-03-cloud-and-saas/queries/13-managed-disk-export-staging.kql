@@ -1,0 +1,24 @@
+let HuntStart = datetime(<START_UTC>);
+let HuntEnd = datetime(<END_UTC>);
+AzureActivity
+| where TimeGenerated >= HuntStart and TimeGenerated < HuntEnd
+| where SubscriptionId =~ "<SUBSCRIPTION_ID>"
+| where CategoryValue =~ "Administrative"
+| extend OperationValue = tolower(OperationNameValue), TargetId = tolower(ResourceId)
+| where TargetId contains "/providers/microsoft.compute/"
+| where OperationValue in (
+    "microsoft.compute/snapshots/write",
+    "microsoft.compute/snapshots/delete",
+    "microsoft.compute/snapshots/begingetaccess/action",
+    "microsoft.compute/snapshots/endgetaccess/action",
+    "microsoft.compute/disks/write",
+    "microsoft.compute/disks/delete",
+    "microsoft.compute/disks/begingetaccess/action",
+    "microsoft.compute/disks/endgetaccess/action",
+    "microsoft.compute/virtualmachines/write")
+| project TimeGenerated, SubscriptionId, ResourceGroup, ResourceId,
+          ResourceProviderValue, CategoryValue, OperationNameValue,
+          ActivityStatusValue, ActivitySubstatusValue, Caller, CallerIpAddress,
+          CorrelationId, OperationId, EventDataId, EventSubmissionTimestamp,
+          Authorization_d, Claims_d, Properties_d
+| order by TimeGenerated asc

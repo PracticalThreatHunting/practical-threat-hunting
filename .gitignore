@@ -22,3 +22,10 @@ desktop.ini
 
 # Logs
 *.log
+
+# Private manuscript and KDP publication files
+*.epub
+*.docx
+*Print_Interior*.pdf
+*Print_Cover*.pdf
+*Kindle_Cover*.jpg
