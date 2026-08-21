@@ -6,7 +6,7 @@
 
 Status: **Published — First Edition, August 2026**
 
-- Kindle ASIN: pending repository confirmation
+- [Kindle edition](https://www.amazon.com/dp/B0HFZHHHGR) — ASIN `B0HFZHHHGR`
 - [Paperback edition](https://www.amazon.com/dp/B0HFZGYX3X) — ASIN `B0HFZGYX3X`
 - Paperback ISBN: `9798193986522`
 - Amazon A+ content published August 21, 2026 and applied to two Book 3 ASINs
