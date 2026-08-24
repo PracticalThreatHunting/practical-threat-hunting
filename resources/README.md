@@ -11,5 +11,7 @@ Supporting technical material for the **Practical Threat Hunting** series.
 - [Book 1 Technical Source Notes](source-notes.md)
 - [Book 2 Technical Source Notes](book-02-source-notes.md)
 - [Book 3 Technical Source Notes](book-03-source-notes.md)
+- [Book 4 Technical Source Notes](book-04-source-notes.md)
+- [Book 4 Release Manifest](book-04-release-manifest.yml)
 
 Additional worksheets, field references, validation fixtures, and current platform notes will be added as the project evolves.

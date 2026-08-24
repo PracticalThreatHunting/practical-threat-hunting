@@ -49,6 +49,16 @@ Book 3 has a separate namespace for cloud and SaaS hunts spanning AWS, Azure, Mi
 - [Book 3 technical source notes](../resources/book-03-source-notes.md)
 - [Book 3 figure gallery](../assets/figures/README.md#book-3--cloud-and-saas-environments)
 
+## Book 4 — Threat Intelligence and Adversary Infrastructure
+
+Book 4 has a separate namespace for intelligence-driven infrastructure hunts spanning domains, DNS, registration, certificates, hosting, phishing, malware infrastructure, campaign tracking, actor-context resolution, and attribution analysis.
+
+- [Browse all 24 Book 4 hunts and reference patterns](book-04-threat-intelligence-and-infrastructure/README.md)
+- [Book 4 evidence-bound AI prompts](book-04-threat-intelligence-and-infrastructure/ai-prompts.md)
+- [Book 4 technical source notes](../resources/book-04-source-notes.md)
+- [Book 4 release manifest](../resources/book-04-release-manifest.yml)
+- [Book 4 figure gallery](../assets/figures/README.md#book-4--threat-intelligence-and-adversary-infrastructure)
+
 ## Query Guidance
 
 Queries are reference implementations. Validate them in a controlled or read-only hunting workflow before production use. Platform schemas, operation names, field semantics, licensing, and local data quality can change.

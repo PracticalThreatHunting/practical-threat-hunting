@@ -1,0 +1,137 @@
+# Book 4 Technical Source Notes
+
+Primary standards, framework pages, provider schemas, and service documentation used by *Practical Threat Hunting: Threat Intelligence and Adversary Infrastructure*.
+
+These notes identify the primary standards, framework pages, product schemas, and service documentation used in this edition. Links and volatile claims were reviewed through August 24, 2026. Each entry names the issuer or author, the document or service relied upon, the relevant analytic topic, and an official source; mutable documentation uses the review date as its access date. Sources are grouped by topic rather than repeated after every hunt. The book’s scenarios, indicators, hashes, activity clusters, queries, and results are synthetic unless stated otherwise.
+
+## ATT&CK and Analytical Models
+
+**MITRE ATT&CK, Enterprise Matrix and version history.** The ATT&CK website provides the versioned source for tactics, techniques, sub-techniques, groups, campaigns, software, data components, and relationships used in this book. The cutoff review used Enterprise ATT&CK version 19.2, released August 6, 2026; the v19 release family began April 28, 2026. Preserve the retained bundle, release identifier, retrieval time, and content hash. See the [August 2026 ATT&CK update](https://attack.mitre.org/resources/updates/), [ATT&CK version history](https://attack.mitre.org/resources/versions/), [ATT&CK data and tools](https://attack.mitre.org/resources/attack-data-and-tools/), and [Enterprise ATT&CK matrix](https://attack.mitre.org/matrices/enterprise/).
+
+**Resource Development and infrastructure acquisition.** The foundations and domain hunts use the official pages for [Resource Development](https://attack.mitre.org/tactics/TA0042/), [Acquire Infrastructure](https://attack.mitre.org/techniques/T1583/), [Domains](https://attack.mitre.org/techniques/T1583/001/), [DNS Server](https://attack.mitre.org/techniques/T1583/002/), [Virtual Private Server](https://attack.mitre.org/techniques/T1583/003/), [Server](https://attack.mitre.org/techniques/T1583/004/), [Botnet](https://attack.mitre.org/techniques/T1583/005/), [Web Services](https://attack.mitre.org/techniques/T1583/006/), and [Serverless](https://attack.mitre.org/techniques/T1583/007/).
+
+**Compromised infrastructure.** Context for legitimate or previously benign resources comes from [Compromise Infrastructure](https://attack.mitre.org/techniques/T1584/) and its domain, DNS-server, virtual-private-server, server, botnet, web-service, serverless, and network-device sub-techniques. Compromised accounts are covered separately by [Compromise Accounts](https://attack.mitre.org/techniques/T1586/); they are not a T1584 sub-technique.
+
+**Delivery and command and control.** Phishing and destination hunts reference Phishing, [Spearphishing Link](https://attack.mitre.org/techniques/T1566/002/), [Spearphishing via Service](https://attack.mitre.org/techniques/T1566/003/), [Phishing for Information: Spearphishing Link](https://attack.mitre.org/techniques/T1598/003/), [Social Engineering: Impersonation](https://attack.mitre.org/techniques/T1684/001/), [Email Spoofing](https://attack.mitre.org/techniques/T1684/002/), [Stage Capabilities: Upload Malware](https://attack.mitre.org/techniques/T1608/001/), [Stage Capabilities: Link Target](https://attack.mitre.org/techniques/T1608/005/), [Obtain Capabilities: Malware](https://attack.mitre.org/techniques/T1588/001/), [Application Layer Protocol](https://attack.mitre.org/techniques/T1071/), [Non-Application Layer Protocol](https://attack.mitre.org/techniques/T1095/), Web Service, [Dynamic Resolution](https://attack.mitre.org/techniques/T1568/), and [Ingress Tool Transfer](https://attack.mitre.org/techniques/T1105/). Each chapter states the evidence condition for a mapping; defender research and sample possession do not establish adversary behavior by themselves.
+
+**Diamond Model.** The actor and campaign chapters draw on Sergio Caltagirone, Andrew Pendergast, and Christopher Betz, [The Diamond Model of Intrusion Analysis](https://www.activeresponse.org/wp-content/uploads/2013/07/diamond.pdf), for the relationship among adversary, capability, infrastructure, and victim. This book extends the operational treatment with explicit source, time, and competing-hypothesis records.
+
+**Uncertainty in intelligence reporting.** FIRST’s CTI SIG materials on [Source Evaluation and Information Reliability](https://www.first.org/global/sigs/cti/curriculum/source-evaluation) and [Communicating Uncertainties in CTI Reporting](https://www.first.org/global/sigs/cti/curriculum/cti-reporting) informed the separation of source reliability, information credibility, and analytical confidence. Coverage is maintained as a separate local evidence property. The labels used here are an edition-specific analytical convention, not a claim of universal scoring.
+
+**DGA research.** The DGA hunt also uses Sandeep Yadav, Ashwath Reddy, A. L. Narasimha Reddy, and Supranamaya Ranjan, [Detecting Algorithmically Generated Malicious Domain Names](https://conferences.sigcomm.org/imc/2010/papers/p48.pdf), as primary research on explainable lexical and cohort features. Those features prioritize investigation and do not prove algorithmic command and control by themselves.
+
+## DNS, Registration, Routing, and Addressing
+
+**DNS architecture and terminology.** Core behavior comes from [RFC 1034](https://www.rfc-editor.org/info/rfc1034), Domain Names—Concepts and Facilities, [RFC 1035](https://www.rfc-editor.org/info/rfc1035), Domain Names—Implementation and Specification, and [RFC 9499](https://www.rfc-editor.org/info/rfc9499), DNS Terminology. [RFC 9499](https://www.rfc-editor.org/info/rfc9499) obsoletes RFC 8499 and is the terminology reference used at the cutoff.
+
+**DNS security and operations.** DNSSEC context comes from [RFC 4033](https://www.rfc-editor.org/info/rfc4033), [RFC 4034](https://www.rfc-editor.org/info/rfc4034), and [RFC 4035](https://www.rfc-editor.org/info/rfc4035). TTL and caching semantics reference [RFC 2181 §8](https://www.rfc-editor.org/rfc/rfc2181.html#section-8). Apply TTL observations with resolver and authoritative visibility in mind; this book does not treat low TTL as malicious by itself.
+
+**RDAP.** Registration queries and response structures use [RFC 9082](https://www.rfc-editor.org/info/rfc9082), Registration Data Access Protocol Query Format, [RFC 9083](https://www.rfc-editor.org/info/rfc9083), JSON Responses for RDAP, and [RFC 9224](https://www.rfc-editor.org/info/rfc9224), Finding the Authoritative RDAP Service. ICANN’s [RDAP launch and WHOIS sunset update](https://www.icann.org/en/announcements/details/icann-update-launching-rdap-sunsetting-whois-27-01-2025-en) documents the January 28, 2025 transition for gTLD registration data. Redaction and access policies limit ownership conclusions.
+
+**RDAP operational profile.** ICANN’s current [gTLD RDAP Profile](https://www.icann.org/en/contracted-parties/registry-operators/registration-data-access-protocol/gtld-rdap-profile-01-01-2020-en) page describes the February 2024 profile required from August 21, 2025. The older-looking URL slug must not be mistaken for the profile version. ATT&CK’s [Domain Registration](https://attack.mitre.org/datacomponents/DC0101/) data component supplies framework context for registration attributes; it does not convert a registration fact into maliciousness.
+
+**Bootstrap registries.** [RFC 9224](https://www.rfc-editor.org/info/rfc9224) discovery uses [IANA’s bootstrap data for DNS](https://data.iana.org/rdap/dns.json), [IPv4](https://data.iana.org/rdap/ipv4.json), [IPv6](https://data.iana.org/rdap/ipv6.json), and [autonomous system numbers](https://data.iana.org/rdap/asn.json). Production tooling should retrieve and cache the relevant registry under a documented update policy.
+
+**Domain status values.** ICANN’s [EPP Status Codes](https://www.icann.org/resources/pages/epp-status-codes-2014-06-16-en) provides operational explanations for registration status fields. Status values do not establish legitimacy or adversary control.
+
+**Domain lifecycle and defensive change.** ICANN’s [Domain Name Renewals and Expiration FAQ](https://www.icann.org/resources/pages/domain-name-renewal-expiration-faqs-2018-12-07-en) and [Framework for Registry Operators to Respond to Security Threats](https://www.icann.org/en/contracted-parties/registry-operators/resources/framework-for-registry-operators-to-respond-to-security-threats) provide context for expiration, recovery, holds, nameserver changes, and defensive sinkholing. A later DNS state must not be projected backward as adversary control.
+
+**Public suffix boundaries.** Registrable-domain derivation references the [Public Suffix List](https://publicsuffix.org/) and [its format](https://github.com/publicsuffix/list/wiki/Format). A production normalizer should pin the list revision and preserve the full hostname.
+
+**Routing data.** Autonomous-system and prefix context draws on the [RouteViews project](https://www.routeviews.org/routeviews/), [RIPE RIS](https://ris.ripe.net/), [RFC 4271](https://www.rfc-editor.org/info/rfc4271), and [RFC 6811](https://www.rfc-editor.org/info/rfc6811) as updated by [RFC 8481](https://www.rfc-editor.org/info/rfc8481) and [RFC 8893](https://www.rfc-editor.org/info/rfc8893). Model an address as covered by a prefix and the BGP route for that prefix as having an origin AS at a stated observation time and vantage point. Routing observations do not prove service ownership, tenancy, actor control, or malicious use.
+
+**Passive DNS and fast flux.** Source-model cautions draw on [CIRCL Passive DNS](https://www.circl.lu/services/passive-dns/) and the current DomainTools/Farsight [DNSDB API v2 documentation](https://docs.domaintools.com/api/dnsdb/). Fast-flux context also uses the joint CISA advisory, [Fast Flux: A National Security Threat](https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-093a). Provider first-seen, last-seen, count, bailiwick, and visibility semantics must still be verified for the contracted source.
+
+**Safe examples.** Reserved domain names come from [RFC 2606](https://www.rfc-editor.org/info/rfc2606) and the [IANA special-use domain registry](https://www.iana.org/assignments/special-use-domain-names/special-use-domain-names.xhtml). [IPv4](https://data.iana.org/rdap/ipv4.json) documentation ranges come from [RFC 5737](https://www.rfc-editor.org/info/rfc5737), the [IPv6](https://data.iana.org/rdap/ipv6.json) documentation prefix comes from [RFC 3849](https://www.rfc-editor.org/info/rfc3849), and documentation ASNs come from [RFC 5398](https://www.rfc-editor.org/info/rfc5398).
+
+## Internationalized Domains and Visual Impersonation
+
+**IDNA compatibility processing.** Domain normalization and display guidance references [Unicode UTS \#46](https://unicode.org/reports/tr46/), Unicode IDNA Compatibility Processing and the IETF IDNA documents, including [RFC 5890](https://www.rfc-editor.org/info/rfc5890) and [RFC 5891](https://www.rfc-editor.org/info/rfc5891).
+
+**Confusables and identifiers.** Visual-similarity analysis references [Unicode UTS \#39](https://unicode.org/reports/tr39/), Unicode Security Mechanisms and the published confusables data. Confusable similarity is a candidate feature; it does not prove impersonation, intent, or ownership.
+
+**URI and browser URL processing.** Generic URI components and fragment semantics reference [RFC 3986](https://www.rfc-editor.org/info/rfc3986), Uniform Resource Identifier: Generic Syntax. Contemporary browser parsing, host processing, relative resolution, and serialization reference the [WHATWG URL Living Standard](https://url.spec.whatwg.org/). The book preserves a fragment in an artifact-exact value because it can affect client-side behavior, but excludes it from the request-exact value used for HTTP-facing telemetry.
+
+## Certificates and TLS
+
+**Certificate Transparency.** CT concepts and log behavior come from [RFC 9162](https://www.rfc-editor.org/info/rfc9162), Certificate Transparency Version 2.0, December 2021. [RFC 9162](https://www.rfc-editor.org/info/rfc9162) is an Experimental RFC that obsoletes [RFC 6962](https://www.rfc-editor.org/info/rfc6962). Distinguish an SCT—the log’s promise—from a verified inclusion proof; distinguish a precertificate entry from a final certificate; and distinguish a name appearing in a log entry from a certificate actually presented by an endpoint. A logged certificate does not prove deployment, reachability, requester identity, or continuing control.
+
+**X.509 certificates.** Certificate fields and validation context reference [RFC 5280](https://www.rfc-editor.org/info/rfc5280). The subject alternative name extension can bind a dNSName to the certificate subject and public key; a name in a certificate does not by itself prove service deployment, domain control, requester identity, or malicious use. Distinguish certificate fingerprints, Subject Public Key Info, serial number plus issuer, subject names, validity, and observed service presentation.
+
+**TLS server identity.** Hostname identity and verification context references [RFC 9525](https://www.rfc-editor.org/info/rfc9525). Analysts should not treat a subject name, reverse-DNS name, or certificate relationship as proof of organizational control without supporting evidence.
+
+## Email Authentication and Phishing Evidence
+
+**SPF.** Sender Policy Framework processing comes from [RFC 7208](https://www.rfc-editor.org/info/rfc7208), whose RFC Editor record lists updates by RFCs 7372, 8553, and 8616. SPF authenticates an authorization relationship for the evaluated identity and connecting host; it does not authenticate the visible display name or message content.
+
+**DKIM.** DomainKeys Identified Mail comes from [RFC 6376](https://www.rfc-editor.org/info/rfc6376), updated by RFCs 8301, 8463, 8553, and 8616. A passing signature establishes the specified signing-domain and message relationship under the validation performed; it is not a general truth statement about the sender.
+
+**DMARC.** The current protocol reference at the cutoff is [RFC 9989](https://www.rfc-editor.org/info/rfc9989), published May 2026. Aggregate and failure reporting are specified in [RFC 9990](https://www.rfc-editor.org/info/rfc9990) and [RFC 9991](https://www.rfc-editor.org/info/rfc9991). [RFC 9989](https://www.rfc-editor.org/info/rfc9989) obsoletes RFC 7489 and RFC 9091. The phishing hunts preserve evaluated identities, alignment, policy, receiver action, and forwarding context rather than reducing DMARC to pass or fail.
+
+**Message format and transport traces.** Header parsing uses [RFC 5322](https://www.rfc-editor.org/info/rfc5322), updated by RFC 6854, and SMTP context uses [RFC 5321](https://www.rfc-editor.org/info/rfc5321). Received fields and Authentication-Results should be parsed according to their defined semantics and local trust boundary.
+
+**Authentication-Results.** Structured authentication results reference [RFC 8601](https://www.rfc-editor.org/info/rfc8601). Only trusted authentication-service headers should be used for operational conclusions.
+
+**Authenticated Received Chain.** Indirect-flow context references [RFC 8617](https://www.rfc-editor.org/info/rfc8617). ARC conveys a chain of authentication assessments; it does not make a forwarded message trustworthy by itself.
+
+## Threat-Intelligence Exchange and Handling
+
+**STIX 2.1.** Object types, properties, patterns, relationships, sightings, markings, and versioning reference [STIX Version 2.1 Errata 01](https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html), OASIS Standard incorporating Committee Specification Draft 01, 2 April 2025. STIX patterning requirements are defined in Section 9 of the same current document. Examples use synthetic identifiers and require implementation validation before exchange.
+
+**TAXII 2.1.** Discovery, API roots, collections, manifests, object retrieval, pagination, filtering, status behavior, and media type semantics reference [OASIS TAXII Version 2.1](https://docs.oasis-open.org/cti/taxii/v2.1/os/taxii-v2.1-os.html). Collection membership is a transport decision and should not be interpreted as validation; authentication is deployment-specific.
+
+**Traffic Light Protocol and IEP.** [FIRST TLP 2.0](https://www.first.org/tlp/) defines four labels. TLP:AMBER+STRICT is the source-specified restriction under TLP:AMBER; TLP:CLEAR replaces the former TLP:WHITE label. TLP communicates sharing boundaries but does not replace licensing, privacy, contractual rules, authorization, or evidence handling. See [FIRST TLP 2.0](https://www.first.org/tlp/) and [FIRST IEP 2.0](https://www.first.org/iep/).
+
+**MISP.** Event, attribute, object, relationship, taxonomy, galaxy, sighting, and warning-list concepts reference the [MISP documentation](https://www.misp-project.org/documentation/), [MISP objects](https://www.misp-project.org/objects.html), [MISP taxonomies](https://www.misp-project.org/taxonomies.html), [MISP galaxies](https://www.misp-project.org/galaxy.html), and the official [MISP warning-lists repository](https://github.com/MISP/misp-warninglists). Import and distribution profiles should be tested against the deployed version.
+
+**OpenCTI.** Knowledge-graph and connector guidance references the [OpenCTI documentation](https://docs.opencti.io/latest/), [automated import](https://docs.opencti.io/latest/usage/import/getting-started/), [enrichment connectors](https://docs.opencti.io/latest/usage/enrichment/), [native feeds](https://docs.opencti.io/latest/usage/feeds/), and [data streaming](https://docs.opencti.io/latest/reference/streaming/). Connector ingestion does not independently verify entity resolution or analytical relationships.
+
+## Actor Context, Attribution, and Vertical Resources
+
+**MITRE ATT&CK actor and campaign context.** Use the current Groups, Campaigns, and Software indexes and open cited procedure sources before applying a label. ATT&CK notes that Groups are public activity clusters and that Associated Groups can reflect partial or many-to-many overlap rather than exact equivalence. See [ATT&CK Groups](https://attack.mitre.org/groups/), [ATT&CK Campaigns](https://attack.mitre.org/campaigns/), and [ATT&CK Software](https://attack.mitre.org/software/).
+
+**Microsoft threat-actor naming.** Microsoft uses weather-family names across five actor categories and assigns Storm-#### designations to groups in development. Preserve the publisher category, current name, previous-name mapping, retrieval date, and original claim scope: [Microsoft threat-actor naming](https://learn.microsoft.com/en-us/unified-secops/microsoft-threat-actor-naming).
+
+**Google Threat Intelligence and Mandiant naming.** Google documents its current threat-actor naming system, while Mandiant explains UNC clusters as uncategorized activity that may later be merged, split, or promoted. See [Google threat-actor naming](https://cloud.google.com/blog/topics/threat-intelligence/updated-cyber-threat-actor-naming-system) and [Mandiant UNC tracking](https://cloud.google.com/blog/topics/threat-intelligence/how-mandiant-tracks-uncategorized-threat-actors/).
+
+**Unit 42 attribution framework.** Palo Alto Networks Unit 42 describes an attribution framework and confidence considerations. Use it as a publisher methodology reference, not as evidence for a specific case: [Unit 42 attribution framework](https://unit42.paloaltonetworks.com/unit-42-attribution-framework/).
+
+**Government and legal sources.** Technical advisories from CISA and partner agencies, FBI and NSA releases, NCSC and ACSC guidance, Department of Justice filings, and OFAC designations can supply authoritative claims within their remit. Preserve exact wording, date, jurisdiction, legal posture, cited artifacts, and later corrections. Start with [CISA cybersecurity advisories](https://www.cisa.gov/news-events/cybersecurity-advisories), [DOJ Computer Crime and Intellectual Property Section](https://www.justice.gov/criminal/cybercrime), and [U.S. Treasury OFAC](https://ofac.treasury.gov/).
+
+**Vertical resources.** CISA’s critical-infrastructure sector pages, Sector Risk Management Agencies, Sector Coordinating Councils, Cross-Sector Cybersecurity Performance Goals, and the National Council of ISACs member directory help define sector processes and peer communities. They do not identify the actor behind a local observation. See [CISA critical-infrastructure sectors](https://www.cisa.gov/topics/critical-infrastructure-security-and-resilience/critical-infrastructure-sectors), [CISA Sector Risk Management Agencies](https://www.cisa.gov/topics/critical-infrastructure-security-and-resilience/sector-risk-management-agencies), [CISA Cross-Sector Cybersecurity Performance Goals](https://www.cisa.gov/cross-sector-cybersecurity-performance-goals), and [National Council of ISACs directory](https://www.nationalisacs.org/members).
+
+**Analytic standards.** [NIST SP 800-150](https://csrc.nist.gov/pubs/sp/800/150/final) addresses cyber-threat-information sharing; FIRST publishes source-evaluation and uncertainty guidance; [ODNI ICD 203](https://www.dni.gov/files/documents/ICD/ICD-203.pdf) describes analytic standards for the U.S. Intelligence Community. This book borrows review disciplines without claiming certification or formal conformance. See [NIST SP 800-150](https://csrc.nist.gov/pubs/sp/800/150/final), [FIRST CTI SIG](https://www.first.org/global/sigs/cti/), and [ODNI ICD 203](https://www.dni.gov/files/documents/ICD/ICD-203.pdf).
+
+## Public Analysis and Community Sources
+
+**URLhaus.** Malware-URL research examples reference the abuse.ch [URLhaus Community API](https://urlhaus.abuse.ch/api/) and [abuse.ch Terms of Use](https://abuse.ch/terms-of-use/). Consumers should preserve the provider’s timestamps, status semantics, and handling conditions rather than promote every returned host to a timeless block.
+
+**urlscan.** Web-capture workflows reference the official [urlscan documentation](https://docs.urlscan.io/), [scan visibility levels](https://docs.urlscan.io/pages/visibility), [search reference](https://docs.urlscan.io/pages/search-api-reference), and [API rate limits](https://docs.urlscan.io/pages/api-rate-limits). Submission visibility and retention require review before sending any private URL, token, customer identifier, or internal hostname.
+
+**VirusTotal.** Sample and infrastructure relationship examples reference the official [VirusTotal API documentation](https://docs.virustotal.com/reference/overview), [object relationships](https://docs.virustotal.com/reference/relationships), and the separately governed [Private Scanning documentation](https://docs.virustotal.com/docs/private-scanning). Results can reflect third-party submissions and vendor labels; preserve first-seen, last-seen, source, and relationship context.
+
+**Malware analysis.** Sample detonation is outside the safe exercises in this book. Where authorized organizations use a sandbox or repository, they should follow the operator’s official privacy, submission, and retention documentation and isolate live content. A public service is not appropriate for confidential samples by default.
+
+## Enterprise Telemetry and Query Schemas
+
+**Microsoft Defender XDR.** Endpoint and email query examples use the official [DeviceNetworkEvents](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicenetworkevents-table), [EmailEvents](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailevents-table), [EmailUrlInfo](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-emailurlinfo-table), and [UrlClickEvents](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-urlclickevents-table) table references plus the [advanced hunting schema](https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-schema-tables). Fields, data availability, licensing, and retention must be confirmed in the deployment environment.
+
+**Microsoft Sentinel threat intelligence.** At the cutoff, Microsoft documents the STIX-oriented ThreatIntelIndicators and ThreatIntelObjects tables in [Threat intelligence in Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/understand-threat-intelligence) and [Work with STIX objects and indicators](https://learn.microsoft.com/en-us/azure/sentinel/work-with-stix-objects-indicators). The latter feature is marked Preview at the publication cutoff. Microsoft stopped new ingestion into the legacy ThreatIntelligenceIndicator table after July 31, 2025. Query adapters should use the current local schema.
+
+**Splunk Common Information Model.** Normalized field examples reference the official [Splunk documentation for the Common Information Model](https://help.splunk.com/en/splunk-enterprise/common-information-model), including DNS, Email, Network Traffic, and Web data models. CIM mapping quality depends on local add-ons and field normalization.
+
+**CrowdStrike LogScale.** LogScale query patterns reference the official [CrowdStrike Query Language documentation](https://library.humio.com/data-analysis/syntax.html). Printed patterns are educational until parsed and executed against the deployed version and local event schema.
+
+**Kusto Query Language.** KQL syntax and operators reference the official [Kusto Query Language overview](https://learn.microsoft.com/en-us/kusto/query/?view=microsoft-fabric) and relevant operator pages. Time-aware join patterns remain conceptual until mapped to the tenant’s watchlist and telemetry tables.
+
+## AI, Data Governance, and Validation
+
+**AI risk management.** The AI workflow was informed by the evidence, governance, measurement, and monitoring principles in [NIST AI 100-1](https://www.nist.gov/itl/ai-risk-management-framework), Artificial Intelligence Risk Management Framework (AI RMF 1.0), January 2023, and [NIST AI 600-1](https://doi.org/10.6028/NIST.AI.600-1), Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile, July 2024. This is not a conformance claim, and the references do not validate a particular model or deployment.
+
+**Prompt injection and untrusted content.** As an edition-specific safety policy, the book treats retrieved reports, webpages, emails, repositories, and malware strings as untrusted data. Models and tools should operate with least privilege, bounded retrieval, explicit authorization, output validation, and no automatic execution of artifact-supplied instructions.
+
+**Edition safety fixtures.** All example domains, IP addresses, email addresses, and hashes are documentation-only or synthetic. Repository tests should prevent live resolution, scanning, browsing, sample execution, blocking, or submission to public services. The printed code is a reference pattern unless an edition-specific validation record states otherwise.
+
+## Source Currency
+
+Technical sources and volatile claims were reviewed through August 24, 2026. The publication process should retain an edition manifest containing the ATT&CK 19.2 dataset reference and bundle hash, Unicode and Public Suffix List snapshot identifiers, product-documentation versions, mutable project documentation, schema assumptions, validation fixtures, and link-check results used for release. Subsequent editions should preserve that source set as the historical baseline and record any correction or replacement in the edition claim register.

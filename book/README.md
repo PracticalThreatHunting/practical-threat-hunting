@@ -47,6 +47,23 @@ Status: **Published — First Edition, August 2026**
 - [Amazon A+ content package](../assets/a-plus/book-03-cloud-saas/README.md)
 - [Technical source notes](../resources/book-03-source-notes.md)
 
+## Book 4 — Threat Intelligence and Adversary Infrastructure
+
+**Practical Threat Hunting: Threat Intelligence and Adversary Infrastructure**<br>
+*24 Hands-On Hunts for the AI-Augmented SOC*
+
+Status: **Publication setup in progress — First Edition, August 2026**
+
+- Paperback ISBN: `9798194699377`
+- Kindle ASIN: pending KDP assignment
+- Paperback ASIN: pending KDP assignment
+- [Edition and companion information](threat-intelligence-and-adversary-infrastructure.md)
+- [Hunt index and reference patterns](../hunts/book-04-threat-intelligence-and-infrastructure/README.md)
+- [Evidence-bound AI prompts](../hunts/book-04-threat-intelligence-and-infrastructure/ai-prompts.md)
+- [Figures](../assets/figures/README.md#book-4--threat-intelligence-and-adversary-infrastructure)
+- [Technical source notes](../resources/book-04-source-notes.md)
+- [Release manifest](../resources/book-04-release-manifest.yml)
+
 ## Shared Records
 
 - [Edition notes](edition-notes.md)

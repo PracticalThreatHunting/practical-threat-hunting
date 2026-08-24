@@ -1,0 +1,31 @@
+// Native Microsoft Defender XDR Advanced Hunting pattern.
+let AnalysisCutoff = datetime(2026-08-23T00:00:00Z);
+let WindowStart = AnalysisCutoff - 30d;
+let SuspiciousTerminalHosts = dynamic([
+  "signin-greyhaven.example",
+  "collect-session.example"
+]);
+let UrlChains = EmailUrlInfo
+| where Timestamp >= WindowStart and Timestamp < AnalysisCutoff
+| extend Host = tolower(UrlDomain),
+         IsQRCode = UrlLocation =~ "QRCode"
+| summarize HopCount=max(UrlChainPosition) + 1,
+            Hosts=make_set(Host, 25),
+            URLs=make_set(Url, 25),
+            QRObserved=countif(IsQRCode),
+            FirstSeen=min(Timestamp),
+            LastSeen=max(Timestamp)
+  by NetworkMessageId, UrlChainId
+| extend ReachedTrackedHost = array_length(
+    set_intersect(Hosts, SuspiciousTerminalHosts)) > 0
+| where QRObserved > 0 or HopCount > 1 or ReachedTrackedHost;
+let EmailLatest = EmailEvents
+| where Timestamp >= WindowStart and Timestamp < AnalysisCutoff
+| summarize arg_max(Timestamp, *)
+    by NetworkMessageId, RecipientEmailAddress;
+UrlChains
+| join kind=leftouter (EmailLatest) on NetworkMessageId
+| project FirstSeen, LastSeen, NetworkMessageId, UrlChainId,
+          HopCount, Hosts, URLs, QRObserved, ReachedTrackedHost,
+          SenderFromAddress, SenderDisplayName, RecipientEmailAddress,
+          Subject, DeliveryAction, AuthenticationDetails

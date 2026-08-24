@@ -1,0 +1,25 @@
+SELECT source_claim_id,
+       claim_location,
+       upstream_citation_ids,
+       source_namespace,
+       source_label,
+       claimed_object_type,
+       candidate_internal_object_id,
+       proposed_relationship_type,
+       effective_from,
+       effective_to,
+       supporting_evidence_ids,
+       contradictory_evidence_ids,
+       publication_dependency_ids,
+       collection_dependency_ids,
+       analytic_dependency_ids,
+       vertical_profile_id,
+       victimology_comparison_population,
+       publisher_visibility_caveats,
+       source_stated_confidence,
+       greyhaven_assessment_confidence,
+       markings,
+       assessment_version
+FROM alias_resolution_assertions
+WHERE candidate_internal_object_id = 'CLUSTER-LANTERN-27'
+ORDER BY assessment_version, source_namespace, source_label;
