@@ -1,0 +1,33 @@
+// Native Microsoft Defender XDR Advanced Hunting pattern.
+let AnalysisCutoff = datetime(2026-08-23T00:00:00Z);
+let WindowStart = AnalysisCutoff - 30d;
+let ProtectedNames = dynamic([
+  "mara voss", "greyhaven robotics", "greyhaven finance",
+  "helix bearings"
+]);
+let ApprovedDomains = dynamic([
+  "greyhaven.example", "helix-bearings.example"
+]);
+EmailEvents
+| where Timestamp >= WindowStart and Timestamp < AnalysisCutoff
+| where EmailDirection == "Inbound"
+| summarize arg_max(Timestamp, *)
+    by NetworkMessageId, RecipientEmailAddress
+| extend Display = tolower(SenderDisplayName),
+         AuthorDomain = tolower(SenderFromDomain),
+         AuthorAddress = tolower(SenderFromAddress)
+| extend ProtectedDisplay = Display has_any (ProtectedNames),
+         ApprovedAuthorDomain = AuthorDomain in~ (ApprovedDomains)
+| where ProtectedDisplay and not(ApprovedAuthorDomain)
+| summarize MessageRecipientRows=count(),
+            UniqueMessages=dcount(NetworkMessageId),
+            Recipients=dcount(RecipientEmailAddress),
+            FirstSeen=min(Timestamp),
+            LastSeen=max(Timestamp),
+            Subjects=make_set(Subject, 10),
+            AuthorAddresses=make_set(AuthorAddress, 10),
+            EnvelopeDomains=make_set(SenderMailFromDomain, 10),
+            AuthExamples=make_set(AuthenticationDetails, 5),
+            MessageIds=make_set(NetworkMessageId, 25)
+  by SenderDisplayName, AuthorDomain, DeliveryAction, IsFirstContact
+| order by Recipients desc, UniqueMessages desc

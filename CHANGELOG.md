@@ -2,6 +2,24 @@
 
 All notable updates to the Practical Threat Hunting companion repository will be documented here.
 
+## 2026-08-24
+
+### Added
+
+- Added first-edition companion resources for **Practical Threat Hunting: Threat Intelligence and Adversary Infrastructure**.
+- Recorded the Book 4 paperback ISBN `9798194699377`; Kindle and paperback ASINs remain pending KDP assignment.
+- Added a Book 4 index covering 24 intelligence-driven hunts across domain, DNS, certificate, hosting, phishing, malware infrastructure, campaign, actor-context, and attribution evidence.
+- Added 24 publication-matched reference patterns and 24 evidence-bound AI hunt prompts.
+- Added 19 Book 4 figures covering vertical prioritization, source independence, time-bounded infrastructure graphs, phishing and malware pivots, actor namespaces, competing hypotheses, interoperability, reproducible hunt packages, and technical maintenance.
+- Added Book 4 technical source notes containing 138 unique official HTTPS targets reviewed through August 24, 2026.
+- Added a Book 4 release manifest recording the source cutoff, Enterprise ATT&CK 19.2 reference, safety-fixture ranges, validation boundaries, and normalization contract.
+
+### Changed
+
+- Updated the root, book, hunt, resource, figure, edition-note, errata, changelog, and citation documentation for a four-book series.
+- Updated repository citation metadata to version `1.3.0`.
+- Expanded repository scope to include threat intelligence, adversary infrastructure, actor-context resolution, STIX/TAXII, MISP, and OpenCTI resources.
+
 ## 2026-08-21
 
 ### Added

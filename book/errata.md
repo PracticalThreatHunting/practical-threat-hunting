@@ -14,4 +14,8 @@ No published errata at this time.
 
 No confirmed errata at this time.
 
+## Practical Threat Hunting: Threat Intelligence and Adversary Infrastructure
+
+No confirmed errata at this time.
+
 To report a suspected correction, use the repository's **Book correction** GitHub Issue form and include the title, format, edition, page or location, current text, and proposed correction.

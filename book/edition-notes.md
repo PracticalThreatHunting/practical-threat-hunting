@@ -36,4 +36,17 @@ Status: **Published — First Edition, August 2026**
 - Its 24 reference patterns received static syntax-and-schema review under the assumptions documented in the manuscript and companion files.
 - Static review does not establish tenant compatibility, connector availability, local field population, identity-map completeness, collection coverage, retention, licensing, or production readiness.
 
+## Book 4 — Threat Intelligence and Adversary Infrastructure
+
+Status: **Publication setup in progress — First Edition, August 2026**
+
+- Technical verification and external-link review date: **August 24, 2026**.
+- Paperback ISBN: `9798194699377`.
+- Kindle and paperback ASINs are pending KDP assignment.
+- The edition contains 24 hunts spanning domains, registration, DNS, certificates, hosting networks, phishing and impersonation, redirect and payload chains, malware and command-and-control infrastructure, legitimate-service abuse, campaign tracking, actor-context resolution, and competing attribution hypotheses.
+- Enterprise ATT&CK 19.2, released August 6, 2026, is the edition-pinned ATT&CK reference.
+- Its 24 reference patterns received static review under the assumptions documented in the manuscript, companion files, and [Book 4 release manifest](../resources/book-04-release-manifest.yml).
+- Python patterns receive parser validation during repository preflight. SQL and KQL patterns remain reference implementations until mapped to a deployed schema and executed against approved fixtures.
+- Static review does not establish provider coverage, source independence, local field population, collection completeness, parser behavior, retention, licensing, production readiness, or attribution accuracy.
+
 Repository resources can be revised independently of the printed editions when schemas, links, or implementation details change.

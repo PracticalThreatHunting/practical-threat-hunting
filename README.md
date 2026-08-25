@@ -2,7 +2,7 @@
 
 Official companion repository for the **Practical Threat Hunting** book series by **Grant Halden**.
 
-The series combines durable threat-hunting methodology with an updateable implementation layer for endpoint, identity, cloud, Microsoft 365, and AI-system investigations. The books explain how to reason through a hunt; this repository carries query examples, source notes, figures, errata, and platform-specific material that can change between print revisions.
+The series combines durable threat-hunting methodology with an updateable implementation layer for endpoint, identity, cloud, SaaS, threat-intelligence, adversary-infrastructure, and AI-assisted investigations. The books explain how to reason through a hunt; this repository carries query examples, source notes, figures, errata, and platform-specific material that can change between print revisions.
 
 - Author website: https://grant-halden.author-pages.com
 - Author contact: granthalden.author@gmail.com
@@ -54,6 +54,22 @@ Status: **Published — First Edition, August 2026**
 - [Book 3 Amazon A+ content package](assets/a-plus/book-03-cloud-saas/README.md)
 - [Book 3 edition information](book/cloud-and-saas-environments.md)
 
+### Book 4 — Threat Intelligence and Adversary Infrastructure
+
+**Practical Threat Hunting: Threat Intelligence and Adversary Infrastructure**<br>
+*24 Hands-On Hunts for the AI-Augmented SOC*
+
+Status: **Publication setup in progress — First Edition, August 2026**
+
+- Paperback ISBN: `9798194699377`
+- Kindle ASIN: pending KDP assignment
+- Paperback ASIN: pending KDP assignment
+- [Book 4 hunt index and reference patterns](hunts/book-04-threat-intelligence-and-infrastructure/README.md)
+- [Book 4 evidence-bound AI prompts](hunts/book-04-threat-intelligence-and-infrastructure/ai-prompts.md)
+- [Book 4 figures](assets/figures/README.md#book-4--threat-intelligence-and-adversary-infrastructure)
+- [Book 4 technical source notes](resources/book-04-source-notes.md)
+- [Book 4 edition information](book/threat-intelligence-and-adversary-infrastructure.md)
+
 ## Representative Visuals
 
 ### Book 1: AI Validation Loop
@@ -68,16 +84,20 @@ Status: **Published — First Edition, August 2026**
 
 ![Six evidence planes—identity, control, data, application, workload, and network—connected through shared identity, session, resource, time, and coverage context.](assets/figures/book-03/cloud_saas_evidence_plane_map.png)
 
-See the [complete figure gallery](assets/figures/README.md) for supporting visuals from all three books.
+### Book 4: Time-Bound Infrastructure Graph
+
+![Infrastructure graph connecting a message, URL, domain, IP address, BGP prefix, origin AS, and certificate through explicitly typed and time-bounded relationships.](assets/figures/book-04/time_bound_infrastructure_graph.png)
+
+See the [complete figure gallery](assets/figures/README.md) for supporting visuals from all four books.
 
 ## What You'll Find Here
 
-- Companion implementations for 25 Book 1 hunts, 24 Book 2 hunts, and 24 Book 3 hunts
+- Companion implementations for 25 Book 1 hunts and 24 hunts in each of Books 2, 3, and 4
 - Microsoft Defender XDR and Microsoft Sentinel KQL examples
-- Selected Athena SQL, Splunk SPL, CrowdStrike LogScale, PowerShell, Google Workspace Reports API pseudocode, Windows-event, Okta, and provider-neutral examples
+- Selected Athena SQL, normalized SQL, Python, Splunk SPL, CrowdStrike LogScale, PowerShell, Google Workspace Reports API pseudocode, Windows-event, Okta, and provider-neutral examples
 - Evidence-bound AI analysis prompts and verification guidance
 - Detection opportunities, telemetry requirements, and investigation pivots
-- MITRE ATT&CK, MITRE ATLAS, OWASP, NIST, and first-party product references
+- MITRE ATT&CK, STIX/TAXII, MISP, OpenCTI, MITRE ATLAS, OWASP, NIST, and first-party product references
 - Book figures, edition notes, errata, and corrections
 
 ## Repository Structure

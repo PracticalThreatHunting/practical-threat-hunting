@@ -1,0 +1,72 @@
+schema_version: 1
+manifest_date: "2026-08-24"
+
+book:
+  series: "Practical Threat Hunting"
+  number: 4
+  title: "Practical Threat Hunting: Threat Intelligence and Adversary Infrastructure"
+  subtitle: "24 Hands-On Hunts for the AI-Augmented SOC"
+  author: "Grant Halden"
+  edition: "First Edition"
+  paperback_isbn: "9798194699377"
+  publication_status: "KDP setup in progress"
+  technical_source_cutoff: "2026-08-24"
+
+companion_release:
+  repository_version: "1.3.0"
+  reference_patterns: 24
+  evidence_bound_hunt_prompts: 24
+  figures: 19
+  unique_official_https_source_targets: 138
+
+attack:
+  matrix: "Enterprise ATT&CK"
+  release: "19.2"
+  release_date: "2026-08-06"
+  upstream_repository: "https://github.com/mitre-attack/attack-stix-data"
+  upstream_tag: "v19.2"
+  upstream_commit: "6cda5ad8462c79e14fbb872f4e09059b18e0cfc4"
+  enterprise_bundle_path: "enterprise-attack/enterprise-attack.json"
+  enterprise_bundle_sha256: "dc1639caa5501d720e280cf1cbd8fbe009884a0c9b3e6e9ed9d0c25166c3d8f4"
+
+normalization_contract:
+  idna: "IDNA2008 with an explicitly selected and pinned UTS #46 processing profile"
+  public_suffix_list: "Operational implementations must pin and record an exact PSL revision"
+  url: "Preserve artifact-exact, request-exact, and display forms separately"
+  hashes: "Always retain the hash algorithm and object type"
+  note: "The repository does not distribute a universal normalizer or silently select mutable latest data"
+
+query_validation:
+  python: "Parser validation required; provider access and live network activity are prohibited"
+  sql: "Static review against the normalized schema and documented half-open interval contract"
+  kql: "Static schema and operator review; tenant execution and connector coverage are not claimed"
+  production_validated: false
+
+safety_fixtures:
+  domains:
+    - ".example"
+    - "example.com"
+    - "example.net"
+    - "example.org"
+  ipv4:
+    - "192.0.2.0/24"
+    - "198.51.100.0/24"
+    - "203.0.113.0/24"
+  ipv6:
+    - "2001:db8::/32"
+  autonomous_system_numbers:
+    - "64496-64511"
+    - "65536-65551"
+  hashes: "Synthetic values only"
+  prohibited_validation_actions:
+    - "live resolution or scanning of candidate infrastructure"
+    - "browser interaction with suspected phishing pages"
+    - "authentication or form submission"
+    - "malware execution or detonation outside an approved isolated environment"
+    - "automatic blocking, containment, or actor attribution"
+    - "submission of private evidence to public analysis services"
+
+source_retention:
+  public_links: "resources/book-04-source-notes.md"
+  licensed_or_mutable_snapshots: "Not distributed in the public repository"
+  local_requirement: "Retain source versions, retrieval times, hashes, licenses, and dependency lineage with each operational hunt package"

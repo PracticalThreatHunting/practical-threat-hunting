@@ -1,0 +1,37 @@
+let AnalysisCutoff = datetime(2026-08-23T00:00:00Z);
+let Seeds = datatable(ObservableType:string, CanonicalValue:string,
+                     ValidFrom:datetime, ValidUntil:datetime)
+[
+  "domain", "sync-api.example", datetime(2026-08-01), datetime(2026-08-23),
+  "domain", "telemetry-relay.example", datetime(2026-08-01), datetime(2026-08-23),
+  "ip", "198.51.100.42", datetime(2026-08-10), datetime(2026-08-16),
+  "ip", "203.0.113.142", datetime(2026-08-16), datetime(2026-08-23),
+  "ip", "2001:db8:27::42", datetime(2026-08-16), datetime(2026-08-23)
+];
+let Events = DeviceNetworkEvents
+| where Timestamp >= AnalysisCutoff - 30d
+| where Timestamp < AnalysisCutoff
+| extend ParsedHost = tostring(parse_url(RemoteUrl).Host)
+| extend RemoteHost = tolower(iif(isnotempty(ParsedHost), ParsedHost,
+                                  replace_regex(RemoteUrl, @"[:/]\d*$", "")))
+| extend EventRef = pack("Timestamp", Timestamp,
+                         "DeviceId", DeviceId, "ReportId", ReportId);
+let DomainMatches = Events
+| join kind=inner (Seeds | where ObservableType == "domain")
+  on $left.RemoteHost == $right.CanonicalValue
+| where Timestamp >= ValidFrom and Timestamp < ValidUntil
+| extend MatchClass = "exact_domain";
+let IpMatches = Events
+| join kind=inner (Seeds | where ObservableType == "ip")
+  on $left.RemoteIP == $right.CanonicalValue
+| where Timestamp >= ValidFrom and Timestamp < ValidUntil
+| extend MatchClass = "time_bounded_ip";
+union DomainMatches, IpMatches
+| summarize Connections=count(), FirstSeen=min(Timestamp), LastSeen=max(Timestamp),
+            MatchClasses=make_set(MatchClass, 5),
+            RemoteHosts=make_set(RemoteHost, 25), RemoteIPs=make_set(RemoteIP, 25),
+            RemotePorts=make_set(RemotePort, 20), Actions=make_set(ActionType, 20),
+            InitiatingFiles=make_set(InitiatingProcessFileName, 10),
+            EventRefs=make_set(EventRef, 50)
+  by DeviceId, DeviceName
+| order by LastSeen desc

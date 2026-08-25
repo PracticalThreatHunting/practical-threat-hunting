@@ -1,0 +1,32 @@
+// Native Microsoft Defender XDR Advanced Hunting pattern. For streamed data,
+// use TimeGenerated and the connector's documented latest-state semantics.
+let AnalysisCutoff = datetime(2026-08-23T00:00:00Z);
+let WindowStart = AnalysisCutoff - 30d;
+let LatestInbound = EmailEvents
+| where Timestamp >= WindowStart and Timestamp < AnalysisCutoff
+| where EmailDirection == "Inbound"
+| summarize arg_max(Timestamp, *)
+    by NetworkMessageId, RecipientEmailAddress;
+LatestInbound
+| extend AuthorDomain = tolower(SenderFromDomain),
+         EnvelopeDomain = tolower(SenderMailFromDomain),
+         Auth = tolower(AuthenticationDetails)
+| extend HeaderEnvelopeMismatch = isnotempty(AuthorDomain)
+    and isnotempty(EnvelopeDomain)
+    and AuthorDomain != EnvelopeDomain,
+         DmarcFailureCandidate = Auth contains "dmarc=fail"
+            or Auth contains "dmarc: fail"
+| where HeaderEnvelopeMismatch or DmarcFailureCandidate
+| summarize MessageRecipientRows=count(),
+            UniqueMessages=dcount(NetworkMessageId),
+            Recipients=dcount(RecipientEmailAddress),
+            FirstSeen=min(Timestamp),
+            LastSeen=max(Timestamp),
+            RelayIPv4=make_set(SenderIPv4, 10),
+            RelayIPv6=make_set(SenderIPv6, 10),
+            Subjects=make_set(Subject, 5),
+            AuthExamples=make_set(AuthenticationDetails, 5),
+            MessageIds=make_set(NetworkMessageId, 20)
+  by AuthorDomain, EnvelopeDomain, SenderDisplayName,
+     SenderFromAddress, DeliveryAction
+| order by Recipients desc, UniqueMessages desc
