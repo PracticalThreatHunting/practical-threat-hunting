@@ -1,0 +1,931 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:practical-threat-hunting:book5:canonical-event:v1",
+  "title": "Book 5 canonical network event",
+  "type": "object",
+  "required": [
+    "event_id",
+    "fixture_id",
+    "case_id",
+    "control",
+    "source",
+    "event_type",
+    "ts",
+    "ts_end",
+    "sensor",
+    "src_ip",
+    "src_port",
+    "dst_ip",
+    "dst_port",
+    "transport",
+    "ip_proto",
+    "direction",
+    "direction_basis",
+    "src_role",
+    "dst_role",
+    "src_segment",
+    "dst_segment",
+    "action",
+    "outcome",
+    "connection_state",
+    "service",
+    "app_proto",
+    "channel",
+    "query",
+    "base_domain",
+    "qtype",
+    "rcode",
+    "answer_count",
+    "dns_label_length",
+    "dns_label_entropy",
+    "sequential_label",
+    "method",
+    "host",
+    "authority",
+    "uri",
+    "status_code",
+    "user_agent",
+    "mime_type",
+    "filename",
+    "file_size",
+    "file_hash",
+    "sni",
+    "alpn",
+    "tls_version",
+    "fingerprint",
+    "cert_subject",
+    "cert_issuer",
+    "cert_valid_days",
+    "cert_self_signed",
+    "sni_cert_match",
+    "ech_status",
+    "quic_version",
+    "proxy_method",
+    "policy",
+    "vpn_session_id",
+    "assigned_ip",
+    "route_mode",
+    "mapping_state",
+    "bytes_out",
+    "bytes_in",
+    "packets_out",
+    "packets_in",
+    "duration_s",
+    "sample_rate",
+    "counter_layer",
+    "flow_complete",
+    "parser_zeek",
+    "parser_suricata",
+    "correlation_key",
+    "anomaly",
+    "icmp_version",
+    "icmp_type",
+    "icmp_code",
+    "payload_len",
+    "icmp_id",
+    "icmp_seq",
+    "ip_protocol_number",
+    "tunnel_type",
+    "share_name",
+    "rpc_operation",
+    "remote_admin_proto",
+    "coverage_state",
+    "visibility_basis",
+    "approved",
+    "proxy_rewrite",
+    "collection_interval",
+    "note"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "event_id": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "fixture_id": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "case_id": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "control": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "source": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "event_type": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "ts": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "ts_end": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "sensor": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "src_ip": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "src_port": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "dst_ip": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "dst_port": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "transport": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "ip_proto": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "direction": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "direction_basis": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "src_role": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "dst_role": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "src_segment": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "dst_segment": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "action": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "outcome": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "connection_state": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "service": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "app_proto": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "channel": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "query": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "base_domain": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "qtype": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "rcode": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "answer_count": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "dns_label_length": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "dns_label_entropy": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "sequential_label": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "method": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "host": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "authority": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "uri": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "status_code": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "user_agent": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "mime_type": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "filename": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "file_size": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "file_hash": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "sni": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "alpn": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "tls_version": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "fingerprint": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "cert_subject": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "cert_issuer": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "cert_valid_days": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "cert_self_signed": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "sni_cert_match": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "ech_status": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "quic_version": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "proxy_method": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "policy": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "vpn_session_id": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "assigned_ip": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "route_mode": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "mapping_state": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "bytes_out": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "bytes_in": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "packets_out": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "packets_in": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "duration_s": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "sample_rate": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "counter_layer": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "flow_complete": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "parser_zeek": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "parser_suricata": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "correlation_key": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "anomaly": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "icmp_version": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "icmp_type": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "icmp_code": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "payload_len": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "icmp_id": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "icmp_seq": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "ip_protocol_number": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "tunnel_type": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "share_name": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "rpc_operation": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "remote_admin_proto": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "coverage_state": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "visibility_basis": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "approved": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "proxy_rewrite": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "collection_interval": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    },
+    "note": {
+      "type": [
+        "null",
+        "string",
+        "number",
+        "integer",
+        "boolean"
+      ]
+    }
+  },
+  "x-result-columns": [
+    "hunt_id",
+    "entity_key",
+    "first_seen",
+    "last_seen",
+    "event_count",
+    "score",
+    "decision",
+    "reason"
+  ]
+}

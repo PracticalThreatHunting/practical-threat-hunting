@@ -2,6 +2,22 @@
 
 All notable updates to the Practical Threat Hunting companion repository will be documented here.
 
+## 2026-09-04
+
+### Added
+
+- Added first-edition companion resources for **Practical Threat Hunting: Network Traffic and Command-and-Control**.
+- Added a deterministic offline lab for 24 publication-matched DuckDB hunts, including canonical and producer-shaped fixtures, manifests, golden outputs, schemas, and a one-command verifier.
+- Added a safe synthetic PCAP and version-bound replay contract for optional Zeek 8.2.2 and Suricata 8.0.6 validation.
+- Added 22 Book 5 analytical figures with descriptive gallery text.
+- Added Book 5 technical source notes and a versioned release manifest.
+
+### Changed
+
+- Updated the root, book, hunt, resource, figure, edition-note, errata, changelog, and citation documentation for a five-book series.
+- Updated repository citation metadata to version `1.4.0`.
+- Expanded repository scope to include network traffic, DNS, HTTP, TLS, QUIC, covert channels, lateral movement, command-and-control, and exfiltration hunts.
+
 ## 2026-08-24
 
 ### Added

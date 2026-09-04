@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this companion repository, please cite the Practical Threat Hunting project."
 title: "Practical Threat Hunting Companion Repository"
 type: software
-version: "1.3.0"
-date-released: "2026-08-24"
+version: "1.4.0"
+date-released: "2026-09-04"
 authors:
   - family-names: "Halden"
     given-names: "Grant"
@@ -40,7 +40,7 @@ identifiers:
   - type: other
     value: "ISBN 9798194699377"
     description: "Book 4 paperback ISBN"
-abstract: "Companion queries, AI-assisted hunt prompts, figures, source notes, and updateable implementation material for the Practical Threat Hunting book series, including Modern Techniques for the AI-Augmented SOC, Endpoint and Identity Threats, Cloud and SaaS Environments, and Threat Intelligence and Adversary Infrastructure."
+abstract: "Companion queries, deterministic labs, figures, source notes, and updateable implementation material for the Practical Threat Hunting book series, including Modern Techniques for the AI-Augmented SOC, Endpoint and Identity Threats, Cloud and SaaS Environments, Threat Intelligence and Adversary Infrastructure, and Network Traffic and Command-and-Control."
 keywords:
   - threat hunting
   - detection engineering
@@ -55,3 +55,9 @@ keywords:
   - adversary infrastructure
   - phishing investigation
   - threat actor attribution
+  - network traffic analysis
+  - command and control
+  - Zeek
+  - Suricata
+  - DuckDB
+  - exfiltration

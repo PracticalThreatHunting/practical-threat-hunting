@@ -49,4 +49,16 @@ Status: **Publication setup in progress — First Edition, August 2026**
 - Python patterns receive parser validation during repository preflight. SQL and KQL patterns remain reference implementations until mapped to a deployed schema and executed against approved fixtures.
 - Static review does not establish provider coverage, source independence, local field population, collection completeness, parser behavior, retention, licensing, production readiness, or attribution accuracy.
 
+## Book 5 — Network Traffic and Command-and-Control
+
+Status: **Companion resources available — First Edition, September 2026**
+
+- Technical source cutoff: **September 3, 2026**.
+- The edition contains 24 hunts spanning DNS, HTTP, TLS, QUIC, proxy traffic, covert channels, tunneling, protocol mismatch, lateral movement, remote administration, and exfiltration.
+- Enterprise ATT&CK 19.2 is the edition-pinned ATT&CK reference.
+- All 24 publication-matched DuckDB 1.4.5 SQL listings execute against deterministic positive, negative, edge, and full fixture scopes.
+- The offline verifier checks fixture regeneration, hashes, manifest lineage, schema contracts, golden outputs, and optional native-sensor parity without making network requests.
+- Zeek 8.2.2 and Suricata 8.0.6 replay evidence is version-bound. Unavailable optional tools are reported `NOT_RUN`; no pass is inferred.
+- Production use requires deliberate mapping to local telemetry, policy, asset identity, network placement, collection coverage, and authorization boundaries.
+
 Repository resources can be revised independently of the printed editions when schemas, links, or implementation details change.

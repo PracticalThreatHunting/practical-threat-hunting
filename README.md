@@ -70,6 +70,20 @@ Status: **Publication setup in progress — First Edition, August 2026**
 - [Book 4 technical source notes](resources/book-04-source-notes.md)
 - [Book 4 edition information](book/threat-intelligence-and-adversary-infrastructure.md)
 
+### Book 5 — Network Traffic and Command-and-Control
+
+**Practical Threat Hunting: Network Traffic and Command-and-Control**<br>
+*24 Hands-On Hunts for Network Behavior, Covert Channels, Lateral Movement, and Exfiltration*
+
+Status: **Companion resources available — First Edition, September 2026**
+
+- Amazon identifiers: pending publication assignment
+- [Book 5 deterministic lab and all 24 SQL listings](hunts/book-05-network-traffic-and-command-control/README.md)
+- [Book 5 figures](assets/figures/README.md#book-5--network-traffic-and-command-and-control)
+- [Book 5 technical source notes](resources/book-05-source-notes.md)
+- [Book 5 release manifest](resources/book-05-release-manifest.yml)
+- [Book 5 edition information](book/network-traffic-and-command-and-control.md)
+
 ## Representative Visuals
 
 ### Book 1: AI Validation Loop
@@ -88,16 +102,20 @@ Status: **Publication setup in progress — First Edition, August 2026**
 
 ![Infrastructure graph connecting a message, URL, domain, IP address, BGP prefix, origin AS, and certificate through explicitly typed and time-bounded relationships.](assets/figures/book-04/time_bound_infrastructure_graph.png)
 
-See the [complete figure gallery](assets/figures/README.md) for supporting visuals from all four books.
+### Book 5: Network Evidence Ladder
+
+![Six evidence stages rise from observed network facts to a bounded decision while provenance, coverage, and uncertainty remain attached.](assets/figures/book-05/B05-F01-01.png)
+
+See the [complete figure gallery](assets/figures/README.md) for supporting visuals from all five books.
 
 ## What You'll Find Here
 
-- Companion implementations for 25 Book 1 hunts and 24 hunts in each of Books 2, 3, and 4
+- Companion implementations for 25 Book 1 hunts and 24 hunts in each of Books 2 through 5
 - Microsoft Defender XDR and Microsoft Sentinel KQL examples
-- Selected Athena SQL, normalized SQL, Python, Splunk SPL, CrowdStrike LogScale, PowerShell, Google Workspace Reports API pseudocode, Windows-event, Okta, and provider-neutral examples
+- Selected Athena SQL, DuckDB SQL, normalized SQL, Python, Splunk SPL, CrowdStrike LogScale, PowerShell, Google Workspace Reports API pseudocode, Windows-event, Okta, and provider-neutral examples
 - Evidence-bound AI analysis prompts and verification guidance
 - Detection opportunities, telemetry requirements, and investigation pivots
-- MITRE ATT&CK, STIX/TAXII, MISP, OpenCTI, MITRE ATLAS, OWASP, NIST, and first-party product references
+- MITRE ATT&CK, Zeek, Suricata, IPFIX, DNS, TLS, QUIC, STIX/TAXII, MISP, OpenCTI, MITRE ATLAS, OWASP, NIST, and first-party product references
 - Book figures, edition notes, errata, and corrections
 
 ## Repository Structure

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "research_cutoff_utc": "2026-09-03",
+  "canonical": {
+    "python": {"version": "3.12.13", "status": "tested runtime"},
+    "duckdb": {"version": "1.4.5", "status": "tested LTS query engine"},
+    "scapy": {"version": "2.6.1", "status": "package pinned and version-checked; deterministic stdlib PCAP writer used so generation opens no socket"},
+    "zeek": {
+      "version": "8.2.2",
+      "binary_sha256": "b0f0fa84bca5876ba69d4a08dfa838973fd8178a568244f3c041621b847fe86f",
+      "package_sha256": "d3394c55d5646c2ef1e048811934e015f520238ed263ec45672907c15b3e0732",
+      "status": "tested shared-PCAP replay"
+    },
+    "suricata": {
+      "version": "8.0.6",
+      "binary_sha256": "7849636afad35e62daa358e1d50bf142ccb4119bbdcd984832eab354f47b01ea",
+      "package_sha256": "16f695193f839f0640b17d791efb029c809d19569fac9c8a5c9f1f350cb2a848",
+      "package_build": "8.0.6-0ubuntu2 amd64",
+      "status": "tested config and shared-PCAP replay"
+    },
+    "tshark": {"version": "4.6.8", "status": "NOT_RUN: binary unavailable"}
+  },
+  "python_lock": "uv.lock",
+  "sensor_config_lock": "configs/sensor_replay_contract.json"
+}

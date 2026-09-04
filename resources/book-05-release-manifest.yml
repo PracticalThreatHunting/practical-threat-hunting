@@ -1,0 +1,51 @@
+schema_version: 1
+book:
+  series: Practical Threat Hunting
+  number: 5
+  title: "Practical Threat Hunting: Network Traffic and Command-and-Control"
+  subtitle: "24 Hands-On Hunts for Network Behavior, Covert Channels, Lateral Movement, and Exfiltration"
+  author: Grant Halden
+  edition: First Edition
+  edition_date: 2026-09-03
+  amazon_identifiers: pending
+companion:
+  release: 1.0.0
+  repository: https://github.com/PracticalThreatHunting/practical-threat-hunting
+  path: hunts/book-05-network-traffic-and-command-control
+  source_cutoff: 2026-09-03
+  hunt_count: 24
+  query_engine: DuckDB 1.4.5
+  required_runtime: CPython 3.12
+  optional_native_tools:
+    zeek: 8.2.2
+    suricata: 8.0.6
+    tshark: 4.6.8
+  fixture_profile: synthetic-only
+  network_access_required_by_verifier: false
+validation:
+  command: uv run --frozen --offline python -m book05_lab.verify --all --offline
+  required_checks_passed: true
+  local_result:
+    status: PASS_WITH_DECLARED_NOT_RUN
+    pass: 78
+    not_run: 4
+    fail: 0
+  not_run_policy: unavailable optional native tools remain NOT_RUN and are never promoted to PASS
+integrity:
+  method: SHA-256 of each lexical filename, a NUL byte, and its file bytes concatenated in lexical filename order
+  query_set_sha256: 3e853a5bbf63855f7093323f4db597a90248e290c7b633329e525bbb13b0a199
+  golden_set_sha256: 4d2716f51e744b727d984eeabf24fdd1e831657e96cbc2ed0a03952aba9989fa
+  manifest_set_sha256: 5d6f66c2de5b147a63a562997cd7110d15c8e23cc2e2fb0927077cd6f10e3463
+  figure_set_sha256: 6203e49e7ebe77bee3a91405c2884053feffc7c214a8efd0563eb0b226f5a090
+references:
+  attack_enterprise: 19.2
+  tls_1_3: RFC 9846
+  encrypted_client_hello: RFC 9849
+rights:
+  first_party: "Copyright © 2026 Grant Halden. All rights reserved."
+  reuse_license_granted: false
+  dependency_notice: hunts/book-05-network-traffic-and-command-control/LICENSES/THIRD_PARTY_NOTICES.md
+limitations:
+  - Queries require local schema, policy, coverage, and threshold adaptation before operational use.
+  - Suspicious traffic shapes are hunt candidates, not proof of compromise, execution, exfiltration, or attribution.
+  - Native sensor evidence is version-, configuration-, capture-, and platform-bound.

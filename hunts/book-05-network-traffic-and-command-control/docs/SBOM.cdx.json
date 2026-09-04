@@ -1,0 +1,101 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:9ca8bd75-82e1-5c17-9414-62b05f050004",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-03T00:00:00Z",
+    "component": {
+      "type": "application",
+      "bom-ref": "book05-network-hunting-lab@1.0.0-rc.1",
+      "name": "book05-network-hunting-lab",
+      "version": "1.0.0-rc.1",
+      "copyright": "Copyright © 2026 Grant Halden. All rights reserved."
+    },
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "uv",
+          "version": "0.11.33",
+          "licenses": [{"expression": "Apache-2.0 OR MIT"}]
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "framework",
+      "bom-ref": "pkg:generic/cpython@3.12.13",
+      "name": "CPython",
+      "version": "3.12.13",
+      "scope": "required",
+      "purl": "pkg:generic/cpython@3.12.13",
+      "licenses": [{"license": {"id": "PSF-2.0"}}]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:pypi/duckdb@1.4.5",
+      "name": "duckdb",
+      "version": "1.4.5",
+      "scope": "required",
+      "purl": "pkg:pypi/duckdb@1.4.5",
+      "licenses": [{"license": {"id": "MIT"}}]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:pypi/scapy@2.6.1",
+      "name": "scapy",
+      "version": "2.6.1",
+      "scope": "required",
+      "purl": "pkg:pypi/scapy@2.6.1",
+      "licenses": [{"license": {"id": "GPL-2.0-only"}}]
+    },
+    {
+      "type": "application",
+      "bom-ref": "pkg:generic/zeek@8.2.2",
+      "name": "Zeek",
+      "version": "8.2.2",
+      "scope": "optional",
+      "purl": "pkg:generic/zeek@8.2.2",
+      "hashes": [{"alg": "SHA-256", "content": "b0f0fa84bca5876ba69d4a08dfa838973fd8178a568244f3c041621b847fe86f"}],
+      "licenses": [{"license": {"id": "BSD-3-Clause"}}]
+    },
+    {
+      "type": "application",
+      "bom-ref": "pkg:generic/suricata@8.0.6",
+      "name": "Suricata",
+      "version": "8.0.6",
+      "scope": "optional",
+      "purl": "pkg:generic/suricata@8.0.6",
+      "hashes": [{"alg": "SHA-256", "content": "7849636afad35e62daa358e1d50bf142ccb4119bbdcd984832eab354f47b01ea"}],
+      "licenses": [{"license": {"id": "GPL-2.0-only"}}]
+    },
+    {
+      "type": "application",
+      "bom-ref": "pkg:generic/tshark@4.6.8",
+      "name": "TShark",
+      "version": "4.6.8",
+      "scope": "optional",
+      "purl": "pkg:generic/tshark@4.6.8",
+      "licenses": [{"license": {"id": "GPL-2.0-or-later"}}],
+      "properties": [{"name": "book05:validation-status", "value": "NOT_RUN"}]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "book05-network-hunting-lab@1.0.0-rc.1",
+      "dependsOn": [
+        "pkg:generic/cpython@3.12.13",
+        "pkg:pypi/duckdb@1.4.5",
+        "pkg:pypi/scapy@2.6.1"
+      ]
+    },
+    {"ref": "pkg:generic/cpython@3.12.13", "dependsOn": []},
+    {"ref": "pkg:pypi/duckdb@1.4.5", "dependsOn": []},
+    {"ref": "pkg:pypi/scapy@2.6.1", "dependsOn": []},
+    {"ref": "pkg:generic/zeek@8.2.2", "dependsOn": []},
+    {"ref": "pkg:generic/suricata@8.0.6", "dependsOn": []},
+    {"ref": "pkg:generic/tshark@4.6.8", "dependsOn": []}
+  ]
+}

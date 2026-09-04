@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "hunt": 16,
+  "listing_id": "B05-H16-SQL-01",
+  "required_result_columns": [
+    "hunt_id",
+    "entity_key",
+    "first_seen",
+    "last_seen",
+    "event_count",
+    "score",
+    "reason"
+  ],
+  "positive": [
+    {
+      "entity_key": "10.50.16.10",
+      "decision": "DETECT"
+    }
+  ],
+  "negative": [],
+  "edge": [],
+  "full": [
+    {
+      "entity_key": "10.50.16.10",
+      "decision": "DETECT"
+    }
+  ],
+  "score_comparison": "numeric tolerance 1e-6; exact values retained in reports/results"
+}

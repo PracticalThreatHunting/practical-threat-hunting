@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "pcap": "fixtures/pcap/book5_shared_protocols_v1.pcap",
+  "zeek": {
+    "version": "8.2.2",
+    "policy": "site/local.zeek plus LogAscii::use_json=T",
+    "policy_sha256": "1413181364de3c845a2c89b03f1f031a06d81d191fbfc97dc499cfbadd41ab5e",
+    "checksum_validation": "-C is required because the synthetic writer creates deterministic frames for parser testing"
+  },
+  "suricata": {
+    "version": "8.0.6",
+    "yaml_sha256": "458226a8b5660236b951dee84667e291390c3271a303990394c573180eb8e99d",
+    "classification_sha256": "54c5b94ba7cb7e1371c1c967dd8c3b95960938eaed6cecb8788195c19622cbd6",
+    "reference_sha256": "5b911ec14b8138eb7c5d6d28d51ab1bf154571a94a420c8860ebd72bb6410772",
+    "threshold_sha256": "656416e74a95b83c647fc4e65447b858113494e05c40cd2f141625e3ebdb25a6",
+    "runmode": "single",
+    "rules": ["decoder-events.rules"]
+  }
+}
