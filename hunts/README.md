@@ -59,6 +59,15 @@ Book 4 has a separate namespace for intelligence-driven infrastructure hunts spa
 - [Book 4 release manifest](../resources/book-04-release-manifest.yml)
 - [Book 4 figure gallery](../assets/figures/README.md#book-4--threat-intelligence-and-adversary-infrastructure)
 
+## Book 5 — Network Traffic and Command-and-Control
+
+Book 5 has a dedicated deterministic lab for network-behavior hunts spanning DNS, HTTP, TLS, QUIC, proxy traffic, protocol mismatch, covert channels, lateral movement, remote administration, and exfiltration.
+
+- [Run the Book 5 lab and browse all 24 SQL listings](book-05-network-traffic-and-command-control/README.md)
+- [Book 5 technical source notes](../resources/book-05-source-notes.md)
+- [Book 5 release manifest](../resources/book-05-release-manifest.yml)
+- [Book 5 figure gallery](../assets/figures/README.md#book-5--network-traffic-and-command-and-control)
+
 ## Query Guidance
 
 Queries are reference implementations. Validate them in a controlled or read-only hunting workflow before production use. Platform schemas, operation names, field semantics, licensing, and local data quality can change.

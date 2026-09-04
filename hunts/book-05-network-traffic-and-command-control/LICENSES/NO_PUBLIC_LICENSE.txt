@@ -1,0 +1,12 @@
+Practical Threat Hunting, Book 5 — Network Hunt Lab
+
+Copyright © 2026 Grant Halden. All rights reserved.
+
+This material is published for reference in the official Practical Threat
+Hunting companion repository. No copyright license, patent license,
+redistribution right, sublicensing right, or general reuse grant is provided.
+Public visibility does not place the material in the public domain.
+
+Third-party tools and dependencies remain subject to their own licenses. Their
+presence in dependency metadata does not change the rights status of this
+first-party companion material. See THIRD_PARTY_NOTICES.md.

@@ -1,0 +1,12 @@
+[project]
+name = "book05-network-hunting-lab"
+version = "1.0.0"
+description = "Offline deterministic companion lab for Practical Threat Hunting, Book 5"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "duckdb==1.4.5",
+  "scapy==2.6.1",
+]
+
+[tool.uv]
+package = false

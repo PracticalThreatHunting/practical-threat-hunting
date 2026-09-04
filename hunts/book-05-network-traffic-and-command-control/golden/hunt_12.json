@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "hunt": 12,
+  "listing_id": "B05-H12-SQL-01",
+  "required_result_columns": [
+    "hunt_id",
+    "entity_key",
+    "first_seen",
+    "last_seen",
+    "event_count",
+    "score",
+    "reason"
+  ],
+  "positive": [
+    {
+      "entity_key": "1:h12-positive-ssh443"
+    }
+  ],
+  "negative": [],
+  "edge": [],
+  "full": [
+    {
+      "entity_key": "1:h12-positive-ssh443"
+    }
+  ],
+  "score_comparison": "numeric tolerance 1e-6; exact values retained in reports/results"
+}

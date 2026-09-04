@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "fixture_id": "B05-H01-v1",
+  "created_by": "Practical Threat Hunting Book 5 deterministic fixture generator",
+  "generation_mode": "offline-file-only",
+  "rights_status": "Copyright \u00a9 2026 Grant Halden. All rights reserved.",
+  "release_status": "Published in the official public companion repository; copyright retained and no reuse license granted.",
+  "license": "All rights reserved; no redistribution license granted.",
+  "sensitive_data_review": "reserved/example/private addresses only; no credentials, customer data, or malware",
+  "record_count": 14,
+  "control_counts": {
+    "positive": 5,
+    "negative": 5,
+    "edge": 4
+  },
+  "time_min": "2026-08-01T00:00:00Z",
+  "time_max": "2026-08-01T00:00:13Z",
+  "canonical_path": "fixtures/generated/hunt_01.jsonl",
+  "canonical_sha256": "e6e0c382772ecaa2213a5aa8a9477cc73f9c92630155189bcfd104710fd9b569",
+  "raw_path": "fixtures/generated/raw/hunt_01_raw.jsonl",
+  "raw_sha256": "2c5a625ffb7c7e124dbd1f9efd1cc7b570009b42a652ec16181ba084b65d8811",
+  "ground_truth": {
+    "positive": "First-party suspicious-shaped behavior constructed to satisfy the bounded hunt hypothesis; not maliciousness proof.",
+    "negative": "First-party benign confounder or approved operational path constructed to remain below the bounded analytic.",
+    "edge": "First-party ambiguity, missing-visibility, denied-attempt, or sanctioned-lookalike case constructed to exercise evidence limits.",
+    "label_basis": "Deterministic generator case construction, independently checked through control-isolated query execution."
+  },
+  "hunt_relationship": "Hunt 01; listing B05-H01-SQL-01",
+  "known_artifacts": "Teaching-scale synthetic distributions and explicit policy/role enrichments are intentionally simpler than production telemetry.",
+  "limitations": "Teaching-scale fixture. Thresholds are illustrative and must be re-baselined for production."
+}

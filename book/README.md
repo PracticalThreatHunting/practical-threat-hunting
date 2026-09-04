@@ -64,6 +64,20 @@ Status: **Publication setup in progress — First Edition, August 2026**
 - [Technical source notes](../resources/book-04-source-notes.md)
 - [Release manifest](../resources/book-04-release-manifest.yml)
 
+## Book 5 — Network Traffic and Command-and-Control
+
+**Practical Threat Hunting: Network Traffic and Command-and-Control**<br>
+*24 Hands-On Hunts for Network Behavior, Covert Channels, Lateral Movement, and Exfiltration*
+
+Status: **Companion resources available — First Edition, September 2026**
+
+- Amazon identifiers: pending publication assignment
+- [Edition and companion information](network-traffic-and-command-and-control.md)
+- [Deterministic lab and all 24 SQL listings](../hunts/book-05-network-traffic-and-command-control/README.md)
+- [Figures](../assets/figures/README.md#book-5--network-traffic-and-command-and-control)
+- [Technical source notes](../resources/book-05-source-notes.md)
+- [Release manifest](../resources/book-05-release-manifest.yml)
+
 ## Shared Records
 
 - [Edition notes](edition-notes.md)

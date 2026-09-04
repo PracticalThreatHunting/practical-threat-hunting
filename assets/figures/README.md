@@ -113,3 +113,44 @@ Book 4 figure files:
 - [`technical_accuracy_maintenance_loop.png`](book-04/technical_accuracy_maintenance_loop.png) — change-triggered technical accuracy and correction loop.
 
 Book 4 figures are author-created analytical models. They describe evidence relationships, source controls, analysis workflows, and interoperability boundaries. They are not provider architecture diagrams, claims of guaranteed telemetry coverage, or actor-attribution conclusions.
+
+## Book 5 — Network Traffic and Command-and-Control
+
+### Network Evidence Ladder
+
+![Six evidence stages rise from observed fact to decision while provenance, coverage, and uncertainty stay attached.](book-05/B05-F01-01.png)
+
+### Sensor Apertures
+
+![Five network nodes and four apertures expose three distinct transport legs plus an uncovered alternate route.](book-05/B05-F02-01.png)
+
+### Records and Sensor Validation
+
+![Offline records test 24 DuckDB hunts while a separate PCAP path tests Zeek and Suricata parser parity.](book-05/B05-FIG-07-01.png)
+
+Book 5 figure files:
+
+- [`B05-F01-01.png`](book-05/B05-F01-01.png) — the network evidence ladder.
+- [`B05-F02-01.png`](book-05/B05-F02-01.png) — one activity across several sensor apertures.
+- [`B05-F03-01.png`](book-05/B05-F03-01.png) — the middlebox identity-and-time braid.
+- [`B05-FIG-04-01.png`](book-05/B05-FIG-04-01.png) — protocol classification as a bounded join.
+- [`B05-FIG-05-01.png`](book-05/B05-FIG-05-01.png) — canonical fields retaining source meaning.
+- [`B05-FIG-06-01.png`](book-05/B05-FIG-06-01.png) — collection coverage changing the denominator.
+- [`B05-FIG-07-01.png`](book-05/B05-FIG-07-01.png) — records validation and sensor parity as distinct evidence layers.
+- [`B05-F13-01.png`](book-05/B05-F13-01.png) — censor, compare, then select for long-lived flows.
+- [`B05-F14-01.png`](book-05/B05-F14-01.png) — type-aware ICMP echo symmetry.
+- [`B05-F15-01.png`](book-05/B05-F15-01.png) — outer protocol at three observation points.
+- [`B05-F16-01.png`](book-05/B05-F16-01.png) — the maximum defensible passive SSH conclusion.
+- [`B05-H17-F01.png`](book-05/B05-H17-F01.png) — three-channel evidence braid.
+- [`B05-H18-F01.png`](book-05/B05-H18-F01.png) — role-aware fan-out graph.
+- [`B05-H19-F01.png`](book-05/B05-H19-F01.png) — evidence layers across six peers.
+- [`B05-H20-F01.png`](book-05/B05-H20-F01.png) — expected administrative path versus peer bypass.
+- [`B05-H21-F01.png`](book-05/B05-H21-F01.png) — VPN interval mapping before fan-out analysis.
+- [`B05-H22-F01.png`](book-05/B05-H22-F01.png) — file visibility as an analytic gate.
+- [`B05-H23-F01.png`](book-05/B05-H23-F01.png) — flow-counter normalization before bulk scoring.
+- [`B05-H24-F01.png`](book-05/B05-H24-F01.png) — bulk and accumulation across different horizons.
+- [`B05-F32-01.png`](book-05/B05-F32-01.png) — relative evidence timeline with uncertainty.
+- [`B05-F32-02.png`](book-05/B05-F32-02.png) — compound investigation graph.
+- [`B05-F33-01.png`](book-05/B05-F33-01.png) — bounded handoff loop.
+
+Book 5 figures are original analytical models. Color is not the only carrier of meaning: line style, enclosure, labels, hatching, and boundary markers preserve interpretation. The figures do not claim guaranteed visibility, attribution, or maliciousness.
