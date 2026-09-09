@@ -7,7 +7,13 @@ FIELDS=('detection_id','version','signal_key','tenant','principal','first_event_
 def normalized(row):
     missing=[x for x in FIELDS if x not in row]
     if missing:raise ValueError('missing output fields: '+','.join(missing))
-    out={x:row[x] for x in FIELDS}
+    extra=[]
+    if row['detection_id']=='DET-002':extra=['count','bucket_start']
+    if row['detection_id']=='DET-004':extra=['enrichment_version']+(['dependency_state'] if row['mode']=='uncorrelated' else [])
+    if any(x not in row for x in extra):raise ValueError('missing product-specific output fields')
+    out={x:row[x] for x in (*FIELDS,*extra)}
+    for x in ('count','bucket_start'):
+        if x in out:out[x]=int(out[x])
     for x in ('first_event_time','last_event_time'):out[x]=int(out[x])
     refs=out['event_refs']
     if isinstance(refs,str):
