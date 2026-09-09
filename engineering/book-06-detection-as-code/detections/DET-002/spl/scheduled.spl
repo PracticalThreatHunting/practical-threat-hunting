@@ -20,5 +20,6 @@ search index=detection_factory sourcetype="detection_factory:logical:v1" earlies
 
 | eval detection_id="DET-002", version="1.0.0", mode="complete",
     severity="medium", confidence="observed-contract-match"
+| eval count=event_count
 | table detection_id version signal_key tenant principal
-    first_event_time last_event_time event_refs mode severity confidence
+    first_event_time last_event_time event_refs mode severity confidence count bucket_start

@@ -31,4 +31,4 @@ Rows
 | extend TimeGenerated=unixtime_seconds_todatetime(last_event_time)
 | project TimeGenerated, detection_id, version, signal_key,
     tenant, principal, first_event_time, last_event_time,
-    event_refs, mode, severity, confidence
+    event_refs, mode, severity, confidence, count=Count, bucket_start

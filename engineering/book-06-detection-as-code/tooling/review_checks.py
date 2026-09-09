@@ -2,7 +2,7 @@
 import copy,json,tempfile
 from pathlib import Path
 from factory import ROOT,load,detect,signal_errors,NOW,write
-from native import export
+from native import export,normalized
 from delivery import plan
 checks=[]
 def check(name,value):
@@ -10,6 +10,10 @@ def check(name,value):
 cases=load(ROOT/'fixtures/cases.json');c=next(x for x in cases if x['id']=='single-positive');r=detect(c['detection_id'],c['events']);bad=copy.deepcopy(r);bad['signals'][0].pop('principal');check('missing output field rejected','required_output' in signal_errors(c,bad))
 bad=copy.deepcopy(r);bad['signals'][0]['last_event_time']+=1;check('evidence timestamp mutation rejected','evidence_times' in signal_errors(c,bad))
 with tempfile.TemporaryDirectory() as tmp:
+    threshold=next(x for x in cases if x['id']=='threshold-three');t=detect('DET-002',threshold['events'])['signals'][0];normalized(t)
+    broken=copy.deepcopy(t);broken.pop('count')
+    try:normalized(broken);raise AssertionError('missing count accepted')
+    except ValueError:pass
     c=next(x for x in cases if x['id']=='correlation-fresh');d=copy.deepcopy(c);d['events']+=copy.deepcopy(d['events']);export(d,tmp,300)
     rows=(Path(tmp)/'book06_resolution.csv').read_text().splitlines();check('resolution keys deduplicated',len(rows)==3)
     check('shifted clock recorded',load(Path(tmp)/'replay-plan.json')['evaluation_epoch']==NOW+300)
