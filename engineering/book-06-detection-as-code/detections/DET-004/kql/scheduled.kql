@@ -1,0 +1,78 @@
+let Evaluation = now();
+let E = tolong((Evaluation - datetime(1970-01-01)) / 1s);
+let Rows = materialize(
+    DetectionEvents_CL
+    | where TimeGenerated >= Evaluation - 30m
+    | where TimeGenerated < Evaluation
+    | where quality == "valid" and schema_version == 1
+    | where event_time >= E - 1800 and event_time < E
+    | where ingest_time <= E
+    | summarize Hashes=make_set(payload_hash, 2),
+        arg_min(ingest_time, *) by tenant, source, event_id
+    | where array_length(Hashes) == 1
+    | extend EventRef=strcat(tenant, "|", source, "|", event_id)
+);
+let Candidates = Rows
+| where outcome == "success" and isnotempty(session)
+| where (source == "identity" and action == "privileged_grant")
+    or (source == "application" and action == "export");
+let AliasRows = DetectionAliases_CL
+| project tenant, alias, canonical_principal,
+    valid_from, valid_to, observed_at, enrichment_version;
+let Resolution = Candidates
+| join kind=leftouter (AliasRows) on tenant, alias
+| extend InValidity=isnotempty(canonical_principal)
+    and valid_from <= event_time and event_time < valid_to
+| summarize Candidate=take_any(pack_all()),
+    ValidCount=countif(InValidity),
+    Resolved=take_anyif(canonical_principal, InValidity),
+    Observed=min(observed_at),
+    EnrichmentVersion=take_any(enrichment_version)
+    by EventRef
+| extend tenant=tostring(Candidate.tenant),
+    principal=tostring(Candidate.principal),
+    session=tostring(Candidate.session),
+    source=tostring(Candidate.source),
+    action=tostring(Candidate.action),
+    event_time=tolong(Candidate.event_time)
+| extend DependencyState=case(
+    isnull(Observed), "missing",
+    E - Observed > 900 or E < Observed, "stale",
+    ValidCount == 0, "missing",
+    ValidCount != 1, "ambiguous", "fresh");
+let Starts = Resolution
+| where DependencyState == "fresh"
+| where source == "identity" and action == "privileged_grant"
+| project tenant, principal=Resolved, session,
+    ATime=event_time, ARef=EventRef, AVersion=EnrichmentVersion;
+let Ends = Resolution
+| where DependencyState == "fresh"
+| where source == "application" and action == "export"
+| project tenant, principal=Resolved, session,
+    BTime=event_time, BRef=EventRef, BVersion=EnrichmentVersion;
+let Complete = Starts
+| join kind=inner (Ends) on tenant, principal, session
+| where BTime > ATime and BTime <= ATime + 600
+| where AVersion == BVersion
+| project tenant, principal,
+    signal_key=strcat("DET-004|", ARef, "|", BRef),
+    first_event_time=ATime, last_event_time=BTime,
+    event_refs=array_sort_asc(pack_array(ARef, BRef)),
+    mode="complete", dependency_state="fresh",
+    enrichment_version=AVersion;
+let Degraded = Resolution
+| where DependencyState != "fresh"
+| project tenant, principal,
+    signal_key=strcat("DET-004|", EventRef, "|unresolved"),
+    first_event_time=event_time, last_event_time=event_time,
+    event_refs=pack_array(EventRef), mode="uncorrelated",
+    dependency_state=DependencyState,
+    enrichment_version=EnrichmentVersion;
+union Complete, Degraded
+| extend detection_id="DET-004", version="1.0.0",
+    severity="medium", confidence="observed-contract-match"
+| extend TimeGenerated=unixtime_seconds_todatetime(last_event_time)
+| project TimeGenerated, detection_id, version, signal_key,
+    tenant, principal, first_event_time, last_event_time,
+    event_refs, mode, dependency_state, enrichment_version,
+    severity, confidence

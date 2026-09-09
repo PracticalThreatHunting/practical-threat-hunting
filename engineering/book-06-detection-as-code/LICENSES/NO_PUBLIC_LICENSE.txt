@@ -1,0 +1,3 @@
+Practical Threat Hunting, Book 6
+Copyright 2026 Grant Halden. All rights reserved.
+This reference material follows the established series companion rights policy. Public visibility does not grant a copyright license, redistribution right, or general reuse grant. Third-party dependencies retain their own licenses.

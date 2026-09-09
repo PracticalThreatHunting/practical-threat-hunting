@@ -1,0 +1,15 @@
+{
+  "case_ids": [
+    "correlation-fresh",
+    "correlation-ingest-reversed",
+    "correlation-cross-tenant",
+    "correlation-past-bound",
+    "correlation-equal-time",
+    "correlation-other-session",
+    "correlation-stale",
+    "correlation-missing",
+    "correlation-ambiguous",
+    "correlation-ttl-boundary",
+    "correlation-validity-exclusive"
+  ]
+}

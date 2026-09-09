@@ -1,0 +1,9 @@
+{
+  "acceptance": "Every successful application config_change/archive_read pair with same tenant/principal/session and 0 < event-time delta <= 600 seconds.",
+  "accepted": true,
+  "consumer": "signal-review-queue",
+  "id": "INTAKE-003",
+  "owner": "detection-owner",
+  "priority": "engineering reference",
+  "requirement": "Every successful application config_change/archive_read pair with same tenant/principal/session and 0 < event-time delta <= 600 seconds."
+}

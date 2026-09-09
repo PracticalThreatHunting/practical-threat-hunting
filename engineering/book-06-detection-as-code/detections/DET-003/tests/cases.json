@@ -1,0 +1,17 @@
+{
+  "case_ids": [
+    "sequence-ordered",
+    "sequence-reversed-input",
+    "sequence-reversed-time",
+    "sequence-equal-time",
+    "sequence-upper-bound",
+    "sequence-past-bound",
+    "sequence-ingest-out-of-order",
+    "sequence-different-session",
+    "sequence-missing-session",
+    "sequence-different-tenant",
+    "sequence-duplicate-start",
+    "sequence-repeated-starts",
+    "sequence-not-yet-available"
+  ]
+}

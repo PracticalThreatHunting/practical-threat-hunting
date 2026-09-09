@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+      "apiVersion": "2025-09-01",
+      "name": "[concat(parameters('workspaceName'), '/Microsoft.SecurityInsights/aa584def-5756-479e-973e-be686f12a0fe')]",
+      "kind": "Scheduled",
+      "properties": {
+        "displayName": "DET-002 Book 6 reference",
+        "description": "Synthetic engineering reference; native validation required before enablement.",
+        "enabled": false,
+        "severity": "Medium",
+        "query": "let Evaluation = now();\nlet E = tolong((Evaluation - datetime(1970-01-01)) / 1s);\nlet Rows = materialize(\n    DetectionEvents_CL\n    | where TimeGenerated >= Evaluation - 30m\n    | where TimeGenerated < Evaluation\n    | where quality == \"valid\" and schema_version == 1\n    | where event_time >= E - 1800 and event_time < E\n    | where ingest_time <= E\n    | summarize Hashes=make_set(payload_hash, 2),\n        arg_min(ingest_time, *) by tenant, source, event_id\n    | where array_length(Hashes) == 1\n    | extend EventRef=strcat(tenant, \"|\", source, \"|\", event_id)\n);\nRows\n| where source == \"identity\" and action == \"auth_denied\"\n| where outcome == \"failure\"\n| extend bucket_start=tolong(floor(event_time / 300.0)) * 300\n| where bucket_start + 300 <= E\n| summarize Count=count(), first_event_time=min(event_time),\n    last_event_time=max(event_time), event_refs=make_set(EventRef)\n    by tenant, principal, bucket_start\n| where Count >= 3\n| extend event_refs=array_sort_asc(event_refs)\n| extend signal_key=strcat(\"DET-002|\", tenant, \"|\", principal,\n    \"|\", tostring(bucket_start))\n\n| extend detection_id=\"DET-002\", version=\"1.0.0\",\n    mode=\"complete\", severity=\"medium\",\n    confidence=\"observed-contract-match\"\n| extend TimeGenerated=unixtime_seconds_todatetime(last_event_time)\n| project TimeGenerated, detection_id, version, signal_key,\n    tenant, principal, first_event_time, last_event_time,\n    event_refs, mode, severity, confidence\n",
+        "queryFrequency": "PT5M",
+        "queryPeriod": "PT30M",
+        "triggerOperator": "GreaterThan",
+        "triggerThreshold": 0,
+        "suppressionEnabled": false,
+        "suppressionDuration": "PT5M",
+        "eventGroupingSettings": {
+          "aggregationKind": "AlertPerResult"
+        },
+        "incidentConfiguration": {
+          "createIncident": false
+        },
+        "entityMappings": [
+          {
+            "entityType": "Account",
+            "fieldMappings": [
+              {
+                "identifier": "Name",
+                "columnName": "principal"
+              }
+            ]
+          }
+        ],
+        "customDetails": {
+          "DetectionId": "detection_id",
+          "SignalKey": "signal_key",
+          "Mode": "mode"
+        },
+        "tactics": [],
+        "techniques": []
+      }
+    }
+  ]
+}

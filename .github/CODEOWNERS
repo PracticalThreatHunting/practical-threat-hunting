@@ -1,0 +1,3 @@
+# Ownership requests do not by themselves enforce branch protection.
+/engineering/book-06-detection-as-code/ @PracticalThreatHunting
+/.github/workflows/book06-validate.yml @PracticalThreatHunting

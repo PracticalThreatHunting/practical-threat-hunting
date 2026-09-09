@@ -1,0 +1,12 @@
+{
+  "case_count": 58,
+  "created": "2026-09-09",
+  "dataset_id": "book06-synthetic-v1",
+  "generator": "production/create_fixtures.py in internal book project; committed corpus is canonical",
+  "label_policy": "Explicit authored expected signal keys, modes, and health categories; never derived by the implementation under test.",
+  "provenance": "original synthetic construction; no copied production records",
+  "reference_clock": 1788955200,
+  "rights": "All rights reserved; follows established series companion policy",
+  "seed": "none; literal deterministic values",
+  "sha256": "9716d45c47d30d464c499da566439f1e43f7cf4bfce0e19abb0b7c5d4e84f4f1"
+}

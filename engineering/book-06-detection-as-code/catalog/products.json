@@ -1,0 +1,10 @@
+{
+  "production_ready": false,
+  "products": [
+    "DET-001",
+    "DET-002",
+    "DET-003",
+    "DET-004"
+  ],
+  "status": "test"
+}

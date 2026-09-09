@@ -1,0 +1,9 @@
+{
+  "acceptance": "At least three unique identity auth_denied failures in one tenant/principal closed UTC five-minute bucket.",
+  "accepted": true,
+  "consumer": "signal-review-queue",
+  "id": "INTAKE-002",
+  "owner": "detection-owner",
+  "priority": "engineering reference",
+  "requirement": "At least three unique identity auth_denied failures in one tenant/principal closed UTC five-minute bucket."
+}

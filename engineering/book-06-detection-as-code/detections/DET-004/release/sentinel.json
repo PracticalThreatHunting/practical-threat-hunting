@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+      "apiVersion": "2025-09-01",
+      "name": "[concat(parameters('workspaceName'), '/Microsoft.SecurityInsights/837718e5-85b3-4793-b46c-a79f9c323d2d')]",
+      "kind": "Scheduled",
+      "properties": {
+        "displayName": "DET-004 Book 6 reference",
+        "description": "Synthetic engineering reference; native validation required before enablement.",
+        "enabled": false,
+        "severity": "Medium",
+        "query": "let Evaluation = now();\nlet E = tolong((Evaluation - datetime(1970-01-01)) / 1s);\nlet Rows = materialize(\n    DetectionEvents_CL\n    | where TimeGenerated >= Evaluation - 30m\n    | where TimeGenerated < Evaluation\n    | where quality == \"valid\" and schema_version == 1\n    | where event_time >= E - 1800 and event_time < E\n    | where ingest_time <= E\n    | summarize Hashes=make_set(payload_hash, 2),\n        arg_min(ingest_time, *) by tenant, source, event_id\n    | where array_length(Hashes) == 1\n    | extend EventRef=strcat(tenant, \"|\", source, \"|\", event_id)\n);\nlet Candidates = Rows\n| where outcome == \"success\" and isnotempty(session)\n| where (source == \"identity\" and action == \"privileged_grant\")\n    or (source == \"application\" and action == \"export\");\nlet AliasRows = DetectionAliases_CL\n| project tenant, alias, canonical_principal,\n    valid_from, valid_to, observed_at, enrichment_version;\nlet Resolution = Candidates\n| join kind=leftouter (AliasRows) on tenant, alias\n| extend InValidity=isnotempty(canonical_principal)\n    and valid_from <= event_time and event_time < valid_to\n| summarize Candidate=take_any(pack_all()),\n    ValidCount=countif(InValidity),\n    Resolved=take_anyif(canonical_principal, InValidity),\n    Observed=min(observed_at),\n    EnrichmentVersion=take_any(enrichment_version)\n    by EventRef\n| extend tenant=tostring(Candidate.tenant),\n    principal=tostring(Candidate.principal),\n    session=tostring(Candidate.session),\n    source=tostring(Candidate.source),\n    action=tostring(Candidate.action),\n    event_time=tolong(Candidate.event_time)\n| extend DependencyState=case(\n    isnull(Observed), \"missing\",\n    E - Observed > 900 or E < Observed, \"stale\",\n    ValidCount == 0, \"missing\",\n    ValidCount != 1, \"ambiguous\", \"fresh\");\nlet Starts = Resolution\n| where DependencyState == \"fresh\"\n| where source == \"identity\" and action == \"privileged_grant\"\n| project tenant, principal=Resolved, session,\n    ATime=event_time, ARef=EventRef, AVersion=EnrichmentVersion;\nlet Ends = Resolution\n| where DependencyState == \"fresh\"\n| where source == \"application\" and action == \"export\"\n| project tenant, principal=Resolved, session,\n    BTime=event_time, BRef=EventRef, BVersion=EnrichmentVersion;\nlet Complete = Starts\n| join kind=inner (Ends) on tenant, principal, session\n| where BTime > ATime and BTime <= ATime + 600\n| where AVersion == BVersion\n| project tenant, principal,\n    signal_key=strcat(\"DET-004|\", ARef, \"|\", BRef),\n    first_event_time=ATime, last_event_time=BTime,\n    event_refs=array_sort_asc(pack_array(ARef, BRef)),\n    mode=\"complete\", dependency_state=\"fresh\",\n    enrichment_version=AVersion;\nlet Degraded = Resolution\n| where DependencyState != \"fresh\"\n| project tenant, principal,\n    signal_key=strcat(\"DET-004|\", EventRef, \"|unresolved\"),\n    first_event_time=event_time, last_event_time=event_time,\n    event_refs=pack_array(EventRef), mode=\"uncorrelated\",\n    dependency_state=DependencyState,\n    enrichment_version=EnrichmentVersion;\nunion Complete, Degraded\n| extend detection_id=\"DET-004\", version=\"1.0.0\",\n    severity=\"medium\", confidence=\"observed-contract-match\"\n| extend TimeGenerated=unixtime_seconds_todatetime(last_event_time)\n| project TimeGenerated, detection_id, version, signal_key,\n    tenant, principal, first_event_time, last_event_time,\n    event_refs, mode, dependency_state, enrichment_version,\n    severity, confidence\n",
+        "queryFrequency": "PT5M",
+        "queryPeriod": "PT30M",
+        "triggerOperator": "GreaterThan",
+        "triggerThreshold": 0,
+        "suppressionEnabled": false,
+        "suppressionDuration": "PT5M",
+        "eventGroupingSettings": {
+          "aggregationKind": "AlertPerResult"
+        },
+        "incidentConfiguration": {
+          "createIncident": false
+        },
+        "entityMappings": [
+          {
+            "entityType": "Account",
+            "fieldMappings": [
+              {
+                "identifier": "Name",
+                "columnName": "principal"
+              }
+            ]
+          }
+        ],
+        "customDetails": {
+          "DetectionId": "detection_id",
+          "SignalKey": "signal_key",
+          "Mode": "mode"
+        },
+        "tactics": [],
+        "techniques": []
+      }
+    }
+  ]
+}

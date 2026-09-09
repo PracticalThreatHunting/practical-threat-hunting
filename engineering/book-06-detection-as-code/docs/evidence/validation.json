@@ -1,0 +1,1227 @@
+{
+  "cases": [
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "single-positive",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-failure-outcome",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-other-action",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-scoped-exclusion",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "single-same-actor-other-device",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "single-unapproved-change",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "single-exact-duplicate",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "conflicting_event_id"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-conflicting-identity",
+      "expected": {
+        "health_kinds": [
+          "conflicting_event_id"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-upper-bound",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "single-lower-bound",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-outside-horizon",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-future-ingest",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "single-late-available",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "single-case-normalization",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-absent-action",
+      "expected": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-null-action",
+      "expected": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-null-optional",
+      "expected": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "single-absent-optional",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-epoch-string",
+      "expected": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-schema-drift",
+      "expected": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-unsafe-delimiter",
+      "expected": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "case": "single-unicode-identifier",
+      "expected": {
+        "health_kinds": [
+          "invalid_event"
+        ],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01",
+          "DET-001|lab-b|control|e01"
+        ],
+        "modes": [
+          "complete",
+          "complete"
+        ]
+      },
+      "case": "single-other-tenant",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-001|lab-a|control|e01",
+          "DET-001|lab-b|control|e01"
+        ],
+        "modes": [
+          "complete",
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "threshold-two",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-002|lab-a|user-01|1788954900"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "threshold-three",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-002|lab-a|user-01|1788954900"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-002|lab-a|user-01|1788954900"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "threshold-four",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-002|lab-a|user-01|1788954900"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "threshold-duplicate-not-count",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "threshold-bucket-edge",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "threshold-mixed-principal",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "threshold-mixed-tenant",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-002|lab-a|user-01|1788954900"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "threshold-late-third",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-002|lab-a|user-01|1788954900"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "threshold-third-not-yet-ingested",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-002|lab-a|user-01|1788954600",
+          "DET-002|lab-a|user-01|1788954900"
+        ],
+        "modes": [
+          "complete",
+          "complete"
+        ]
+      },
+      "case": "threshold-two-buckets",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-002|lab-a|user-01|1788954600",
+          "DET-002|lab-a|user-01|1788954900"
+        ],
+        "modes": [
+          "complete",
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "threshold-open-bucket",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "sequence-ordered",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "sequence-reversed-input",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "sequence-reversed-time",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "sequence-equal-time",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "sequence-upper-bound",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "sequence-past-bound",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "sequence-ingest-out-of-order",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "sequence-different-session",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "sequence-missing-session",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "sequence-different-tenant",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "sequence-duplicate-start",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s0|lab-a|application|s2",
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete",
+          "complete"
+        ]
+      },
+      "case": "sequence-repeated-starts",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-003|lab-a|application|s0|lab-a|application|s2",
+          "DET-003|lab-a|application|s1|lab-a|application|s2"
+        ],
+        "modes": [
+          "complete",
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "sequence-not-yet-available",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-004|lab-a|identity|g1|lab-a|application|x1"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "correlation-fresh",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-004|lab-a|identity|g1|lab-a|application|x1"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-004|lab-a|identity|g1|lab-a|application|x1"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "correlation-ingest-reversed",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-004|lab-a|identity|g1|lab-a|application|x1"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "correlation-cross-tenant",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "correlation-past-bound",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "correlation-equal-time",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "case": "correlation-other-session",
+      "expected": {
+        "health_kinds": [],
+        "keys": [],
+        "modes": []
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "enrichment_stale",
+          "enrichment_stale"
+        ],
+        "keys": [
+          "DET-004|lab-a|application|x1|unresolved",
+          "DET-004|lab-a|identity|g1|unresolved"
+        ],
+        "modes": [
+          "uncorrelated",
+          "uncorrelated"
+        ]
+      },
+      "case": "correlation-stale",
+      "expected": {
+        "health_kinds": [
+          "enrichment_stale",
+          "enrichment_stale"
+        ],
+        "keys": [
+          "DET-004|lab-a|application|x1|unresolved",
+          "DET-004|lab-a|identity|g1|unresolved"
+        ],
+        "modes": [
+          "uncorrelated",
+          "uncorrelated"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "enrichment_missing",
+          "enrichment_missing"
+        ],
+        "keys": [
+          "DET-004|lab-a|application|x1|unresolved",
+          "DET-004|lab-a|identity|g1|unresolved"
+        ],
+        "modes": [
+          "uncorrelated",
+          "uncorrelated"
+        ]
+      },
+      "case": "correlation-missing",
+      "expected": {
+        "health_kinds": [
+          "enrichment_missing",
+          "enrichment_missing"
+        ],
+        "keys": [
+          "DET-004|lab-a|application|x1|unresolved",
+          "DET-004|lab-a|identity|g1|unresolved"
+        ],
+        "modes": [
+          "uncorrelated",
+          "uncorrelated"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "enrichment_ambiguous",
+          "enrichment_ambiguous"
+        ],
+        "keys": [
+          "DET-004|lab-a|application|x1|unresolved",
+          "DET-004|lab-a|identity|g1|unresolved"
+        ],
+        "modes": [
+          "uncorrelated",
+          "uncorrelated"
+        ]
+      },
+      "case": "correlation-ambiguous",
+      "expected": {
+        "health_kinds": [
+          "enrichment_ambiguous",
+          "enrichment_ambiguous"
+        ],
+        "keys": [
+          "DET-004|lab-a|application|x1|unresolved",
+          "DET-004|lab-a|identity|g1|unresolved"
+        ],
+        "modes": [
+          "uncorrelated",
+          "uncorrelated"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [],
+        "keys": [
+          "DET-004|lab-a|identity|g1|lab-a|application|x1"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "case": "correlation-ttl-boundary",
+      "expected": {
+        "health_kinds": [],
+        "keys": [
+          "DET-004|lab-a|identity|g1|lab-a|application|x1"
+        ],
+        "modes": [
+          "complete"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    },
+    {
+      "actual": {
+        "health_kinds": [
+          "enrichment_missing"
+        ],
+        "keys": [
+          "DET-004|lab-a|identity|g1|unresolved"
+        ],
+        "modes": [
+          "uncorrelated"
+        ]
+      },
+      "case": "correlation-validity-exclusive",
+      "expected": {
+        "health_kinds": [
+          "enrichment_missing"
+        ],
+        "keys": [
+          "DET-004|lab-a|identity|g1|unresolved"
+        ],
+        "modes": [
+          "uncorrelated"
+        ]
+      },
+      "output_errors": [],
+      "result": "PASS"
+    }
+  ],
+  "command": "python tooling/factory.py validate",
+  "environment": "offline Python reference; no native SIEM",
+  "fixture_sha256": "9716d45c47d30d464c499da566439f1e43f7cf4bfce0e19abb0b7c5d4e84f4f1",
+  "matrix": {
+    "contract_policy": "PASS",
+    "local_logic": "PASS",
+    "native_kql": "NOT RUN/BLOCKED",
+    "native_spl": "NOT RUN/BLOCKED",
+    "production_deployment": "NOT RUN/BLOCKED",
+    "scheduled_replay": "NOT RUN/BLOCKED"
+  },
+  "policy": [
+    {
+      "contract": "DET-001",
+      "errors": [],
+      "result": "PASS"
+    },
+    {
+      "negative": "DET-001:missing-owner",
+      "result": "PASS"
+    },
+    {
+      "negative": "DET-001:missing-acceptance",
+      "result": "PASS"
+    },
+    {
+      "contract": "DET-002",
+      "errors": [],
+      "result": "PASS"
+    },
+    {
+      "negative": "DET-002:missing-owner",
+      "result": "PASS"
+    },
+    {
+      "negative": "DET-002:missing-acceptance",
+      "result": "PASS"
+    },
+    {
+      "contract": "DET-003",
+      "errors": [],
+      "result": "PASS"
+    },
+    {
+      "negative": "DET-003:missing-owner",
+      "result": "PASS"
+    },
+    {
+      "negative": "DET-003:missing-acceptance",
+      "result": "PASS"
+    },
+    {
+      "contract": "DET-004",
+      "errors": [],
+      "result": "PASS"
+    },
+    {
+      "negative": "DET-004:missing-owner",
+      "result": "PASS"
+    },
+    {
+      "negative": "DET-004:missing-acceptance",
+      "result": "PASS"
+    }
+  ],
+  "python": "3.12.14",
+  "timestamp": "2026-09-09T05:05:35.247729+00:00"
+}

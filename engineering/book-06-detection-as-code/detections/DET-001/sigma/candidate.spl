@@ -1,0 +1,1 @@
+index="detection_factory" sourcetype="detection_factory:logical:v1" source_kind="control" action="audit_disable" outcome="success" NOT (principal="svc-maint" device="lab-maint-01" approved_change="chg-0042") | table tenant,principal,event_id

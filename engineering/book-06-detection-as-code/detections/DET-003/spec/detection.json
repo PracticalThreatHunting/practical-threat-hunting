@@ -1,0 +1,56 @@
+{
+  "acceptance": "Every successful application config_change/archive_read pair with same tenant/principal/session and 0 < event-time delta <= 600 seconds.",
+  "attack": {
+    "mapping_status": "engineering logic class; no operational ATT&CK coverage claim",
+    "version": "19.2"
+  },
+  "backup_owner": "platform-owner",
+  "confidence": "observed-contract-match",
+  "consumer": "signal-review-queue",
+  "created": "2026-09-09",
+  "id": "DET-003",
+  "native_validation": "NOT RUN/BLOCKED",
+  "non_goals": [
+    "Establish malicious intent",
+    "Deploy to a live environment without native evidence"
+  ],
+  "output": {
+    "idempotency": "candidate signal key is stable; durable consumer deduplication required for cross-run delivery",
+    "required": [
+      "detection_id",
+      "version",
+      "signal_key",
+      "tenant",
+      "principal",
+      "first_event_time",
+      "last_event_time",
+      "event_refs",
+      "mode",
+      "severity",
+      "confidence"
+    ]
+  },
+  "owner": "detection-owner",
+  "review_due": "2026-12-09",
+  "severity": "medium",
+  "status": "test",
+  "telemetry": {
+    "normalization": "ASCII lowercase identifier fields; integer UTC epoch seconds; invalid records yield health events; conflicting source event IDs quarantined",
+    "schema": "logical-event-v1",
+    "sources": [
+      "application"
+    ]
+  },
+  "time": {
+    "bucket_seconds": null,
+    "event_interval": "[evaluation-1800,evaluation)",
+    "horizon_seconds": 1800,
+    "ingestion_interval": "ingest_time <= evaluation",
+    "late_arrival": "bounded reread; not lossless for events older than horizon",
+    "pair_window_seconds": 600,
+    "schedule_seconds": 300
+  },
+  "title": "Every successful application config_change/archive_read pair with same tenant/principal/session and 0 < event-time delta <= 600 seconds.",
+  "uuid": "7838724e-9ae7-40a0-9c21-23d0054444a4",
+  "version": "1.0.0"
+}

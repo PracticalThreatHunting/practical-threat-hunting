@@ -1,0 +1,30 @@
+[
+  {
+    "category": "logic_error",
+    "confidence": "reviewed",
+    "evidence": "event_ref and version supplied",
+    "id": "F-01",
+    "owner": "detection-owner"
+  },
+  {
+    "category": "expected_benign",
+    "confidence": "reviewed",
+    "evidence": "approved business purpose verified",
+    "id": "F-02",
+    "owner": "detection-owner"
+  },
+  {
+    "category": "duplicate",
+    "confidence": "reviewed",
+    "evidence": "same signal_key from two overlapping runs",
+    "id": "F-03",
+    "owner": "platform-owner"
+  },
+  {
+    "category": "unknown",
+    "confidence": "unreviewed",
+    "evidence": "",
+    "id": "F-04",
+    "owner": "consumer-reviewer"
+  }
+]

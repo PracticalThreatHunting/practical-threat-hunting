@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+      "apiVersion": "2025-09-01",
+      "name": "[concat(parameters('workspaceName'), '/Microsoft.SecurityInsights/d9fbd3b1-c77f-4de0-a025-d03865d7ce38')]",
+      "kind": "Scheduled",
+      "properties": {
+        "displayName": "DET-001 Book 6 reference",
+        "description": "Synthetic engineering reference; native validation required before enablement.",
+        "enabled": false,
+        "severity": "Medium",
+        "query": "let Evaluation = now();\nlet E = tolong((Evaluation - datetime(1970-01-01)) / 1s);\nlet Rows = materialize(\n    DetectionEvents_CL\n    | where TimeGenerated >= Evaluation - 30m\n    | where TimeGenerated < Evaluation\n    | where quality == \"valid\" and schema_version == 1\n    | where event_time >= E - 1800 and event_time < E\n    | where ingest_time <= E\n    | summarize Hashes=make_set(payload_hash, 2),\n        arg_min(ingest_time, *) by tenant, source, event_id\n    | where array_length(Hashes) == 1\n    | extend EventRef=strcat(tenant, \"|\", source, \"|\", event_id)\n);\nRows\n| where source == \"control\" and action == \"audit_disable\"\n| where outcome == \"success\"\n| where not(principal == \"svc-maint\"\n    and device == \"lab-maint-01\"\n    and approved_change == \"chg-0042\")\n| extend signal_key=strcat(\"DET-001|\", EventRef),\n    first_event_time=event_time, last_event_time=event_time,\n    event_refs=pack_array(EventRef)\n\n| extend detection_id=\"DET-001\", version=\"1.0.0\",\n    mode=\"complete\", severity=\"medium\",\n    confidence=\"observed-contract-match\"\n| extend TimeGenerated=unixtime_seconds_todatetime(last_event_time)\n| project TimeGenerated, detection_id, version, signal_key,\n    tenant, principal, first_event_time, last_event_time,\n    event_refs, mode, severity, confidence\n",
+        "queryFrequency": "PT5M",
+        "queryPeriod": "PT30M",
+        "triggerOperator": "GreaterThan",
+        "triggerThreshold": 0,
+        "suppressionEnabled": false,
+        "suppressionDuration": "PT5M",
+        "eventGroupingSettings": {
+          "aggregationKind": "AlertPerResult"
+        },
+        "incidentConfiguration": {
+          "createIncident": false
+        },
+        "entityMappings": [
+          {
+            "entityType": "Account",
+            "fieldMappings": [
+              {
+                "identifier": "Name",
+                "columnName": "principal"
+              }
+            ]
+          }
+        ],
+        "customDetails": {
+          "DetectionId": "detection_id",
+          "SignalKey": "signal_key",
+          "Mode": "mode"
+        },
+        "tactics": [],
+        "techniques": []
+      }
+    }
+  ]
+}

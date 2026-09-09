@@ -1,0 +1,1 @@
+(source =~ "control" and action =~ "audit_disable" and outcome =~ "success") and (not((principal =~ "svc-maint" and device =~ "lab-maint-01" and approved_change =~ "chg-0042")))

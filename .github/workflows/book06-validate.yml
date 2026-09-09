@@ -1,0 +1,40 @@
+name: Book 6 local contract checks
+on:
+  pull_request:
+    paths:
+      - 'engineering/book-06-detection-as-code/**'
+      - '.github/workflows/book06-validate.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  local-contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: engineering/book-06-detection-as-code
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, verified 2026-09-09
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5, verified 2026-09-09
+        with:
+          python-version: '3.12.14'
+      - name: Validate independent cases and contracts
+        run: python tooling/factory.py validate
+      - name: Challenge meaningful reference mutations
+        run: python tooling/factory.py mutate
+      - name: Validate local policy and resource consistency
+        run: |
+          python tooling/controls.py
+          python tooling/static.py
+          python tooling/review_checks.py
+      - name: Install locked conversion dependencies
+        run: python -m pip install --require-hashes -r requirements-sigma.lock
+      - name: Validate Sigma and produce candidate conversions
+        run: |
+          sigma check detections/DET-001/sigma/intent.yml
+          python tooling/convert.py
+      - name: Report evidence boundary
+        run: python -c "print('Local checks only. Native queries, replay, and production deployment require separate evidence.')"

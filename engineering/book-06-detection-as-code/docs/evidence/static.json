@@ -1,0 +1,365 @@
+{
+  "checks": [
+    {
+      "name": "DET-001 contract mirrors YAML",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-001 disabled scheduled ARM resource",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-001 ARM query source equality",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-001 schedule and horizon",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-001 per-result candidate threshold",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-001 disabled saved search",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-001 SPL source equality",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-001 declared output keys",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-002 contract mirrors YAML",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-002 disabled scheduled ARM resource",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-002 ARM query source equality",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-002 schedule and horizon",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-002 per-result candidate threshold",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-002 disabled saved search",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-002 SPL source equality",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-002 declared output keys",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-003 contract mirrors YAML",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-003 disabled scheduled ARM resource",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-003 ARM query source equality",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-003 schedule and horizon",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-003 per-result candidate threshold",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-003 disabled saved search",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-003 SPL source equality",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-003 declared output keys",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-004 contract mirrors YAML",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-004 disabled scheduled ARM resource",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-004 ARM query source equality",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-004 schedule and horizon",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-004 per-result candidate threshold",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-004 disabled saved search",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-004 SPL source equality",
+      "result": "PASS"
+    },
+    {
+      "name": "DET-004 declared output keys",
+      "result": "PASS"
+    },
+    {
+      "name": "single-positive explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-failure-outcome explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-other-action explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-scoped-exclusion explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-same-actor-other-device explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-unapproved-change explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-exact-duplicate explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-conflicting-identity explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-upper-bound explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-lower-bound explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-outside-horizon explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-future-ingest explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-late-available explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-case-normalization explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-absent-action explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-null-action explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-null-optional explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-absent-optional explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-epoch-string explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-schema-drift explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-unsafe-delimiter explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-unicode-identifier explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "single-other-tenant explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "threshold-two explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "threshold-three explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "threshold-four explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "threshold-duplicate-not-count explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "threshold-bucket-edge explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "threshold-mixed-principal explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "threshold-mixed-tenant explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "threshold-late-third explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "threshold-third-not-yet-ingested explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "threshold-two-buckets explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "threshold-open-bucket explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-ordered explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-reversed-input explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-reversed-time explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-equal-time explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-upper-bound explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-past-bound explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-ingest-out-of-order explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-different-session explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-missing-session explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-different-tenant explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-duplicate-start explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-repeated-starts explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "sequence-not-yet-available explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "correlation-fresh explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "correlation-ingest-reversed explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "correlation-cross-tenant explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "correlation-past-bound explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "correlation-equal-time explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "correlation-other-session explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "correlation-stale explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "correlation-missing explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "correlation-ambiguous explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "correlation-ttl-boundary explicit expectation",
+      "result": "PASS"
+    },
+    {
+      "name": "correlation-validity-exclusive explicit expectation",
+      "result": "PASS"
+    }
+  ],
+  "scope": "local policy and file consistency; no official service schema acceptance or native query parsing"
+}

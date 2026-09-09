@@ -1,0 +1,34 @@
+{
+  "observed_at": 1788955140,
+  "rows": [
+    {
+      "alias": "id-01",
+      "canonical_principal": "person-01",
+      "tenant": "lab-a",
+      "valid_from": 1788868800,
+      "valid_to": 1789041600
+    },
+    {
+      "alias": "app-01",
+      "canonical_principal": "person-01",
+      "tenant": "lab-a",
+      "valid_from": 1788868800,
+      "valid_to": 1789041600
+    },
+    {
+      "alias": "id-01",
+      "canonical_principal": "person-01",
+      "tenant": "lab-b",
+      "valid_from": 1788868800,
+      "valid_to": 1789041600
+    },
+    {
+      "alias": "app-01",
+      "canonical_principal": "person-01",
+      "tenant": "lab-b",
+      "valid_from": 1788868800,
+      "valid_to": 1789041600
+    }
+  ],
+  "version": "aliases-1"
+}

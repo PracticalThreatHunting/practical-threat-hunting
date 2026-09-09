@@ -1,0 +1,9 @@
+{
+  "acceptance": "One successful control audit_disable outside the three-field maintenance exception.",
+  "accepted": true,
+  "consumer": "signal-review-queue",
+  "id": "INTAKE-001",
+  "owner": "detection-owner",
+  "priority": "engineering reference",
+  "requirement": "One successful control audit_disable outside the three-field maintenance exception."
+}

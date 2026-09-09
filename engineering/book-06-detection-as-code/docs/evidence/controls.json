@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "name": "valid scoped exception",
+      "result": "PASS"
+    },
+    {
+      "name": "expiry is exclusive",
+      "result": "PASS"
+    },
+    {
+      "name": "broad exception denied",
+      "result": "PASS"
+    },
+    {
+      "name": "unauthorized promotion denied",
+      "result": "PASS"
+    },
+    {
+      "name": "active without native proof denied",
+      "result": "PASS"
+    },
+    {
+      "name": "retired cannot reactivate",
+      "result": "PASS"
+    },
+    {
+      "name": "authorized shadow boundary",
+      "result": "PASS"
+    },
+    {
+      "name": "rollback state simulation",
+      "result": "PASS"
+    },
+    {
+      "name": "overlap consumer simulation",
+      "result": "PASS"
+    },
+    {
+      "name": "deterministic package",
+      "result": "PASS"
+    },
+    {
+      "name": "precision denominator",
+      "result": "PASS"
+    },
+    {
+      "name": "missing labels bounds",
+      "result": "PASS"
+    },
+    {
+      "name": "low evidence feedback rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "stale enrichment owner route",
+      "result": "PASS"
+    },
+    {
+      "name": "all deployment overlays disabled",
+      "result": "PASS"
+    }
+  ],
+  "scope": "offline policy and state simulations only"
+}

@@ -1,0 +1,42 @@
+search index=detection_factory sourcetype="detection_factory:logical:v1" earliest=-30m latest=now
+| eval Evaluation=now()
+| where quality="valid" AND schema_version=1
+    AND event_time>=Evaluation-1800 AND event_time<Evaluation
+    AND ingest_time<=Evaluation
+| eventstats dc(payload_hash) AS HashCount BY tenant source_kind event_id
+| where HashCount=1
+| sort 0 ingest_time
+| dedup tenant source_kind event_id
+| eval EventRef=tenant."|".source_kind."|".event_id
+| where outcome="success" AND len(session)>0
+| where (source_kind="identity" AND action="privileged_grant")
+    OR (source_kind="application" AND action="export")
+| lookup book06_resolution event_ref AS EventRef OUTPUT
+    canonical_principal dependency_state enrichment_version resolution_epoch
+| eval dependency_state=case(
+    isnull(dependency_state),"missing",
+    Evaluation-resolution_epoch>300 OR Evaluation<resolution_epoch,"stale",true(),dependency_state)
+| eval PairGroup=tenant."|".canonical_principal."|".session
+| eval StartRef=if(source_kind="identity" AND action="privileged_grant"
+    AND dependency_state="fresh",EventRef,null())
+| eval StartEpoch=if(isnotnull(StartRef),event_time,null())
+| eval StartValue=if(isnotnull(StartRef),StartEpoch."~".StartRef,null())
+| eventstats values(StartValue) AS Starts BY PairGroup enrichment_version
+| eval Starts=if(dependency_state!="fresh","unresolved",Starts)
+| where dependency_state!="fresh" OR (source_kind="application" AND action="export")
+| mvexpand Starts
+| eval ATime=tonumber(mvindex(split(Starts,"~"),0)),
+    ARef=mvindex(split(Starts,"~"),1)
+| where dependency_state!="fresh" OR (event_time>ATime AND event_time<=ATime+600)
+| eval mode=if(dependency_state="fresh","complete","uncorrelated"),
+    signal_key=if(mode="complete","DET-004|".ARef."|".EventRef,
+      "DET-004|".EventRef."|unresolved"),
+    first_event_time=if(mode="complete",ATime,event_time),
+    last_event_time=event_time,
+    event_refs=if(mode="complete",mvsort(mvappend(ARef,EventRef)),EventRef),
+    principal=if(mode="complete",canonical_principal,principal),
+    detection_id="DET-004",version="1.0.0",severity="medium",
+    confidence="observed-contract-match"
+| table detection_id version signal_key tenant principal first_event_time
+    last_event_time event_refs mode severity confidence dependency_state
+    enrichment_version

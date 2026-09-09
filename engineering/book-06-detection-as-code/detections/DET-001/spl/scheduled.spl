@@ -1,0 +1,22 @@
+search index=detection_factory sourcetype="detection_factory:logical:v1" earliest=-30m latest=now
+| eval Evaluation=now()
+| where quality="valid" AND schema_version=1
+    AND event_time>=Evaluation-1800 AND event_time<Evaluation
+    AND ingest_time<=Evaluation
+| eventstats dc(payload_hash) AS HashCount BY tenant source_kind event_id
+| where HashCount=1
+| sort 0 ingest_time
+| dedup tenant source_kind event_id
+| eval EventRef=tenant."|".source_kind."|".event_id
+| where source_kind="control" AND action="audit_disable"
+    AND outcome="success"
+| where NOT (principal="svc-maint" AND device="lab-maint-01"
+    AND approved_change="chg-0042")
+| eval signal_key="DET-001|".EventRef,
+    first_event_time=event_time, last_event_time=event_time,
+    event_refs=EventRef
+
+| eval detection_id="DET-001", version="1.0.0", mode="complete",
+    severity="medium", confidence="observed-contract-match"
+| table detection_id version signal_key tenant principal
+    first_event_time last_event_time event_refs mode severity confidence

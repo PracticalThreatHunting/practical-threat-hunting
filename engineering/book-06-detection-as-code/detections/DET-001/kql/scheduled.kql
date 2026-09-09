@@ -1,0 +1,31 @@
+let Evaluation = now();
+let E = tolong((Evaluation - datetime(1970-01-01)) / 1s);
+let Rows = materialize(
+    DetectionEvents_CL
+    | where TimeGenerated >= Evaluation - 30m
+    | where TimeGenerated < Evaluation
+    | where quality == "valid" and schema_version == 1
+    | where event_time >= E - 1800 and event_time < E
+    | where ingest_time <= E
+    | summarize Hashes=make_set(payload_hash, 2),
+        arg_min(ingest_time, *) by tenant, source, event_id
+    | where array_length(Hashes) == 1
+    | extend EventRef=strcat(tenant, "|", source, "|", event_id)
+);
+Rows
+| where source == "control" and action == "audit_disable"
+| where outcome == "success"
+| where not(principal == "svc-maint"
+    and device == "lab-maint-01"
+    and approved_change == "chg-0042")
+| extend signal_key=strcat("DET-001|", EventRef),
+    first_event_time=event_time, last_event_time=event_time,
+    event_refs=pack_array(EventRef)
+
+| extend detection_id="DET-001", version="1.0.0",
+    mode="complete", severity="medium",
+    confidence="observed-contract-match"
+| extend TimeGenerated=unixtime_seconds_todatetime(last_event_time)
+| project TimeGenerated, detection_id, version, signal_key,
+    tenant, principal, first_event_time, last_event_time,
+    event_refs, mode, severity, confidence

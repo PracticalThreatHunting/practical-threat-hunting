@@ -1,0 +1,38 @@
+[
+  {
+    "name": "missing output field rejected",
+    "result": "PASS"
+  },
+  {
+    "name": "evidence timestamp mutation rejected",
+    "result": "PASS"
+  },
+  {
+    "name": "resolution keys deduplicated",
+    "result": "PASS"
+  },
+  {
+    "name": "shifted clock recorded",
+    "result": "PASS"
+  },
+  {
+    "name": "unaligned shift rejected",
+    "result": "PASS"
+  },
+  {
+    "name": "disabled zero-write plan dev",
+    "result": "PASS"
+  },
+  {
+    "name": "disabled zero-write plan stage",
+    "result": "PASS"
+  },
+  {
+    "name": "disabled zero-write plan prod",
+    "result": "PASS"
+  },
+  {
+    "name": "unknown environment rejected",
+    "result": "PASS"
+  }
+]

@@ -84,6 +84,18 @@ Status: **Companion resources available — First Edition, September 2026**
 - [Book 5 release manifest](resources/book-05-release-manifest.yml)
 - [Book 5 edition information](book/network-traffic-and-command-and-control.md)
 
+### Book 6 — Detection Engineering and Detection-as-Code
+
+**Practical Threat Hunting: Detection Engineering and Detection-as-Code**<br>
+*24 Hands-On Builds with Sigma, KQL, SPL, Git, Testing, and CI/CD*
+
+Status: **Final draft companion — September 2026**
+
+- [Book 6 cumulative engineering lab](engineering/book-06-detection-as-code/README.md)
+- [Book 6 chapter guides](engineering/book-06-detection-as-code/docs/chapters/)
+- [Book 6 evidence and limitations](engineering/book-06-detection-as-code/docs/evidence/README.md)
+- [Book 6 edition information](book/detection-engineering-and-detection-as-code.md)
+
 ## Representative Visuals
 
 ### Book 1: AI Validation Loop

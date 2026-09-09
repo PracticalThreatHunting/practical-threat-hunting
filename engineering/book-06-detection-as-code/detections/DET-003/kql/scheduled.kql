@@ -1,0 +1,36 @@
+let Evaluation = now();
+let E = tolong((Evaluation - datetime(1970-01-01)) / 1s);
+let Rows = materialize(
+    DetectionEvents_CL
+    | where TimeGenerated >= Evaluation - 30m
+    | where TimeGenerated < Evaluation
+    | where quality == "valid" and schema_version == 1
+    | where event_time >= E - 1800 and event_time < E
+    | where ingest_time <= E
+    | summarize Hashes=make_set(payload_hash, 2),
+        arg_min(ingest_time, *) by tenant, source, event_id
+    | where array_length(Hashes) == 1
+    | extend EventRef=strcat(tenant, "|", source, "|", event_id)
+);
+let Starts = Rows
+| where source == "application" and action == "config_change"
+| where outcome == "success" and isnotempty(session)
+| project tenant, principal, session, ATime=event_time, ARef=EventRef;
+let Ends = Rows
+| where source == "application" and action == "archive_read"
+| where outcome == "success" and isnotempty(session)
+| project tenant, principal, session, BTime=event_time, BRef=EventRef;
+Starts
+| join kind=inner (Ends) on tenant, principal, session
+| where BTime > ATime and BTime <= ATime + 600
+| extend signal_key=strcat("DET-003|", ARef, "|", BRef),
+    first_event_time=ATime, last_event_time=BTime,
+    event_refs=array_sort_asc(pack_array(ARef, BRef))
+
+| extend detection_id="DET-003", version="1.0.0",
+    mode="complete", severity="medium",
+    confidence="observed-contract-match"
+| extend TimeGenerated=unixtime_seconds_todatetime(last_event_time)
+| project TimeGenerated, detection_id, version, signal_key,
+    tenant, principal, first_event_time, last_event_time,
+    event_refs, mode, severity, confidence

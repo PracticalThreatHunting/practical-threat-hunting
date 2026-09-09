@@ -1,0 +1,39 @@
+search index=detection_factory sourcetype="detection_factory:logical:v1" earliest=-30m latest=now
+| eval Evaluation=now()
+| where quality="valid" AND schema_version=1
+    AND event_time>=Evaluation-1800 AND event_time<Evaluation
+    AND ingest_time<=Evaluation
+| eventstats dc(payload_hash) AS HashCount BY tenant source_kind event_id
+| where HashCount=1
+| sort 0 ingest_time
+| dedup tenant source_kind event_id
+| eval EventRef=tenant."|".source_kind."|".event_id
+| where source_kind="application" AND action="config_change"
+    AND outcome="success" AND len(session)>0
+| rename event_time AS ATime EventRef AS ARef
+| fields tenant principal session ATime ARef
+| join type=inner max=0 tenant principal session [
+search index=detection_factory sourcetype="detection_factory:logical:v1" earliest=-30m latest=now
+| eval Evaluation=now()
+| where quality="valid" AND schema_version=1
+    AND event_time>=Evaluation-1800 AND event_time<Evaluation
+    AND ingest_time<=Evaluation
+| eventstats dc(payload_hash) AS HashCount BY tenant source_kind event_id
+| where HashCount=1
+| sort 0 ingest_time
+| dedup tenant source_kind event_id
+| eval EventRef=tenant."|".source_kind."|".event_id
+| where source_kind="application" AND action="archive_read"
+    AND outcome="success" AND len(session)>0
+| rename event_time AS BTime EventRef AS BRef
+| fields tenant principal session BTime BRef
+]
+| where BTime>ATime AND BTime<=ATime+600
+| eval signal_key="DET-003|".ARef."|".BRef,
+    first_event_time=ATime, last_event_time=BTime,
+    event_refs=mvsort(mvappend(ARef,BRef))
+
+| eval detection_id="DET-003", version="1.0.0", mode="complete",
+    severity="medium", confidence="observed-contract-match"
+| table detection_id version signal_key tenant principal
+    first_event_time last_event_time event_refs mode severity confidence

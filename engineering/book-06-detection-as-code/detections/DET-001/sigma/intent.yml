@@ -1,0 +1,29 @@
+title: Synthetic Audit Disable Outside Scoped Maintenance
+id: d9fbd3b1-c77f-4de0-a025-d03865d7ce38
+status: experimental
+description: Single-event intent over normalized Book 6 fixtures; not a deployed detection.
+author: Grant Halden
+date: 2026-09-09
+references:
+    - https://github.com/PracticalThreatHunting/practical-threat-hunting
+logsource:
+    product: detection_factory
+    service: control
+    definition: Canonical logical-event-v1 records only; invalid records are quarantined upstream.
+detection:
+    selection:
+        source: control
+        action: audit_disable
+        outcome: success
+    filter_maintenance:
+        principal: svc-maint
+        device: lab-maint-01
+        approved_change: chg-0042
+    condition: selection and not filter_maintenance
+fields:
+    - tenant
+    - principal
+    - event_id
+falsepositives:
+    - Authorized maintenance outside the deliberately narrow reference exception.
+level: medium
