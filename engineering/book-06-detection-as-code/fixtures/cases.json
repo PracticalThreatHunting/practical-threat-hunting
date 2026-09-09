@@ -1,0 +1,2936 @@
+[
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-001|lab-a|control|e01"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "single-positive",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-failure-outcome",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_enable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-other-action",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "CHG-0042",
+        "device": "lab-maint-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "svc-maint",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-scoped-exclusion",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "chg-0042",
+        "device": "host-02",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "svc-maint",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-001|lab-a|control|e01"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "single-same-actor-other-device",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "lab-maint-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "svc-maint",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-001|lab-a|control|e01"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "single-unapproved-change",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955195,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-001|lab-a|control|e01"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "single-exact-duplicate",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-99",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "conflicting_event_id"
+      ],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-conflicting-identity",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955200,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-upper-bound",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788953400,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-001|lab-a|control|e01"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "single-lower-bound",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788953399,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-outside-horizon",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955201,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-future-ingest",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788954000,
+        "ingest_time": 1788955200,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-001|lab-a|control|e01"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "single-late-available",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "AUDIT_DISABLE",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "SUCCESS",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-001|lab-a|control|e01"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "single-case-normalization",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "invalid_event"
+      ],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-absent-action",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": null,
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "invalid_event"
+      ],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-null-action",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": null,
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "invalid_event"
+      ],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-null-optional",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-001|lab-a|control|e01"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "single-absent-optional",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": "1788955100",
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "invalid_event"
+      ],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-epoch-string",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 2,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "invalid_event"
+      ],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-schema-drift",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user|01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "invalid_event"
+      ],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-unsafe-delimiter",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "us\u00e9r-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "invalid_event"
+      ],
+      "keys": [],
+      "modes": []
+    },
+    "id": "single-unicode-identifier",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-001",
+    "events": [
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "audit_disable",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "e01",
+        "event_time": 1788955100,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "control",
+        "tenant": "lab-b"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-001|lab-a|control|e01",
+        "DET-001|lab-b|control|e01"
+      ],
+      "modes": [
+        "complete",
+        "complete"
+      ]
+    },
+    "id": "single-other-tenant",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-002",
+    "events": [
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a1",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a2",
+        "event_time": 1788955000,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "threshold-two",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-002",
+    "events": [
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a1",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a2",
+        "event_time": 1788955000,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a3",
+        "event_time": 1788955199,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-002|lab-a|user-01|1788954900"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "threshold-three",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-002",
+    "events": [
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a1",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a2",
+        "event_time": 1788955000,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a3",
+        "event_time": 1788955199,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a4",
+        "event_time": 1788955150,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-002|lab-a|user-01|1788954900"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "threshold-four",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-002",
+    "events": [
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a1",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a2",
+        "event_time": 1788955000,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a1",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "threshold-duplicate-not-count",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-002",
+    "events": [
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a1",
+        "event_time": 1788954899,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a2",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a3",
+        "event_time": 1788954901,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "threshold-bucket-edge",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-002",
+    "events": [
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a1",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a2",
+        "event_time": 1788955000,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a3",
+        "event_time": 1788955000,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-02",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "threshold-mixed-principal",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-002",
+    "events": [
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a1",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a2",
+        "event_time": 1788955000,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a3",
+        "event_time": 1788955000,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-b"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "threshold-mixed-tenant",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-002",
+    "events": [
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a1",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a2",
+        "event_time": 1788955000,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a3",
+        "event_time": 1788955199,
+        "ingest_time": 1788955200,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-002|lab-a|user-01|1788954900"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "threshold-late-third",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-002",
+    "events": [
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a1",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a2",
+        "event_time": 1788955000,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a3",
+        "event_time": 1788955199,
+        "ingest_time": 1788955201,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "threshold-third-not-yet-ingested",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-002",
+    "events": [
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a1",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a2",
+        "event_time": 1788955000,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "a3",
+        "event_time": 1788955199,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "b1",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "b2",
+        "event_time": 1788954700,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "b3",
+        "event_time": 1788954899,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-002|lab-a|user-01|1788954600",
+        "DET-002|lab-a|user-01|1788954900"
+      ],
+      "modes": [
+        "complete",
+        "complete"
+      ]
+    },
+    "id": "threshold-two-buckets",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-002",
+    "events": [
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "c1",
+        "event_time": 1788955200,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "c2",
+        "event_time": 1788955210,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "auth_denied",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "c3",
+        "event_time": 1788955220,
+        "ingest_time": 1788955180,
+        "outcome": "failure",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "threshold-open-bucket",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation",
+    "now": 1788955320
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-003|lab-a|application|s1|lab-a|application|s2"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "sequence-ordered",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-003|lab-a|application|s1|lab-a|application|s2"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "sequence-reversed-input",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954200,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "sequence-reversed-time",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "sequence-equal-time",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954900,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-003|lab-a|application|s1|lab-a|application|s2"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "sequence-upper-bound",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954901,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "sequence-past-bound",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955199,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954600,
+        "ingest_time": 1788954700,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-003|lab-a|application|s1|lab-a|application|s2"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "sequence-ingest-out-of-order",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s02",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "sequence-different-session",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "sequence-missing-session",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-b"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "sequence-different-tenant",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-003|lab-a|application|s1|lab-a|application|s2"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "sequence-duplicate-start",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s0",
+        "event_time": 1788954200,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-003|lab-a|application|s0|lab-a|application|s2",
+        "DET-003|lab-a|application|s1|lab-a|application|s2"
+      ],
+      "modes": [
+        "complete",
+        "complete"
+      ]
+    },
+    "id": "sequence-repeated-starts",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-003",
+    "events": [
+      {
+        "action": "config_change",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "archive_read",
+        "alias": "user-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "s2",
+        "event_time": 1788954600,
+        "ingest_time": 1788955201,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "sequence-not-yet-available",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-004",
+    "enrichment": {
+      "observed_at": 1788955140,
+      "rows": [
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        }
+      ],
+      "version": "aliases-1"
+    },
+    "events": [
+      {
+        "action": "privileged_grant",
+        "alias": "id-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "g1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "export",
+        "alias": "app-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "x1",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-004|lab-a|identity|g1|lab-a|application|x1"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "correlation-fresh",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-004",
+    "enrichment": {
+      "observed_at": 1788955140,
+      "rows": [
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        }
+      ],
+      "version": "aliases-1"
+    },
+    "events": [
+      {
+        "action": "privileged_grant",
+        "alias": "id-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "g1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955199,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "export",
+        "alias": "app-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "x1",
+        "event_time": 1788954600,
+        "ingest_time": 1788954700,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-004|lab-a|identity|g1|lab-a|application|x1"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "correlation-ingest-reversed",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-004",
+    "enrichment": {
+      "observed_at": 1788955140,
+      "rows": [
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        }
+      ],
+      "version": "aliases-1"
+    },
+    "events": [
+      {
+        "action": "privileged_grant",
+        "alias": "id-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "g1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "export",
+        "alias": "app-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "x1",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-b"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "correlation-cross-tenant",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-004",
+    "enrichment": {
+      "observed_at": 1788955140,
+      "rows": [
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        }
+      ],
+      "version": "aliases-1"
+    },
+    "events": [
+      {
+        "action": "privileged_grant",
+        "alias": "id-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "g1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "export",
+        "alias": "app-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "x1",
+        "event_time": 1788954901,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "correlation-past-bound",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-004",
+    "enrichment": {
+      "observed_at": 1788955140,
+      "rows": [
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        }
+      ],
+      "version": "aliases-1"
+    },
+    "events": [
+      {
+        "action": "privileged_grant",
+        "alias": "id-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "g1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "export",
+        "alias": "app-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "x1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "correlation-equal-time",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-004",
+    "enrichment": {
+      "observed_at": 1788955140,
+      "rows": [
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        }
+      ],
+      "version": "aliases-1"
+    },
+    "events": [
+      {
+        "action": "privileged_grant",
+        "alias": "id-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "g1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "export",
+        "alias": "app-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "x1",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s02",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [],
+      "modes": []
+    },
+    "id": "correlation-other-session",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-004",
+    "enrichment": {
+      "observed_at": 1788954299,
+      "rows": [
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        }
+      ],
+      "version": "aliases-1"
+    },
+    "events": [
+      {
+        "action": "privileged_grant",
+        "alias": "id-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "g1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "export",
+        "alias": "app-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "x1",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "enrichment_stale",
+        "enrichment_stale"
+      ],
+      "keys": [
+        "DET-004|lab-a|application|x1|unresolved",
+        "DET-004|lab-a|identity|g1|unresolved"
+      ],
+      "modes": [
+        "uncorrelated",
+        "uncorrelated"
+      ]
+    },
+    "id": "correlation-stale",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-004",
+    "enrichment": {
+      "observed_at": 1788955140,
+      "rows": [],
+      "version": "aliases-1"
+    },
+    "events": [
+      {
+        "action": "privileged_grant",
+        "alias": "id-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "g1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "export",
+        "alias": "app-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "x1",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "enrichment_missing",
+        "enrichment_missing"
+      ],
+      "keys": [
+        "DET-004|lab-a|application|x1|unresolved",
+        "DET-004|lab-a|identity|g1|unresolved"
+      ],
+      "modes": [
+        "uncorrelated",
+        "uncorrelated"
+      ]
+    },
+    "id": "correlation-missing",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-004",
+    "enrichment": {
+      "observed_at": 1788955140,
+      "rows": [
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        }
+      ],
+      "version": "aliases-1"
+    },
+    "events": [
+      {
+        "action": "privileged_grant",
+        "alias": "id-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "g1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "export",
+        "alias": "app-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "x1",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "enrichment_ambiguous",
+        "enrichment_ambiguous"
+      ],
+      "keys": [
+        "DET-004|lab-a|application|x1|unresolved",
+        "DET-004|lab-a|identity|g1|unresolved"
+      ],
+      "modes": [
+        "uncorrelated",
+        "uncorrelated"
+      ]
+    },
+    "id": "correlation-ambiguous",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-004",
+    "enrichment": {
+      "observed_at": 1788954300,
+      "rows": [
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        }
+      ],
+      "version": "aliases-1"
+    },
+    "events": [
+      {
+        "action": "privileged_grant",
+        "alias": "id-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "g1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      },
+      {
+        "action": "export",
+        "alias": "app-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "x1",
+        "event_time": 1788954600,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "application",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [],
+      "keys": [
+        "DET-004|lab-a|identity|g1|lab-a|application|x1"
+      ],
+      "modes": [
+        "complete"
+      ]
+    },
+    "id": "correlation-ttl-boundary",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  },
+  {
+    "detection_id": "DET-004",
+    "enrichment": {
+      "observed_at": 1788955140,
+      "rows": [
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1788954300
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-a",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "id-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        },
+        {
+          "alias": "app-01",
+          "canonical_principal": "person-01",
+          "tenant": "lab-b",
+          "valid_from": 1788868800,
+          "valid_to": 1789041600
+        }
+      ],
+      "version": "aliases-1"
+    },
+    "events": [
+      {
+        "action": "privileged_grant",
+        "alias": "id-01",
+        "approved_change": "",
+        "device": "host-01",
+        "event_id": "g1",
+        "event_time": 1788954300,
+        "ingest_time": 1788955180,
+        "outcome": "success",
+        "principal": "user-01",
+        "schema_version": 1,
+        "session": "s01",
+        "source": "identity",
+        "tenant": "lab-a"
+      }
+    ],
+    "expected": {
+      "health_kinds": [
+        "enrichment_missing"
+      ],
+      "keys": [
+        "DET-004|lab-a|identity|g1|unresolved"
+      ],
+      "modes": [
+        "uncorrelated"
+      ]
+    },
+    "id": "correlation-validity-exclusive",
+    "label_confidence": "exact synthetic construction",
+    "label_provenance": "authored black-box contract expectation"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "engine": "Python reference only",
+  "limitation": "Five warm local trials; neither SIEM benchmark nor representative production load.",
+  "matches": 10000,
+  "median_seconds": 0.11830731400004879,
+  "p95_claim": null,
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "rows": 10000,
+  "seconds": [
+    0.11170228299943119,
+    0.12638574700031313,
+    0.11830731400004879,
+    0.12416029599989997,
+    0.11552901699997165
+  ]
+}

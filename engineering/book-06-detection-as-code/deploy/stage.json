@@ -1,0 +1,9 @@
+{
+  "enabled": false,
+  "environment": "stage",
+  "horizon_seconds": 1800,
+  "index": "detection_factory",
+  "mode": "dry-run",
+  "schedule_seconds": 300,
+  "workspace": "book06-stage"
+}

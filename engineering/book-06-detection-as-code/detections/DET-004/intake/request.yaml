@@ -1,0 +1,9 @@
+{
+  "acceptance": "Identity privileged_grant then application export, same tenant/canonical principal/session and 0 < event-time delta <= 600; fresh unique alias mapping or explicit uncorrelated degraded output.",
+  "accepted": true,
+  "consumer": "signal-review-queue",
+  "id": "INTAKE-004",
+  "owner": "detection-owner",
+  "priority": "engineering reference",
+  "requirement": "Identity privileged_grant then application export, same tenant/canonical principal/session and 0 < event-time delta <= 600; fresh unique alias mapping or explicit uncorrelated degraded output."
+}

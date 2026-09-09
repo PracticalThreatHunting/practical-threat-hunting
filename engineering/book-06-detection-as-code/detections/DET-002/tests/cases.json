@@ -1,0 +1,15 @@
+{
+  "case_ids": [
+    "threshold-two",
+    "threshold-three",
+    "threshold-four",
+    "threshold-duplicate-not-count",
+    "threshold-bucket-edge",
+    "threshold-mixed-principal",
+    "threshold-mixed-tenant",
+    "threshold-late-third",
+    "threshold-third-not-yet-ingested",
+    "threshold-two-buckets",
+    "threshold-open-bucket"
+  ]
+}

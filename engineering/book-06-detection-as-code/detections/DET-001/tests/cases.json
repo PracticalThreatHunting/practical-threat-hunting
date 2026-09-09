@@ -1,0 +1,27 @@
+{
+  "case_ids": [
+    "single-positive",
+    "single-failure-outcome",
+    "single-other-action",
+    "single-scoped-exclusion",
+    "single-same-actor-other-device",
+    "single-unapproved-change",
+    "single-exact-duplicate",
+    "single-conflicting-identity",
+    "single-upper-bound",
+    "single-lower-bound",
+    "single-outside-horizon",
+    "single-future-ingest",
+    "single-late-available",
+    "single-case-normalization",
+    "single-absent-action",
+    "single-null-action",
+    "single-null-optional",
+    "single-absent-optional",
+    "single-epoch-string",
+    "single-schema-drift",
+    "single-unsafe-delimiter",
+    "single-unicode-identifier",
+    "single-other-tenant"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "approver": "content-reviewer",
+  "expires": 1789041600,
+  "id": "EX-001",
+  "owner": "detection-owner",
+  "positive_regression": "single-same-actor-other-device",
+  "reason": "exact synthetic maintenance fixture",
+  "scope": {
+    "approved_change": "chg-0042",
+    "device": "lab-maint-01",
+    "principal": "svc-maint"
+  }
+}

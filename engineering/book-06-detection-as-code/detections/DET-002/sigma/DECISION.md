@@ -1,0 +1,1 @@
+Native authoritative implementations retained. Sigma correlation evaluation is a capability experiment, not a delivery implementation. Fixed buckets, pair multiplicity, event-time reread and degraded outputs require conformance evidence. No converted query is promoted for this product.

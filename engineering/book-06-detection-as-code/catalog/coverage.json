@@ -1,0 +1,65 @@
+{
+  "attack_version": "19.2",
+  "claims": [
+    {
+      "applicable": "supplied engineering behavior",
+      "detection_id": "DET-001",
+      "implemented": [
+        "python-reference",
+        "kql-candidate",
+        "spl-candidate"
+      ],
+      "native_evidence": null,
+      "observable": "synthetic corpus only",
+      "operational": false,
+      "owner": "detection-owner",
+      "review_due": "2026-12-09",
+      "validated": "offline reference only"
+    },
+    {
+      "applicable": "supplied engineering behavior",
+      "detection_id": "DET-002",
+      "implemented": [
+        "python-reference",
+        "kql-candidate",
+        "spl-candidate"
+      ],
+      "native_evidence": null,
+      "observable": "synthetic corpus only",
+      "operational": false,
+      "owner": "detection-owner",
+      "review_due": "2026-12-09",
+      "validated": "offline reference only"
+    },
+    {
+      "applicable": "supplied engineering behavior",
+      "detection_id": "DET-003",
+      "implemented": [
+        "python-reference",
+        "kql-candidate",
+        "spl-candidate"
+      ],
+      "native_evidence": null,
+      "observable": "synthetic corpus only",
+      "operational": false,
+      "owner": "detection-owner",
+      "review_due": "2026-12-09",
+      "validated": "offline reference only"
+    },
+    {
+      "applicable": "supplied engineering behavior",
+      "detection_id": "DET-004",
+      "implemented": [
+        "python-reference",
+        "kql-candidate",
+        "spl-candidate"
+      ],
+      "native_evidence": null,
+      "observable": "synthetic corpus only",
+      "operational": false,
+      "owner": "detection-owner",
+      "review_due": "2026-12-09",
+      "validated": "offline reference only"
+    }
+  ]
+}

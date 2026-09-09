@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "result": {
+      "enum": [
+        "PASS",
+        "PASS WITH DOCUMENTED LIMITATION",
+        "NOT RUN/BLOCKED",
+        "FAIL"
+      ]
+    }
+  },
+  "required": [
+    "detection_id",
+    "version",
+    "level",
+    "command",
+    "runtime",
+    "dataset_sha256",
+    "timestamp",
+    "result",
+    "limitation"
+  ],
+  "type": "object"
+}

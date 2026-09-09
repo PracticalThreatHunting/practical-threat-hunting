@@ -1,0 +1,90 @@
+[
+  {
+    "detection_id": "DET-001",
+    "killed_by": [
+      "single-failure-outcome"
+    ],
+    "operator": "widen_predicate",
+    "result": "killed"
+  },
+  {
+    "detection_id": "DET-001",
+    "killed_by": [
+      "single-same-actor-other-device",
+      "single-unapproved-change"
+    ],
+    "operator": "broad_exception",
+    "result": "killed"
+  },
+  {
+    "detection_id": "DET-002",
+    "killed_by": [
+      "threshold-three",
+      "threshold-late-third",
+      "threshold-two-buckets"
+    ],
+    "operator": "raise_threshold",
+    "result": "killed"
+  },
+  {
+    "detection_id": "DET-002",
+    "killed_by": [
+      "threshold-three",
+      "threshold-four",
+      "threshold-bucket-edge",
+      "threshold-late-third",
+      "threshold-two-buckets",
+      "threshold-open-bucket"
+    ],
+    "operator": "merge_buckets",
+    "result": "killed"
+  },
+  {
+    "detection_id": "DET-003",
+    "killed_by": [
+      "sequence-reversed-time",
+      "sequence-equal-time"
+    ],
+    "operator": "allow_reverse",
+    "result": "killed"
+  },
+  {
+    "detection_id": "DET-003",
+    "killed_by": [
+      "sequence-past-bound"
+    ],
+    "operator": "remove_upper_bound",
+    "result": "killed"
+  },
+  {
+    "detection_id": "DET-003",
+    "killed_by": [
+      "sequence-ordered",
+      "sequence-reversed-input",
+      "sequence-upper-bound",
+      "sequence-ingest-out-of-order",
+      "sequence-duplicate-start",
+      "sequence-repeated-starts"
+    ],
+    "operator": "ingest_order",
+    "result": "killed"
+  },
+  {
+    "detection_id": "DET-004",
+    "killed_by": [
+      "correlation-cross-tenant"
+    ],
+    "operator": "drop_tenant",
+    "result": "killed"
+  },
+  {
+    "detection_id": "DET-004",
+    "killed_by": [
+      "correlation-fresh",
+      "correlation-ingest-reversed",
+      "correlation-ttl-boundary"
+    ],
+    "operator": "ingest_order",
+    "result": "killed"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "backup": "platform-owner",
+  "data": "data-owner",
+  "primary": "detection-owner",
+  "reviewer": "content-reviewer"
+}

@@ -1,0 +1,6 @@
+{
+  "false_positive": 4,
+  "selection": "synthetic example; reviewed subset intentionally incomplete",
+  "true_positive": 36,
+  "unreviewed": 60
+}

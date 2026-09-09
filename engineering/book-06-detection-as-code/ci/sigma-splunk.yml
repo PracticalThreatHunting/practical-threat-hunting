@@ -1,0 +1,16 @@
+name: Detection Factory Splunk
+priority: 100
+transformations:
+  - id: scope
+    type: add_condition
+    conditions:
+      index: detection_factory
+      sourcetype: detection_factory:logical:v1
+  - id: map_source
+    type: field_name_mapping
+    mapping:
+      source: source_kind
+  - id: map_source
+    type: field_name_mapping
+    mapping:
+      source: source_kind

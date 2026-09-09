@@ -1,0 +1,39 @@
+[
+  {
+    "package": "sigma-cli",
+    "version": "3.1.0",
+    "license": "LGPL-2.1-or-later",
+    "expression": null,
+    "classifiers": [
+      "License :: OSI Approved",
+      "License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)"
+    ]
+  },
+  {
+    "package": "pysigma",
+    "version": "1.5.0",
+    "license": null,
+    "expression": "LGPL-2.1-only",
+    "classifiers": [
+      "License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)"
+    ]
+  },
+  {
+    "package": "pysigma-backend-splunk",
+    "version": "2.1.0",
+    "license": "LGPL-2.1-only",
+    "expression": null,
+    "classifiers": [
+      "License :: OSI Approved"
+    ]
+  },
+  {
+    "package": "pysigma-backend-kusto",
+    "version": "1.0.1",
+    "license": "LGPL-3.0-only",
+    "expression": null,
+    "classifiers": [
+      "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)"
+    ]
+  }
+]

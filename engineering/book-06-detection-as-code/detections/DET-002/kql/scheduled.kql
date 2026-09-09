@@ -1,0 +1,34 @@
+let Evaluation = now();
+let E = tolong((Evaluation - datetime(1970-01-01)) / 1s);
+let Rows = materialize(
+    DetectionEvents_CL
+    | where TimeGenerated >= Evaluation - 30m
+    | where TimeGenerated < Evaluation
+    | where quality == "valid" and schema_version == 1
+    | where event_time >= E - 1800 and event_time < E
+    | where ingest_time <= E
+    | summarize Hashes=make_set(payload_hash, 2),
+        arg_min(ingest_time, *) by tenant, source, event_id
+    | where array_length(Hashes) == 1
+    | extend EventRef=strcat(tenant, "|", source, "|", event_id)
+);
+Rows
+| where source == "identity" and action == "auth_denied"
+| where outcome == "failure"
+| extend bucket_start=tolong(floor(event_time / 300.0)) * 300
+| where bucket_start + 300 <= E
+| summarize Count=count(), first_event_time=min(event_time),
+    last_event_time=max(event_time), event_refs=make_set(EventRef)
+    by tenant, principal, bucket_start
+| where Count >= 3
+| extend event_refs=array_sort_asc(event_refs)
+| extend signal_key=strcat("DET-002|", tenant, "|", principal,
+    "|", tostring(bucket_start))
+
+| extend detection_id="DET-002", version="1.0.0",
+    mode="complete", severity="medium",
+    confidence="observed-contract-match"
+| extend TimeGenerated=unixtime_seconds_todatetime(last_event_time)
+| project TimeGenerated, detection_id, version, signal_key,
+    tenant, principal, first_event_time, last_event_time,
+    event_refs, mode, severity, confidence

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "action": {
+      "type": "string"
+    },
+    "alias": {
+      "type": "string"
+    },
+    "approved_change": {
+      "type": "string"
+    },
+    "device": {
+      "type": "string"
+    },
+    "event_id": {
+      "type": "string"
+    },
+    "event_time": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "ingest_time": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "outcome": {
+      "type": "string"
+    },
+    "principal": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "session": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "tenant": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "tenant",
+    "source",
+    "event_id",
+    "event_time",
+    "ingest_time",
+    "action",
+    "outcome",
+    "principal"
+  ],
+  "title": "Book 6 logical event v1",
+  "type": "object"
+}

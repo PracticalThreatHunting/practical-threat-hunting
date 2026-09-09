@@ -1,0 +1,17 @@
+{
+  "consumer": "signal-review-queue",
+  "purpose": "validate presented evidence and provide a disposition; response procedures are outside this volume",
+  "required_fields": [
+    "detection_id",
+    "version",
+    "signal_key",
+    "tenant",
+    "principal",
+    "first_event_time",
+    "last_event_time",
+    "event_refs",
+    "mode",
+    "severity",
+    "confidence"
+  ]
+}

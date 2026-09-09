@@ -1,0 +1,56 @@
+{
+  "id": "DET-001",
+  "uuid": "d9fbd3b1-c77f-4de0-a025-d03865d7ce38",
+  "version": "1.0.0",
+  "title": "One successful control audit_disable outside the three-field maintenance exception.",
+  "owner": "detection-owner",
+  "backup_owner": "platform-owner",
+  "consumer": "signal-review-queue",
+  "status": "test",
+  "review_due": "2026-12-09",
+  "created": "2026-09-09",
+  "severity": "medium",
+  "confidence": "observed-contract-match",
+  "acceptance": "One successful control audit_disable outside the three-field maintenance exception.",
+  "non_goals": [
+    "Establish malicious intent",
+    "Deploy to a live environment without native evidence"
+  ],
+  "telemetry": {
+    "schema": "logical-event-v1",
+    "sources": [
+      "control"
+    ],
+    "normalization": "ASCII lowercase identifier fields; integer UTC epoch seconds; invalid records yield health events; conflicting source event IDs quarantined"
+  },
+  "time": {
+    "horizon_seconds": 1800,
+    "schedule_seconds": 300,
+    "event_interval": "[evaluation-1800,evaluation)",
+    "ingestion_interval": "ingest_time <= evaluation",
+    "pair_window_seconds": null,
+    "bucket_seconds": null,
+    "late_arrival": "bounded reread; not lossless for events older than horizon"
+  },
+  "output": {
+    "required": [
+      "detection_id",
+      "version",
+      "signal_key",
+      "tenant",
+      "principal",
+      "first_event_time",
+      "last_event_time",
+      "event_refs",
+      "mode",
+      "severity",
+      "confidence"
+    ],
+    "idempotency": "candidate signal key is stable; durable consumer deduplication required for cross-run delivery"
+  },
+  "attack": {
+    "version": "19.2",
+    "mapping_status": "engineering logic class; no operational ATT&CK coverage claim"
+  },
+  "native_validation": "NOT RUN/BLOCKED"
+}

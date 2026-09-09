@@ -1,0 +1,17 @@
+{
+  "packages": {
+    "sigma-cli": "3.1.0",
+    "pysigma": "1.5.0",
+    "pysigma-backend-splunk": "2.1.0",
+    "pysigma-backend-kusto": "1.0.1"
+  },
+  "native_execution": "NOT RUN/BLOCKED",
+  "outputs": {
+    "splunk": [
+      "index=\"detection_factory\" sourcetype=\"detection_factory:logical:v1\" source_kind=\"control\" action=\"audit_disable\" outcome=\"success\" NOT (principal=\"svc-maint\" device=\"lab-maint-01\" approved_change=\"chg-0042\") | table tenant,principal,event_id"
+    ],
+    "kusto": [
+      "(source =~ \"control\" and action =~ \"audit_disable\" and outcome =~ \"success\") and (not((principal =~ \"svc-maint\" and device =~ \"lab-maint-01\" and approved_change =~ \"chg-0042\")))"
+    ]
+  }
+}
