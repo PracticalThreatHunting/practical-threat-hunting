@@ -40,3 +40,7 @@ Start from the immutable edition commit linked in book/detection-engineering-and
 Only inert synthetic data is included. No live credentials, customer telemetry, malware, or offensive actions are required. The lab defaults to local evaluation and dry-run planning. A native platform may require separately authorized resources, costs, and license acceptance; no script accepts terms on your behalf.
 
 Corrections: use the series issue templates and include the book chapter, detection version, case ID, command, target version, and a sanitized minimal reproduction. Never post secrets or raw organizational logs.
+
+## Reproduce the edition experiments
+
+Run `python tooling/tuning.py` for the Chapter 14 protected-positive comparison and `python tooling/pair_profile.py` for the Chapter 16 pair-cardinality profile. Recorded edition observations are in `docs/evidence/tuning.json` and `docs/evidence/pair-profile.json`; reruns write to `build/`. Timing values vary by host. These scripts make no native performance or production prevalence claim.
