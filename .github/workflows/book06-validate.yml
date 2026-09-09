@@ -30,6 +30,10 @@ jobs:
           python tooling/controls.py
           python tooling/static.py
           python tooling/review_checks.py
+      - name: Verify synthetic tuning and pair cardinality experiments
+        run: |
+          python tooling/tuning.py
+          python tooling/pair_profile.py
       - name: Install locked conversion dependencies
         run: python -m pip install --require-hashes -r requirements-sigma.lock
       - name: Validate Sigma and produce candidate conversions

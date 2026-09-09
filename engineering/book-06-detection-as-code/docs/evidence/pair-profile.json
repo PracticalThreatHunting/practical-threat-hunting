@@ -1,0 +1,79 @@
+{
+  "engine": "Python reference only",
+  "limitation": "Synthetic in-process trials; no native query plan, memory profile, service concurrency, or production-cost claim.",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "results": [
+    {
+      "actual_pairs": 1,
+      "ends": 1,
+      "expected_pairs": 1,
+      "input_rows": 2,
+      "median_seconds": 3.522199949657079e-05,
+      "seconds": [
+        0.0001043840002239449,
+        3.522199949657079e-05,
+        2.6699999580159783e-05
+      ],
+      "session_groups": 1,
+      "starts": 1
+    },
+    {
+      "actual_pairs": 100,
+      "ends": 10,
+      "expected_pairs": 100,
+      "input_rows": 20,
+      "median_seconds": 0.00041250899994338397,
+      "seconds": [
+        0.00041250899994338397,
+        0.0004168639989075018,
+        0.00038011099968571216
+      ],
+      "session_groups": 1,
+      "starts": 10
+    },
+    {
+      "actual_pairs": 10000,
+      "ends": 100,
+      "expected_pairs": 10000,
+      "input_rows": 200,
+      "median_seconds": 0.031105546999242506,
+      "seconds": [
+        0.031105546999242506,
+        0.03177952199985157,
+        0.029743557999609038
+      ],
+      "session_groups": 1,
+      "starts": 100
+    },
+    {
+      "actual_pairs": 62500,
+      "ends": 250,
+      "expected_pairs": 62500,
+      "input_rows": 500,
+      "median_seconds": 0.23544629299976805,
+      "seconds": [
+        0.23544629299976805,
+        0.24156276599933335,
+        0.2291651159994217
+      ],
+      "session_groups": 1,
+      "starts": 250
+    },
+    {
+      "actual_pairs": 6250,
+      "ends": 250,
+      "expected_pairs": 6250,
+      "input_rows": 500,
+      "median_seconds": 0.04664596200018423,
+      "seconds": [
+        0.08943840000029013,
+        0.04664596200018423,
+        0.046509721998518216
+      ],
+      "session_groups": 10,
+      "starts": 250
+    }
+  ],
+  "trials_per_shape": 3
+}
