@@ -10,9 +10,11 @@ SigninLogs
 | summarize Attempts=count(),
             TargetedUsers=dcount(UserPrincipalName),
             Users=make_set(UserPrincipalName, 25),
+            UserAgents=make_set(UserAgent, 15),
+            UserAgentCount=dcount(UserAgent),
             ResultCodes=make_set(tostring(ResultType), 20),
             Apps=make_set(AppDisplayName, 15),
             FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated)
-  by IPAddress, UserAgent, bin(TimeGenerated, Window)
+  by IPAddress, bin(TimeGenerated, Window)
 | where TargetedUsers >= MinimumUsers
 | order by TargetedUsers desc, Attempts desc
