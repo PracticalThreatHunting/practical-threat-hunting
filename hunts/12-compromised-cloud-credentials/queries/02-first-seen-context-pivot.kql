@@ -11,6 +11,6 @@ AWSCloudTrail
 | extend Principal=coalesce(SessionIssuerUserName, UserIdentityUserName,
                             UserIdentityPrincipalid)
 | join kind=leftouter baseline on Principal
-| where not(set_has_element(KnownIPs, SourceIpAddress))
+| where not(set_has_element(coalesce(KnownIPs, dynamic([])), SourceIpAddress))
 | project TimeGenerated, Principal, SourceIpAddress, UserAgent,
           EventName, EventSource, AWSRegion
