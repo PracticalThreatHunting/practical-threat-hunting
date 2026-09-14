@@ -49,6 +49,21 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def require_locked_file(path: Path, expected_sha256: str, label: str) -> None:
+    """Authenticate an external file before it can influence a subprocess."""
+    require(path.is_file(), f"{label} not found: {path}")
+    actual_sha256 = sha256(path)
+    require(actual_sha256 == expected_sha256,
+            f"{label} SHA-256 mismatch: expected {expected_sha256}, got {actual_sha256}")
+
+
+def native_tool_locks() -> tuple[dict[str, Any], dict[str, Any]]:
+    versions = json.loads((ROOT / "versions.lock.json").read_text(encoding="utf-8"))
+    contract_path = ROOT / versions["sensor_config_lock"]
+    contract = json.loads(contract_path.read_text(encoding="utf-8"))
+    return versions["canonical"], contract
+
+
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
@@ -575,11 +590,16 @@ def copy_sensor_files(source: Path, destination: Path, names: list[str]) -> None
 def run_zeek(tool_root: Path) -> dict[str, Any]:
     root = tool_root / "zeek_root"
     binary = root / "opt" / "zeek" / "bin" / "zeek"
-    require(binary.exists(), f"Zeek binary not found: {binary}")
+    locks, contract = native_tool_locks()
+    require_locked_file(binary, locks["zeek"]["binary_sha256"], "Zeek binary")
     env = os.environ.copy()
     share = root / "opt" / "zeek" / "share" / "zeek"
+    require_locked_file(share / "site" / "local.zeek", contract["zeek"]["policy_sha256"],
+                        "Zeek local policy")
     env["ZEEKPATH"] = os.pathsep.join([str(share / "site"), str(share / "policy"), str(share)])
-    env["LD_LIBRARY_PATH"] = str(root / "usr" / "lib" / "x86_64-linux-gnu")
+    # Do not let libraries from the externally supplied tool root (or the caller)
+    # affect execution without an equivalent file-level integrity lock.
+    env.pop("LD_LIBRARY_PATH", None)
     version = run([str(binary), "--version"], env=env)
     require(version["exit_code"] == 0 and "8.2.2" in version["output"], "Zeek version mismatch")
     with tempfile.TemporaryDirectory(prefix="book5-zeek-") as directory:
@@ -622,9 +642,21 @@ def run_suricata(tool_root: Path) -> dict[str, Any]:
     root = tool_root / "suricata_jammy_root"
     binary = root / "usr" / "bin" / "suricata"
     config = root / "etc" / "suricata" / "suricata.yaml"
-    require(binary.exists() and config.exists(), f"Suricata install not found under {root}")
+    locks, contract = native_tool_locks()
+    require_locked_file(binary, locks["suricata"]["binary_sha256"], "Suricata binary")
+    external_files = {
+        config: (contract["suricata"]["yaml_sha256"], "Suricata YAML configuration"),
+        root / "etc/suricata/classification.config":
+            (contract["suricata"]["classification_sha256"], "Suricata classification configuration"),
+        root / "etc/suricata/reference.config":
+            (contract["suricata"]["reference_sha256"], "Suricata reference configuration"),
+        root / "etc/suricata/threshold.config":
+            (contract["suricata"]["threshold_sha256"], "Suricata threshold configuration"),
+    }
+    for path, (expected_sha256, label) in external_files.items():
+        require_locked_file(path, expected_sha256, label)
     env = os.environ.copy()
-    env["LD_LIBRARY_PATH"] = str(root / "usr" / "lib" / "x86_64-linux-gnu")
+    env.pop("LD_LIBRARY_PATH", None)
     version = run([str(binary), "--build-info"], env=env)
     require(version["exit_code"] == 0 and "Suricata version 8.0.6" in version["output"],
             "Suricata version mismatch")
@@ -750,11 +782,16 @@ def main() -> int:
         suite.check("sensor_cross_parity_H12", cross_sensor_parity)
     else:
         suite.skipped("sensor_cross_parity_H12", "requires successful Zeek and Suricata replay")
-    tshark = shutil.which("tshark")
+    locks, _contract = native_tool_locks()
+    tshark_lock = locks["tshark"].get("binary_sha256")
+    tshark = shutil.which("tshark") if tshark_lock else None
     if tshark is None:
-        suite.skipped("optional_tshark_4_6_8", "TShark is not installed; no TShark validation is claimed")
+        reason = ("TShark is not installed; no TShark validation is claimed" if tshark_lock else
+                  "TShark has no binary SHA-256 lock; refusing to execute a PATH-discovered tool")
+        suite.skipped("optional_tshark_4_6_8", reason)
     else:
         def validate_tshark() -> dict[str, Any]:
+            require_locked_file(Path(tshark), tshark_lock, "TShark binary")
             result = run([tshark, "--version"])
             require(result["exit_code"] == 0 and "4.6.8" in result["output"].splitlines()[0],
                     "installed TShark does not match optional version 4.6.8")
