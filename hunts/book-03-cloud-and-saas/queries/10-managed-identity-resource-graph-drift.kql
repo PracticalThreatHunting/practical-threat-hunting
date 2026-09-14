@@ -5,7 +5,7 @@ let KnownEdges = AADManagedIdentitySignInLogs
     | extend EventTime = coalesce(CreatedDateTime, TimeGenerated)
     | where EventTime >= BaselineStart and EventTime < HuntStart
     | where AADTenantId =~ "<AAD_TENANT_ID>"
-    | where ResultType =~ "Success"
+    | where tostring(ResultType) == "0"
     | where isempty("<MANAGED_IDENTITY_OBJECT_ID>")
         or ServicePrincipalId =~ "<MANAGED_IDENTITY_OBJECT_ID>"
     | extend EdgePrincipalId = tolower(tostring(ServicePrincipalId)),
@@ -17,7 +17,7 @@ AADManagedIdentitySignInLogs
 | extend EventTime = coalesce(CreatedDateTime, TimeGenerated)
 | where EventTime >= HuntStart and EventTime < HuntEnd
 | where AADTenantId =~ "<AAD_TENANT_ID>"
-| where ResultType =~ "Success"
+| where tostring(ResultType) == "0"
 | where isempty("<MANAGED_IDENTITY_OBJECT_ID>")
     or ServicePrincipalId =~ "<MANAGED_IDENTITY_OBJECT_ID>"
 | extend EdgePrincipalId = tolower(tostring(ServicePrincipalId)),
